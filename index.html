@@ -12,42 +12,101 @@
 </head>
 
 <body>
-    <div class="container">
 
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" class="navbar bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Big E</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                <div>
+                    <span class="mr-3 text-light">Cart: <span id="cart-total" class="text-light">0</span> items</span>
+                    <button class="btn btn-success" onclick="checkout()">Check Out</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
         <!-- Product Catalog -->
         <div class="row mt-5">
-            <h2 class="col-12">Games</h2>
+            <h1 class="col-12">Toys</h1>
 
             <!-- Example Product Items -->
             <div class="col-md-4" id="product-1">
-                <div class="card">
-                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Game 1">
+                <div class="card text-center">
+                    <img src="images/Aerial.jpg" class="card-img-top" alt="Aerial">
                     <div class="card-body">
-                        <h5 class="card-title">Game 1</h5>
-                        <p class="card-text">$10.00</p>
-                        <input type="number" id="qty-1" class="form-control mb-3" placeholder="Quantity" min="1">
-                        <div class="text-center">
-                            <button class="btn btn-success" onclick="addToCart(1, 10.00)">Add to Cart</button>
+                        <h5 class="card-title">HG GUNDAM AERIAL REBUILD</h5>
+                        <p class="card-text">590 baht</p>
+                        <div class="center">
+                            <input type="number" id="qty-1" class="form-control mb-3" placeholder="Quantity" min="0">
                         </div>
+                        <button class="btn btn-success" onclick="addToCart(1, 590.00)">Add to Cart</button>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-4" id="product-2">
-                <div class="card">
-                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Toy 1">
+                <div class="card text-center">
+                    <img src="images/PG_Unicorn.webp" class="card-img-top" alt="Unicorn">
                     <div class="card-body">
-                        <h5 class="card-title">Toy 1</h5>
-                        <p class="card-text">$15.00</p>
-                        <input type="number" id="qty-2" class="form-control mb-3" placeholder="Quantity" min="1">
-                        <div class="text-center">
-                            <button class="btn btn-success" onclick="addToCart(2, 15.00)">Add to Cart</button>
+                        <h5 class="card-title">PG RX-0 UNICORN GUNDAM</h5>
+                        <p class="card-text">6,800 baht</p>
+                        <div class="center">
+                            <input type="number" id="qty-2" class="form-control mb-3" placeholder="Quantity" min="0">
                         </div>
+                        <button class="btn btn-success" onclick="addToCart(2, 6800.00)">Add to Cart</button>
                     </div>
                 </div>
             </div>
 
-            <!-- More products can be added similarly -->
+            <div class="col-md-4" id="product-3">
+                <div class="card text-center">
+                    <img src="images/exia.jpg" class="card-img-top" alt="Unicorn">
+                    <div class="card-body">
+                        <h5 class="card-title">PG GUNDAM EXIA</h5>
+                        <p class="card-text">6,490 baht</p>
+                        <div class="center">
+                            <input type="number" id="qty-3" class="form-control mb-3" placeholder="Quantity" min="0">
+                        </div>
+                        <button class="btn btn-success" onclick="addToCart(3, 6490.00)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4" id="product-4">
+                <div class="card text-center">
+                    <img src="images/psycho_zaku.jpg" class="card-img-top" alt="Unicorn">
+                    <div class="card-body">
+                        <h5 class="card-title">MG MS-06R ZAKU II HIGH MOBILITY TYPE "PSYCHO ZAKU" VER KA</h5>
+                        <p class="card-text">2,790 baht</p>
+                        <div class="center">
+                            <input type="number" id="qty-4" class="form-control mb-3" placeholder="Quantity" min="0">
+                        </div>
+                        <button class="btn btn-success" onclick="addToCart(4, 2790.00)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
