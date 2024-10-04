@@ -44,15 +44,39 @@
             </div>
         </div>
     </nav>
-
+    <div class="container-fluid">
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="images/PG_Unicorn.webp" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="images/exia.jpg" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
     <div class="container">
         <!-- Product Catalog -->
         <div class="row mt-5">
             <h1 class="col-12">Toys</h1>
 
             <!-- Example Product Items -->
-            <div class="col-md-4" id="product-1">
-                <div class="card text-center">
+            <div class="col-md-3" id="product-1">
+                <div class="card text-center ">
                     <img src="images/Aerial.jpg" class="card-img-top" alt="Aerial">
                     <div class="card-body">
                         <h5 class="card-title">HG GUNDAM AERIAL REBUILD</h5>
@@ -65,7 +89,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4" id="product-2">
+            <div class="col-md-3" id="product-2">
                 <div class="card text-center">
                     <img src="images/PG_Unicorn.webp" class="card-img-top" alt="Unicorn">
                     <div class="card-body">
@@ -79,7 +103,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4" id="product-3">
+            <div class="col-md-3" id="product-3">
                 <div class="card text-center">
                     <img src="images/exia.jpg" class="card-img-top" alt="Unicorn">
                     <div class="card-body">
@@ -93,7 +117,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4" id="product-4">
+            <div class="col-md-3" id="product-4">
                 <div class="card text-center">
                     <img src="images/psycho_zaku.jpg" class="card-img-top" alt="Unicorn">
                     <div class="card-body">
@@ -106,8 +130,64 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-3" id="product-5">
+                <div class="card text-center">
+                    <img src="images/N700.jpg" class="card-img-top" alt="Unicorn">
+                    <div class="card-body">
+                        <h5 class="card-title">Plarail Bullet Train N700S Basic Set</h5>
+                        <p class="card-text">2,150 baht</p>
+                        <div class="center">
+                            <input type="number" id="qty-5" class="form-control mb-3" placeholder="Quantity" min="0">
+                        </div>
+                        <button class="btn btn-success" onclick="addToCart(5, 2150.00)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3" id="product-6">
+                <div class="card text-center">
+                    <img src="images/500_02.jpg" class="card-img-top" alt="Unicorn">
+                    <div class="card-body">
+                        <h5 class="card-title">Plarail Train-500 Type EVA-02</h5>
+                        <p class="card-text">1,490 baht</p>
+                        <div class="center">
+                            <input type="number" id="qty-6" class="form-control mb-3" placeholder="Quantity" min="0">
+                        </div>
+                        <button class="btn btn-success" onclick="addToCart(6, 1490.00)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3" id="product-7">
+                <div class="card text-center">
+                    <img src="images/wh40000is.jpg" class="card-img-top" alt="Unicorn">
+                    <div class="card-body">
+                        <h5 class="card-title">(BSF) WARHAMMER 40000: INTRODUCTORY SET (ENG)</h5>
+                        <p class="card-text">2,450 baht</p>
+                        <div class="center">
+                            <input type="number" id="qty-7" class="form-control mb-3" placeholder="Quantity" min="0">
+                        </div>
+                        <button class="btn btn-success" onclick="addToCart(7, 2450.00)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3" id="product-8">
+                <div class="card text-center">
+                    <img src="images/whc.jpg" class="card-img-top" alt="Unicorn">
+                    <div class="card-body">
+                        <h5 class="card-title">Warhammer 40k: Adeptus Custodes: Allarus Custodians</h5>
+                        <p class="card-text">2,150 baht</p>
+                        <div class="center">
+                            <input type="number" id="qty-8" class="form-control mb-3" placeholder="Quantity" min="0">
+                        </div>
+                        <button class="btn btn-success" onclick="addToCart(8, 2150.00)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
 
         </div>
+        <div class="text-center">
+            <a href="#" class="btn btn-success">More product</a>
+        </div>
+
     </div>
 
     <!-- Bootstrap JS and dependencies -->
