@@ -16,7 +16,9 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary" class="navbar bg-primary" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><h1>Big E</h1></a>
+            <a class="navbar-brand" href="#">
+                <h1>Big E</h1>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                 aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -88,7 +90,7 @@
                                 <input type="number" id="qty-1" class="form-control mb-3" placeholder="Quantity"
                                     min="0">
                             </div>
-                            <button class="btn btn-success" onclick="addToCart(1, 590.00)">Add to Cart</button>
+                            <button class="btn btn-success" onclick="addToCart(1, 590.00, 'HG GUNDAM AERIAL REBUILD')">Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -105,7 +107,7 @@
                                 <input type="number" id="qty-2" class="form-control mb-3" placeholder="Quantity"
                                     min="0">
                             </div>
-                            <button class="btn btn-success" onclick="addToCart(2, 6800.00)">Add to Cart</button>
+                            <button class="btn btn-success" onclick="addToCart(2, 6800.00, 'PG RX-0 UNICORN GUNDAM')">Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -122,7 +124,7 @@
                                 <input type="number" id="qty-3" class="form-control mb-3" placeholder="Quantity"
                                     min="0">
                             </div>
-                            <button class="btn btn-success" onclick="addToCart(3, 6490.00)">Add to Cart</button>
+                            <button class="btn btn-success" onclick="addToCart(3, 6490.00, 'PG GUNDAM EXIA')">Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -139,7 +141,7 @@
                                 <input type="number" id="qty-4" class="form-control mb-3" placeholder="Quantity"
                                     min="0">
                             </div>
-                            <button class="btn btn-success" onclick="addToCart(4, 2790.00)">Add to Cart</button>
+                            <button class="btn btn-success" onclick="addToCart(4, 2790.00, 'MG MS-06R ZAKU II HIGH MOBILITY TYPE `PSYCHO ZAKU` VER KA')">Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -155,7 +157,7 @@
                                 <input type="number" id="qty-5" class="form-control mb-3" placeholder="Quantity"
                                     min="0">
                             </div>
-                            <button class="btn btn-success" onclick="addToCart(5, 2150.00)">Add to Cart</button>
+                            <button class="btn btn-success" onclick="addToCart(5, 2150.00, 'Plarail Bullet Train N700S Basic Set')">Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -171,7 +173,7 @@
                                 <input type="number" id="qty-6" class="form-control mb-3" placeholder="Quantity"
                                     min="0">
                             </div>
-                            <button class="btn btn-success" onclick="addToCart(6, 1490.00)">Add to Cart</button>
+                            <button class="btn btn-success" onclick="addToCart(6, 1490.00, 'Plarail Train-500 Type EVA-02')">Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -187,7 +189,7 @@
                                 <input type="number" id="qty-7" class="form-control mb-3" placeholder="Quantity"
                                     min="0">
                             </div>
-                            <button class="btn btn-success" onclick="addToCart(7, 2450.00)">Add to Cart</button>
+                            <button class="btn btn-success" onclick="addToCart(7, 2450.00, 'BSF WARHAMMER 40000: INTRODUCTORY SET ENG')">Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -203,7 +205,7 @@
                                 <input type="number" id="qty-8" class="form-control mb-3" placeholder="Quantity"
                                     min="0">
                             </div>
-                            <button class="btn btn-success" onclick="addToCart(8, 2150.00)">Add to Cart</button>
+                            <button class="btn btn-success" onclick="addToCart(8, 2150.00, 'Warhammer 40k: Adeptus Custodes: Allarus Custodians')">Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -229,7 +231,7 @@
                             <h5 class="card-title">Warhammer 40,000: Space Marine 2</h5>
                             <p class="card-text">1,490 baht</p>
                             <div class="mt-auto">
-                                <button class="btn btn-success" onclick="addToCart(9, 1490.00)">Add to Cart</button>
+                                <button class="btn btn-success" onclick="addToCart(9, 1490.00, 'Warhammer 40,000: Space Marine 2')" id="qty-9" value="1" max="1">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -242,7 +244,7 @@
                             <h5 class="card-title">HELLDIVERS™ 2</h5>
                             <p class="card-text">1,290 baht</p>
                             <div class="mt-auto">
-                                <button class="btn btn-success" onclick="addToCart(10, 1290.00)">Add to Cart</button>
+                                <button class="btn btn-success" onclick="addToCart(10, 1290.00, 'HELLDIVERS™ 2')"id="qty-10" value="1" max="1">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -255,7 +257,7 @@
                             <h5 class="card-title">ELDEN RING</h5>
                             <p class="card-text">1,790 baht</p>
                             <div class="mt-auto">
-                                <button class="btn btn-success" onclick="addToCart(11, 1790.00)">Add to Cart</button>
+                                <button class="btn btn-success" onclick="addToCart(11, 1790.00, 'ELDEN RING')"id="qty-11" value="1" max="1">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -268,7 +270,7 @@
                             <h5 class="card-title">NieR:Automata™</h5>
                             <p class="card-text">1,390 baht</p>
                             <div class="mt-auto">
-                                <button class="btn btn-success" onclick="addToCart(12, 1390.00)">Add to Cart</button>
+                                <button class="btn btn-success" onclick="addToCart(12, 1390.00, 'NieR:Automata™')"id="qty-12" value="1" max="1">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -280,7 +282,7 @@
                             <h5 class="card-title">NieR Replicant™ ver.1.22474487139...</h5>
                             <p class="card-text">1,990 baht</p>
                             <div class="mt-auto">
-                                <button class="btn btn-success" onclick="addToCart(13, 1990.00)">Add to Cart</button>
+                                <button class="btn btn-success" onclick="addToCart(13, 1990.00, 'NieR Replicant™ ver.1.22474487139...')"id="qty-13" value="1" max="1">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -292,7 +294,7 @@
                             <h5 class="card-title">Cyberpunk 2077</h5>
                             <p class="card-text">1,799 baht</p>
                             <div class="mt-auto">
-                                <button class="btn btn-success" onclick="addToCart(14, 1799.00)">Add to Cart</button>
+                                <button class="btn btn-success" onclick="addToCart(14, 1799.00, 'Cyberpunk 2077')"id="qty-14" value="1" max="1">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -304,7 +306,7 @@
                             <h5 class="card-title">DARK SOULS™ III</h5>
                             <p class="card-text">1,500 baht</p>
                             <div class="mt-auto">
-                                <button class="btn btn-success" onclick="addToCart(15, 1500.00)">Add to Cart</button>
+                                <button class="btn btn-success" onclick="addToCart(15, 1500.00, 'DARK SOULS™ III')"id="qty-15" value="1" max="1">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -316,7 +318,7 @@
                             <h5 class="card-title">Cities: Skylines</h5>
                             <p class="card-text">819 baht</p>
                             <div class="mt-auto">
-                                <button class="btn btn-success" onclick="addToCart(16, 819.00)">Add to Cart</button>
+                                <button class="btn btn-success" onclick="addToCart(16, 819.00, 'Cities: Skylines')"id="qty-16" value="1" max="1">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -327,8 +329,44 @@
                 <a href="#" class="btn btn-success">More Games/DLC</a>
             </div>
 
+        </div>
 
+        <!-- Modal for Invalid Quantity -->
+        <div class="modal fade" id="quantityModal" tabindex="-1" aria-labelledby="quantityModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="quantityModalLabel">Invalid Quantity</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Please enter a valid quantity.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <!-- Modal for Item Added to Cart -->
+        <div class="modal fade" id="addedToCartModal" tabindex="-1" aria-labelledby="addedToCartModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addedToCartModalLabel">Item Added to Cart</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="modal-body-added">
+                        <!-- This content will be updated dynamically -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Bootstrap JS and dependencies -->

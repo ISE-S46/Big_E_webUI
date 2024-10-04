@@ -1,12 +1,19 @@
 let cart = [];
 
-function addToCart(productId, price) {
+function addToCart(productId, price, itemName) {
     let qty = document.getElementById(`qty-${productId}`).value;
     if (qty > 0) {
         cart.push({ productId: productId, quantity: parseInt(qty), price: price });
         updateCart();
+
+        document.getElementById('modal-body-added').innerText = `${itemName} added to your cart.`;
+
+        let addedToCartModal = new bootstrap.Modal(document.getElementById('addedToCartModal'));
+        addedToCartModal.show();
     } else {
-        alert("Please enter a valid quantity.");
+        // Show the Bootstrap modal instead of alert
+        let quantityModal = new bootstrap.Modal(document.getElementById('quantityModal'));
+        quantityModal.show();
     }
 }
 
