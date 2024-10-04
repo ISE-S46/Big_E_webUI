@@ -20,6 +20,7 @@ function addToCart(productId, price, itemName) {
 function updateCart() {
     let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
     document.getElementById('cart-total').innerText = totalItems;
+    document.getElementById('cart-total-lg').innerText = totalItems;
 }
 
 function checkout() {
