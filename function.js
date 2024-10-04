@@ -20,3 +20,31 @@ function checkout() {
     let totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     alert(`Cart Summary:\n${cartSummary}\nTotal Price: ${totalPrice.toFixed(2)} Baht`);
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Get the search form and input
+    const searchInput = document.querySelector('.form-control[type="search"]');
+
+    // Listen for the 'input' event on the search field
+    searchInput.addEventListener('input', function () {
+        const query = searchInput.value.toLowerCase();
+
+        // Get all product items
+        const products = document.querySelectorAll('.product-item');
+
+        // Loop through the products and show/hide based on search query
+        products.forEach(function (product) {
+            const title = product.querySelector('.card-title').textContent.toLowerCase();
+
+            if (title.includes(query)) {
+                product.style.display = 'block'; // Show product if it matches
+            } else {
+                product.style.display = 'none'; // Hide product if it doesn't match
+            }
+        });
+    });
+});
+
+document.querySelector('form[role="search"]').addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevent form submission
+});
