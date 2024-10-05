@@ -47,6 +47,7 @@ function updateCart() {
 function checkout() {
     const modalBody = document.getElementById('cart-modal-body');
     const checkoutButton = document.querySelector('#proceedToCheckoutButton'); // Get the checkout button
+    const clearButton = document.querySelector('#clearCartButton'); // Get the clear button
 
     let cartSummary = '';
 
@@ -89,6 +90,12 @@ function checkout() {
     modalBody.innerHTML = cartSummary;
 }
 
+function clearCart() {
+    cart = []; // Clear the cart array
+    updateCart(); // Update the cart display
+    checkout(); // Refresh the modal to show the empty cart
+}
+
 function changeQuantity(index, delta) {
     const item = cart[index];
     if (item.quantity + delta > 0) {
@@ -117,27 +124,31 @@ function proceedToCheckout() {
 document.addEventListener("DOMContentLoaded", function () {
     // Get the search form and input
     const searchInput = document.querySelector('.form-control[type="search"]');
+    const searchButton = document.querySelector('button[type="submit"]'); // Get the search button
 
-    // Listen for the 'input' event on the search field
-    searchInput.addEventListener('input', function () {
-        const query = searchInput.value.toLowerCase();
-
-        // Get all product items
+    // Function to filter products based on the search query
+    function filterProducts(query) {
         const products = document.querySelectorAll('.product-item');
 
-        // Loop through the products and show/hide based on search query
         products.forEach(function (product) {
             const title = product.querySelector('.card-title').textContent.toLowerCase();
-
             if (title.includes(query)) {
                 product.style.display = 'block'; // Show product if it matches
             } else {
                 product.style.display = 'none'; // Hide product if it doesn't match
             }
         });
-    });
-});
+    }
 
-document.querySelector('form[role="search"]').addEventListener('submit', function (e) {
-    e.preventDefault(); // Prevent form submission
+    // Listen for click event on the search button
+    searchButton.addEventListener('click', function (e) {
+        e.preventDefault(); // Prevent form submission
+        const query = searchInput.value.toLowerCase();
+        filterProducts(query); // Filter products when the search button is clicked
+    });
+
+    // Prevent default form submission behavior
+    document.querySelector('form[role="search"]').addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent form submission
+    });
 });
