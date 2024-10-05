@@ -63,7 +63,7 @@
     </nav>
 
     <!-- Modal Structure for Cart Summary -->
-    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+    <div class="modal fade modal-lg" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -76,8 +76,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="proceedToCheckout()">Proceed to
-                        Checkout</button>
+                    <button type="button" class="btn btn-primary" id="proceedToCheckoutButton"
+                        onclick="proceedToCheckout()">Proceed to Checkout</button>
                 </div>
             </div>
         </div>
