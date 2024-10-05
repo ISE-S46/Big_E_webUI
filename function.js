@@ -118,7 +118,7 @@ function removeItem(index) {
 
 // Function to proceed to checkout (can be customized)
 function proceedToCheckout() {
-    alert("Proceeding to Checkout...");
+    
 }
 
 document.addEventListener("DOMContentLoaded", function () {
