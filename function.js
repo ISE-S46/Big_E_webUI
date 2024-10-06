@@ -92,6 +92,35 @@ function checkout() {
     modalBody.innerHTML = cartSummary;
 }
 
+// Function to proceed to checkout (can be customized)
+function proceedToCheckout() {
+    const checkoutSummaryBody = document.getElementById('checkout-summary-body');
+
+    // Calculate the total price
+    let totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+    // Create the cart summary content
+    let summaryContent = '<ul class="list-group">';
+    cart.forEach(item => {
+        summaryContent += `
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                ${item.name} (${item.quantity} pcs)
+                <span>${(item.price * item.quantity).toFixed(2)} Baht</span>
+            </li>`;
+    });
+    summaryContent += '</ul>';
+
+    // Add the total price at the end
+    summaryContent += `<p class="mt-3"><strong>Total Price: ${totalPrice.toFixed(2)} Baht</strong></p>`;
+
+    // Update the modal body with the cart summary and total price
+    checkoutSummaryBody.innerHTML = summaryContent;
+
+    // Show the checkout summary modal
+    const checkoutSummaryModal = new bootstrap.Modal(document.getElementById('checkoutSummaryModal'));
+    checkoutSummaryModal.show();
+}
+
 function clearCart() {
     cart = []; // Clear the cart array
     updateCart(); // Update the cart display
@@ -118,41 +147,44 @@ function removeItem(index) {
     checkout(); // Refresh the modal to show updated cart contents
 }
 
-// Function to proceed to checkout (can be customized)
-function proceedToCheckout() {
-    
-}
-
 document.addEventListener("DOMContentLoaded", function () {
     // Get the search form and input
     const searchInput = document.querySelector('.form-control[type="search"]');
     const searchButton = document.querySelector('button[type="submit"]'); // Get the search button
     const brandLink = document.querySelector('.navbar-brand'); // Get the "Big E" brand link
 
-    // Function to filter products based on the search query
+    // Function to filter products based on the search query and scroll to the first match
     function filterProducts(query) {
         const products = document.querySelectorAll('.product-item');
+        let firstMatch = null;
 
         products.forEach(function (product) {
             const title = product.querySelector('.card-title').textContent.toLowerCase();
             if (title.includes(query)) {
                 product.style.display = 'block'; // Show product if it matches
+                if (!firstMatch) {
+                    firstMatch = product; // Save the first matching product
+                }
             } else {
                 product.style.display = 'none'; // Hide product if it doesn't match
             }
         });
+
+        // Scroll to the first matched product if one exists
+        if (firstMatch) {
+            firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
     }
 
     // Listen for click event on the search button
     searchButton.addEventListener('click', function (e) {
         e.preventDefault(); // Prevent form submission
         const query = searchInput.value.toLowerCase();
-        filterProducts(query); // Filter products when the search button is clicked
+        filterProducts(query); // Filter products and scroll to the first match
     });
 
     // Listen for click event on the brand link (Big E)
     brandLink.addEventListener('click', function (e) {
-
         // Clear the search input
         searchInput.value = '';
 
