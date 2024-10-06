@@ -27,10 +27,12 @@ function addToCart(productId, price, itemName) {
         // Update the cart display (both badge and modal)
         updateCart();
 
-        // Show success modal
-        document.getElementById('modal-body-added').innerText = `${itemName} added to your cart.`;
-        let addedToCartModal = new bootstrap.Modal(document.getElementById('addedToCartModal'));
-        addedToCartModal.show();
+        // Update the toast content with the item added message
+        document.getElementById('toast-body-added').innerHTML = `${itemName} has been added to your cart.`;
+
+        // Show the toast
+        const addedToCartToast = new bootstrap.Toast(document.getElementById('addedToCartToast'));
+        addedToCartToast.show();
     } else {
         // Show quantity error modal
         let quantityModal = new bootstrap.Modal(document.getElementById('quantityModal'));

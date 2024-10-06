@@ -45,6 +45,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#games-section">Games/DLC</a>
                     </li>
+                    <li class="nav-item"></li>
+                    <a class="nav-link" href="#Contact">Contact</a>
+                    </li>
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -61,6 +64,38 @@
             </div>
         </div>
     </nav>
+
+    <!-- Modal for Invalid Quantity -->
+    <div class="modal fade" id="quantityModal" tabindex="-1" aria-labelledby="quantityModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="quantityModalLabel">Invalid Quantity</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Please enter a valid quantity.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast for Item Added to Cart -->
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1100;">
+        <div id="addedToCartToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Item Added to Cart</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="toast-body-added">
+                <!-- This content will be updated dynamically -->
+                <p>Item added to your cart.</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal Structure for Cart Summary -->
     <div class="modal fade modal-lg" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
@@ -394,43 +429,6 @@
 
         </div>
 
-        <!-- Modal for Invalid Quantity -->
-        <div class="modal fade" id="quantityModal" tabindex="-1" aria-labelledby="quantityModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="quantityModalLabel">Invalid Quantity</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        Please enter a valid quantity.
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal for Item Added to Cart -->
-        <div class="modal fade" id="addedToCartModal" tabindex="-1" aria-labelledby="addedToCartModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="addedToCartModalLabel">Item Added to Cart</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body" id="modal-body-added">
-                        <!-- This content will be updated dynamically -->
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <footer class="text-white bg-dark mt-auto">
@@ -439,18 +437,23 @@
                 <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column item">
                     <h3 class="text-white">About</h3>
                     <ul class="list-unstyled">
-                        <li><a class="link-light link-offset-2 link-underline link-underline-opacity-0" href="./index.html">Home Page</a></li>
-                        <li><a class="link-light link-offset-2 link-underline link-underline-opacity-0" href="./index.html#toys-section">Toys</a></li>
-                        <li><a class="link-light link-offset-2 link-underline link-underline-opacity-0" href="./index.html#games-section">Games/DLC</a></li>
+                        <li><a class="link-light link-offset-2 link-underline link-underline-opacity-0"
+                                href="./index.html">Home Page</a></li>
+                        <li><a class="link-light link-offset-2 link-underline link-underline-opacity-0"
+                                href="./index.html#toys-section">Toys</a></li>
+                        <li><a class="link-light link-offset-2 link-underline link-underline-opacity-0"
+                                href="./index.html#games-section">Games/DLC</a></li>
                         <li class="mt-2">
-                            <img src="images/facebook.png" alt="Facebook" class="img-responsive mx-1" width="27" height="27">
+                            <img src="images/facebook.png" alt="Facebook" class="img-responsive mx-1" width="27"
+                                height="27">
                             <img src="images/instagram.png" alt="IG" class="img-responsive mx-1" width="27" height="27">
-                            <img src="images/github.png" alt="Github" class="img-responsive mx-1" width="27" height="27">
+                            <img src="images/github.png" alt="Github" class="img-responsive mx-1" width="27"
+                                height="27">
                         </li>
                     </ul>
                 </div>
                 <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column item">
-                    <h3 class="text-white">Contact</h3>
+                    <h3 class="text-white" id="Contact">Contact</h3>
                     <dl class="row">
                         <dt class="col-sm-2">
                             <img src="images/phone.png" alt="Phone" class="img-responsive" width="27" height="27">
@@ -461,7 +464,8 @@
                         </dt>
                         <dd class="col-sm-9">gu.phoowagone_st@tni.ac.th</dd>
                         <dt class="col-sm-2">
-                            <img src="images/location.png" alt="Location" class="img-responsive text-center" width="27" height="27">
+                            <img src="images/location.png" alt="Location" class="img-responsive text-center" width="27"
+                                height="27">
                         </dt>
                         <dd class="col-sm-9">1771/1 Pattanakarn Road,<br>Suan Luang, Bangkok 10250</dd>
                     </dl>
