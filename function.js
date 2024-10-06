@@ -125,6 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Get the search form and input
     const searchInput = document.querySelector('.form-control[type="search"]');
     const searchButton = document.querySelector('button[type="submit"]'); // Get the search button
+    const brandLink = document.querySelector('.navbar-brand'); // Get the "Big E" brand link
 
     // Function to filter products based on the search query
     function filterProducts(query) {
@@ -145,6 +146,19 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault(); // Prevent form submission
         const query = searchInput.value.toLowerCase();
         filterProducts(query); // Filter products when the search button is clicked
+    });
+
+    // Listen for click event on the brand link (Big E)
+    brandLink.addEventListener('click', function (e) {
+
+        // Clear the search input
+        searchInput.value = '';
+
+        // Show all products again
+        const products = document.querySelectorAll('.product-item');
+        products.forEach(function (product) {
+            product.style.display = 'block'; // Show all products
+        });
     });
 
     // Prevent default form submission behavior
