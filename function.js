@@ -64,10 +64,10 @@ function checkout() {
                             <button class="btn btn-outline-secondary" onclick="changeQuantity(${index}, 1)">+</button>
                         </div>
                     </div>
-                    <div>
+                    <div class="d-flex align-items-center">
                         <span>${(item.price * item.quantity).toFixed(2)} Baht</span>
                         <button class="btn btn-sm ms-3" onclick="removeItem(${index})">
-                            <img src="images/trash.png" alt="delete" class="img-responsive" width="40" height="40">
+                            <img src="images/trash.png" alt="delete" class="img-responsive" width="30" height="30">
                         </button>
                     </div>
                 </li>`;
