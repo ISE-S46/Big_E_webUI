@@ -2,7 +2,7 @@ let cart = [];
 
 let productsPerPage = 8; // Show 8 products initially (2 rows of 4 products)
 
-// Array of toys data, id end with .0 is toys .1 is games
+// Array of toys data, id end with .0 is toys .1 is games ._2 is game DLC
 const toys = [
     { id: 1.0, name: "HG GUNDAM AERIAL REBUILD", image: "images/Aerial.jpg", price: 590.00 },
     { id: 2.0, name: "PG RX-0 UNICORN GUNDAM", image: "images/PG_Unicorn.webp", price: 6800.00 },
@@ -25,7 +25,8 @@ const games = [
     { id: 6.1, name: "Cyberpunk 2077", image: "images/Cyberpunk.jpg", price: 1799.00 },
     { id: 7.1, name: "DARK SOULS™ III", image: "images/ds.jpg", price: 1500.00 },
     { id: 8.1, name: "Cities: Skylines", image: "images/cs1.jpg", price: 819.00 },
-    { id: 9.1, name: "Stellaris", image: "images/Stellaris.jpg", price: 1089.00 }
+    { id: 9.1, name: "Stellaris", image: "images/Stellaris.jpg", price: 1089.00 },
+    { id: 9.02, name: "Stellaris: Apocalypse", image: "images/St_Apo.jpg", price: 669.00 }
 ];
 
 // Generic function to dynamically display products
@@ -71,6 +72,11 @@ function showMoreProducts(products, containerId, moreButtonId) {
     displayProducts(products, containerId, moreButtonId, products.length); // Show all products
 }
 
+// Show less products for a specific section
+function showLessProducts(products, containerId, moreButtonId) {
+    displayProducts(products, containerId, moreButtonId, productsPerPage); // Show only the initial products
+}
+
 // Add event listener to the "More product" button
 document.addEventListener('DOMContentLoaded', function () {
     // Display toys
@@ -79,6 +85,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // Attach event listener for "More" button in toys section
     document.getElementById('More').addEventListener('click', function () {
         showMoreProducts(toys, 'products-container', 'More');
+        document.getElementById('show-less-products-container').style.display = 'inline-block'; // Show the Show Less button
+    });
+
+    // Attach event listener for "Show Less" button in toys section
+    document.getElementById('show-less-products-container').addEventListener('click', function () {
+        showLessProducts(toys, 'products-container', 'More');
+        this.style.display = 'none'; // Hide the Show Less button
     });
 
     // Display games
@@ -87,6 +100,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // Attach event listener for "More Games/DLC" button
     document.getElementById('games-more-btn').addEventListener('click', function () {
         showMoreProducts(games, 'games-container', 'games-more-btn');
+        document.getElementById('show-less-games-container').style.display = 'inline-block'; // Show the Show Less button
+    });
+
+    // Attach event listener for "Show Less" button in games section
+    document.getElementById('show-less-games-container').addEventListener('click', function () {
+        showLessProducts(games, 'games-container', 'games-more-btn');
+        this.style.display = 'none'; // Hide the Show Less button
     });
 });
 
