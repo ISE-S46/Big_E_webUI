@@ -181,6 +181,7 @@ function addToCart(productId, price, itemName) {
 
         // Update the cart display (both badge and modal)
         updateCart();
+        updateLocalStorageCart(); // Save cart to localStorage
 
         // Update the toast content with the item added message
         document.getElementById('toast-body-added').innerHTML = `${itemName} has been added to your cart.`;
@@ -194,6 +195,9 @@ function addToCart(productId, price, itemName) {
         quantityModal.show();
     }
 }
+
+// Load cart from localStorage when the page loads
+document.addEventListener('DOMContentLoaded', loadCartFromLocalStorage);
 
 // Example of a function to update the cart display (this is just a placeholder)
 function updateCart() {
@@ -355,4 +359,17 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector('form[role="search"]').addEventListener('submit', function (e) {
         e.preventDefault(); // Prevent form submission
     });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Check if there's a hash in the URL
+    if (window.location.hash) {
+        // Scroll to the corresponding section
+        const sectionId = window.location.hash.substring(1); // Remove the #
+        const sectionElement = document.getElementById(sectionId);
+
+        if (sectionElement) {
+            sectionElement.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
 });
