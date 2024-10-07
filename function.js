@@ -27,7 +27,7 @@ const games = [
     { id: 7.1, name: "DARK SOULS™ III", image: "images/ds.jpg", price: 1500.00 },
     { id: 8.1, name: "Cities: Skylines", image: "images/cs1.jpg", price: 819.00 },
     { id: 9.1, name: "Stellaris", image: "images/Stellaris.jpg", price: 1089.00 },
-    { id: 9.02, name: "Stellaris: Apocalypse", image: "images/St_Apo.jpg", price: 669.00}
+    { id: 9.02, name: "Stellaris: Apocalypse", image: "images/St_Apo.jpg", price: 669.00 }
 ];
 
 // Generic function to dynamically display products
@@ -40,10 +40,16 @@ function displayProducts(products, containerId, moreButtonId, limit = productsPe
         const productCard = `
             <div class="col-md-3 mb-3 product-item" id="product-${product.id}">
                 <div class="card text-center d-flex flex-column h-100 mb-3 shadow">
-                    <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                    <a href="product-details.html?id=${product.id}">
+                        <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                    </a>
                     <div class="card-body d-flex flex-column h-100">
-                        <h5 class="card-title">${product.name}</h5>
-                        <p class="card-text">${product.price.toFixed(2)} baht</p>
+                        <a href="product-details.html?id=${product.id}" class="text-dark link-underline link-underline-opacity-0">
+                            <div class="card-body d-flex flex-column h-100">
+                                <h5 class="card-title">${product.name}</h5>
+                                <p class="card-text">${product.price.toFixed(2)} baht</p>
+                            </div>
+                        </a>
                         <div class="mt-auto">
                             <div class="input-group center" style="width: 130px;">
                                 <button class="btn btn-outline-secondary" onclick="changeQuantityItem('qty-${product.id}', -1)">-</button>
@@ -109,6 +115,42 @@ document.addEventListener('DOMContentLoaded', function () {
         showLessProducts(games, 'games-container', 'games-more-btn');
         this.style.display = 'none'; // Hide the Show Less button
     });
+});
+
+// Combine toys and games for best sellers (you can mix or filter based on specific criteria)
+const bestSellers = [
+    games[3],  // Example: ELDEN RING (from games)
+    toys[0],   // Example: HG GUNDAM AERIAL REBUILD (from toys)
+    games[1],  // Example: HELLDIVERS™ 2 (from games)
+    toys[2],   // Example: PG GUNDAM EXIA (from toys)
+];
+
+// Function to dynamically display all best seller products
+function displayBestSellers() {
+    const bestSellerContainer = document.getElementById('best-seller-container');
+    bestSellerContainer.innerHTML = ''; // Clear existing content
+
+    // Loop through the bestSellers array and display all products
+    bestSellers.forEach(product => {
+        const productCard = `
+            <div class="col-md-3 mb-3 product-item" id="product-${product.id}">
+                <div class="card text-center d-flex flex-column h-100 mb-3 shadow">
+                    <a href="product-details.html?id=${product.id}" class="text-dark link-underline link-underline-opacity-0">
+                        <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                        <div class="card-body">
+                            <h5 class="card-title">${product.name}</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        `;
+        bestSellerContainer.innerHTML += productCard; // Append product card
+    });
+}
+
+// Automatically display all best sellers when the page loads
+document.addEventListener('DOMContentLoaded', function () {
+    displayBestSellers(); // Display all best sellers on page load
 });
 
 function changeQuantityItem(inputId, delta) {

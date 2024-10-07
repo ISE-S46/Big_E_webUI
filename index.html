@@ -43,13 +43,18 @@
                         <a class="nav-link" href="#AboutUs">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#toys-section">Toys/Models</a>
+                        <a class="nav-link" href="#Contact">Contact</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#games-section">Games/DLC</a>
-                    </li>
-                    <li class="nav-item"></li>
-                    <a class="nav-link" href="#Contact">Contact</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Store
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#best-seller-section">Best Sellers</a></li>
+                            <li><a class="dropdown-item" href="#toys-section">Toys/Models</a></li>
+                            <li><a class="dropdown-item" href="#games-section">Games/DLC</a></li>
+                        </ul>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
@@ -199,6 +204,21 @@
         </div>
     </div>
 
+    <div class="container-fluid" id="text-shadow">
+        <h1 class="text-center mt-4" id="text-shadow"><strong>Store</strong></h1>
+    </div>
+
+    <!-- Best Seller Section -->
+    <div class="container" id="best-seller-section">
+        <a href="#best-seller-section"
+            class="col-12 link-offset-2 link-underline link-underline-opacity-0 text-body mt-5">
+            <h1 class="mt-4" id="text-shadow">Best Sellers</h1>
+        </a>
+        <div class="row mb-3" id="best-seller-container">
+            <!-- Best Seller products will be dynamically inserted here -->
+        </div>
+    </div>
+
     <div class="container" id="toys-section">
         <a href="#toys-section" class="col-12 link-offset-2 link-underline link-underline-opacity-0 text-body mt-5">
             <h1 class="mt-4" id="text-shadow">Toys/Models</h1>
@@ -209,7 +229,8 @@
         </div>
         <div class="text-center">
             <button id="More" class="btn btn-primary shadow">More product</button>
-            <button id="show-less-products-container" class="btn btn-secondary shadow" style="display: none;">Show Less</button>
+            <button id="show-less-products-container" class="btn btn-secondary shadow" style="display: none;">Show
+                Less</button>
         </div>
     </div>
 
@@ -223,7 +244,8 @@
         </div>
         <div class="text-center mb-5">
             <button id="games-more-btn" class="btn btn-primary shadow">More Games/DLC</button>
-            <button id="show-less-games-container" class="btn btn-secondary shadow" style="display: none;">Show Less</button>
+            <button id="show-less-games-container" class="btn btn-secondary shadow" style="display: none;">Show
+                Less</button>
         </div>
     </div>
 
