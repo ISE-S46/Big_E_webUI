@@ -9,10 +9,11 @@ const toys = [
     { id: 3.0, name: "PG GUNDAM EXIA", image: "images/exia.jpg", price: 6490.00 },
     { id: 4.0, name: "MG MS-06R ZAKU II HIGH MOBILITY TYPE PSYCHO ZAKU VER KA", image: "images/psycho_zaku.jpg", price: 2790.00 },
     { id: 5.0, name: "Tetris wood puzzle", image: "images/Tetris.jpg", price: 159.00 },
-    { id: 6.0, name: "Plarail Bullet Train N700S Basic Set", image: "images/N700.jpg", price: 2150.00 },
+    { id: 6.0, name: "Catan [EN]", image: "images/Catan.jpg", price: 1920.00 },
     { id: 7.0, name: "(BSF) WARHAMMER 40000: INTRODUCTORY SET (ENG)", image: "images/wh40000is.jpg", price: 2450.00 },
     { id: 8.0, name: "Warhammer 40k: Adeptus Custodes: Allarus Custodians", image: "images/whc.jpg", price: 2150.00 },
-    { id: 9.0, name: "Honkai: Star Rail Qingque 1/10 Figure", image: "images/QQ.jpg", price: 1190.00 }
+    { id: 9.0, name: "Honkai: Star Rail Qingque 1/10 Figure", image: "images/QQ.jpg", price: 1190.00 },
+    { id: 10.0, name: "Plarail Bullet Train N700S Basic Set", image: "images/N700.jpg", price: 2150.00 }
 ];
 
 // Array of games/DLC data
@@ -26,7 +27,7 @@ const games = [
     { id: 7.1, name: "DARK SOULS™ III", image: "images/ds.jpg", price: 1500.00 },
     { id: 8.1, name: "Cities: Skylines", image: "images/cs1.jpg", price: 819.00 },
     { id: 9.1, name: "Stellaris", image: "images/Stellaris.jpg", price: 1089.00 },
-    { id: 9.02, name: "Stellaris: Apocalypse", image: "images/St_Apo.jpg", price: 669.00 }
+    { id: 9.02, name: "Stellaris: Apocalypse", image: "images/St_Apo.jpg", price: 669.00}
 ];
 
 // Generic function to dynamically display products
