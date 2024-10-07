@@ -1,5 +1,95 @@
 let cart = [];
 
+let productsPerPage = 8; // Show 8 products initially (2 rows of 4 products)
+
+// Array of toys data, id end with .0 is toys .1 is games
+const toys = [
+    { id: 1.0, name: "HG GUNDAM AERIAL REBUILD", image: "images/Aerial.jpg", price: 590.00 },
+    { id: 2.0, name: "PG RX-0 UNICORN GUNDAM", image: "images/PG_Unicorn.webp", price: 6800.00 },
+    { id: 3.0, name: "PG GUNDAM EXIA", image: "images/exia.jpg", price: 6490.00 },
+    { id: 4.0, name: "MG MS-06R ZAKU II HIGH MOBILITY TYPE PSYCHO ZAKU VER KA", image: "images/psycho_zaku.jpg", price: 2790.00 },
+    { id: 5.0, name: "Tetris wood puzzle", image: "images/Tetris.jpg", price: 159.00 },
+    { id: 6.0, name: "Plarail Bullet Train N700S Basic Set", image: "images/N700.jpg", price: 2150.00 },
+    { id: 7.0, name: "(BSF) WARHAMMER 40000: INTRODUCTORY SET (ENG)", image: "images/wh40000is.jpg", price: 2450.00 },
+    { id: 8.0, name: "Warhammer 40k: Adeptus Custodes: Allarus Custodians", image: "images/whc.jpg", price: 2150.00 },
+    { id: 9.0, name: "Honkai: Star Rail Qingque 1/10 Figure", image: "images/QQ.jpg", price: 1190.00 }
+];
+
+// Array of games/DLC data
+const games = [
+    { id: 1.1, name: "Warhammer 40,000: Space Marine 2", image: "images/sm2.jpg", price: 1490.00 },
+    { id: 2.1, name: "HELLDIVERS™ 2", image: "images/hd2.jpg", price: 1290.00 },
+    { id: 3.1, name: "ELDEN RING", image: "images/edl.jpg", price: 1790.00 },
+    { id: 4.1, name: "NieR:Automata™", image: "images/Nier_Automata.jpg", price: 1390.00 },
+    { id: 5.1, name: "NieR Replicant™ ver.1.22474487139...", image: "images/Nier_Replicant.jpg", price: 1990.00 },
+    { id: 6.1, name: "Cyberpunk 2077", image: "images/Cyberpunk.jpg", price: 1799.00 },
+    { id: 7.1, name: "DARK SOULS™ III", image: "images/ds.jpg", price: 1500.00 },
+    { id: 8.1, name: "Cities: Skylines", image: "images/cs1.jpg", price: 819.00 },
+    { id: 9.1, name: "Stellaris", image: "images/Stellaris.jpg", price: 1089.00 }
+];
+
+// Generic function to dynamically display products
+function displayProducts(products, containerId, moreButtonId, limit = productsPerPage) {
+    const productsContainer = document.getElementById(containerId);
+    productsContainer.innerHTML = ''; // Clear existing content
+
+    // Loop through the products array and display only the number specified by 'limit'
+    products.slice(0, limit).forEach(product => {
+        const productCard = `
+            <div class="col-md-3 mb-3 product-item" id="product-${product.id}">
+                <div class="card text-center d-flex flex-column h-100 mb-3 shadow">
+                    <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                    <div class="card-body d-flex flex-column h-100">
+                        <h5 class="card-title">${product.name}</h5>
+                        <p class="card-text">${product.price.toFixed(2)} baht</p>
+                        <div class="mt-auto">
+                            <div class="input-group center" style="width: 130px;">
+                                <button class="btn btn-outline-secondary" onclick="changeQuantityItem('qty-${product.id}', -1)">-</button>
+                                <input type="text" class="form-control text-center" id="qty-${product.id}" min="1" value="1">
+                                <button class="btn btn-outline-secondary" onclick="changeQuantityItem('qty-${product.id}', 1)">+</button>
+                            </div>
+                            <button class="btn btn-warning mt-3" onclick="addToCart(${product.id}, ${product.price}, '${product.name}')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        productsContainer.innerHTML += productCard; // Append product card
+    });
+
+    // Hide the "More product" button if all products are displayed
+    const moreButton = document.getElementById(moreButtonId);
+    if (limit >= products.length) {
+        moreButton.style.display = 'none';
+    } else {
+        moreButton.style.display = 'inline-block';
+    }
+}
+
+// Show more products for a specific section
+function showMoreProducts(products, containerId, moreButtonId) {
+    displayProducts(products, containerId, moreButtonId, products.length); // Show all products
+}
+
+// Add event listener to the "More product" button
+document.addEventListener('DOMContentLoaded', function () {
+    // Display toys
+    displayProducts(toys, 'products-container', 'More'); // Ensure 'More' is the ID for the toys section button
+
+    // Attach event listener for "More" button in toys section
+    document.getElementById('More').addEventListener('click', function () {
+        showMoreProducts(toys, 'products-container', 'More');
+    });
+
+    // Display games
+    displayProducts(games, 'games-container', 'games-more-btn'); // Ensure 'games-more-btn' is the ID for the games section button
+
+    // Attach event listener for "More Games/DLC" button
+    document.getElementById('games-more-btn').addEventListener('click', function () {
+        showMoreProducts(games, 'games-container', 'games-more-btn');
+    });
+});
+
 function changeQuantityItem(inputId, delta) {
     const inputElement = document.getElementById(inputId);
     let currentValue = parseInt(inputElement.value);
@@ -10,7 +100,9 @@ function changeQuantityItem(inputId, delta) {
 }
 
 function addToCart(productId, price, itemName) {
-    let qty = parseInt(document.getElementById(`qty-${productId}`).value);
+    // Get the quantity input element
+    let qtyInput = document.getElementById(`qty-${productId}`);
+    let qty = parseFloat(qtyInput.value);
 
     if (qty > 0) {
         // Check if the item already exists in the cart
@@ -40,9 +132,10 @@ function addToCart(productId, price, itemName) {
     }
 }
 
+// Example of a function to update the cart display (this is just a placeholder)
 function updateCart() {
-    let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    document.getElementById('cart-total').innerText = totalItems;
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById('cart-total').innerText = totalItems; // Update cart total display
     document.getElementById('cart-total-lg').innerText = totalItems;
 }
 
