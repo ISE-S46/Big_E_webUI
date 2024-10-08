@@ -40,11 +40,11 @@ function displayProducts(products, containerId, moreButtonId, limit = productsPe
         const productCard = `
             <div class="col-md-3 mb-3 product-item" id="product-${product.id}">
                 <div class="card text-center d-flex flex-column h-100 mb-3 shadow">
-                    <a href="product-details.html?id=${product.id}">
+                    <a href="#" onclick="openProductModal(${product.id}); return false;">
                         <img src="${product.image}" class="card-img-top" alt="${product.name}">
                     </a>
                     <div class="card-body d-flex flex-column h-100">
-                        <a href="product-details.html?id=${product.id}" class="text-dark link-underline link-underline-opacity-0">
+                        <a href="#" class="text-dark link-underline link-underline-opacity-0" onclick="openProductModal(${product.id}); return false;">
                             <div class="card-body d-flex flex-column h-100">
                                 <h5 class="card-title">${product.name}</h5>
                                 <p class="card-text">${product.price.toFixed(2)} baht</p>
@@ -73,6 +73,42 @@ function displayProducts(products, containerId, moreButtonId, limit = productsPe
         moreButton.style.display = 'inline-block';
     }
 }
+
+// Function to open the modal with product details
+function openProductModal(productId) {
+    const product = toys.find(p => p.id === productId) || games.find(p => p.id === productId);
+
+    if (!product) {
+        return;
+    }
+
+    // Create the HTML for product details to display inside the modal
+    const productDetailsHtml = `
+        <div class="row">
+            <div class="col-md-6">
+                <img src="${product.image}" class="img-fluid" alt="${product.name}">
+            </div>
+            <div class="col-md-6">
+                <h2>${product.name}</h2>
+                <p><strong>Price:</strong> ${product.price.toFixed(2)} baht</p>
+                <p>${product.description || 'No description available.'}</p>
+                <button class="btn btn-warning" onclick="addToCart(${product.id}, ${product.price}, '${product.name}')">Add to Cart</button>
+            </div>
+        </div>
+    `;
+
+    // Insert the product details into the modal body
+    document.getElementById('product-modal-body').innerHTML = productDetailsHtml;
+
+    // Open the modal
+    const productModal = new bootstrap.Modal(document.getElementById('productModal'));
+    productModal.show();
+}
+
+//stop screen jumping
+$('#readmore').click(function(e) {
+    e.preventDefault();
+  });
 
 // Show more products for a specific section
 function showMoreProducts(products, containerId, moreButtonId) {
@@ -135,7 +171,7 @@ function displayBestSellers() {
         const productCard = `
             <div class="col-md-3 mb-3 product-item" id="product-${product.id}">
                 <div class="card text-center d-flex flex-column h-100 mb-3 shadow">
-                    <a href="product-details.html?id=${product.id}" class="text-dark link-underline link-underline-opacity-0">
+                    <a href="#" class="text-dark link-underline link-underline-opacity-0" onclick="openProductModal(${product.id}); return false;">
                         <img src="${product.image}" class="card-img-top" alt="${product.name}">
                         <div class="card-body">
                             <h5 class="card-title">${product.name}</h5>
@@ -205,7 +241,6 @@ function updateCart() {
 function checkout() {
     const modalBody = document.getElementById('cart-modal-body');
     const checkoutButton = document.querySelector('#proceedToCheckoutButton'); // Get the checkout button
-    const clearButton = document.querySelector('#clearCartButton'); // Get the clear button
 
     let cartSummary = '';
 
