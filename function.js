@@ -2,32 +2,32 @@ let cart = [];
 
 let productsPerPage = 8; // Show 8 products initially (2 rows of 4 products)
 
-// Array of toys data, id end with .0 is toys .1 is games ._2 is game DLC
+// Array of toys data, id end with .0 is toys
 const toys = [
-    { id: 1.0, name: "HG GUNDAM AERIAL REBUILD", image: "images/Aerial.jpg", price: 590.00 },
-    { id: 2.0, name: "PG RX-0 UNICORN GUNDAM", image: "images/PG_Unicorn.webp", price: 6800.00 },
-    { id: 3.0, name: "PG GUNDAM EXIA", image: "images/exia.jpg", price: 6490.00 },
-    { id: 4.0, name: "MG MS-06R ZAKU II HIGH MOBILITY TYPE PSYCHO ZAKU VER KA", image: "images/psycho_zaku.jpg", price: 2790.00 },
-    { id: 5.0, name: "Tetris wood puzzle", image: "images/Tetris.jpg", price: 159.00 },
-    { id: 6.0, name: "Catan [EN]", image: "images/Catan.jpg", price: 1920.00 },
-    { id: 7.0, name: "(BSF) WARHAMMER 40000: INTRODUCTORY SET (ENG)", image: "images/wh40000is.jpg", price: 2450.00 },
-    { id: 8.0, name: "Warhammer 40k: Adeptus Custodes: Allarus Custodians", image: "images/whc.jpg", price: 2150.00 },
-    { id: 9.0, name: "Honkai: Star Rail Qingque 1/10 Figure", image: "images/QQ.jpg", price: 1190.00 },
-    { id: 10.0, name: "Plarail Bullet Train N700S Basic Set", image: "images/N700.jpg", price: 2150.00 }
+    { id: 1.0, name: "HG GUNDAM AERIAL REBUILD", image: "images/Aerial.jpg", price: 590.00, description: "Bandai® Gundam Gunpla High Grade Plastic Model Kits Series HG XVX-016RN GUNDAM AERIAL REBUILD The repaired version of the Gundam Aerial from Mobile Suit Gundam: The Witch from Mercury." },
+    { id: 2.0, name: "PG RX-0 UNICORN GUNDAM", image: "images/PG_Unicorn.webp", price: 6800.00, description: "Bandai® Gunpla Perfect Grade 1/60 Model Kit PG RX-0 UNICORN GUNDAM" },
+    { id: 3.0, name: "PG GUNDAM EXIA", image: "images/exia.jpg", price: 6490.00, description: "Bandai® Gunpla Perfect Grade 1/60 Model Kit PG GN-001 GUNDAM EXIA" },
+    { id: 4.0, name: "MG MS-06R ZAKU II HIGH MOBILITY TYPE PSYCHO ZAKU VER KA", image: "images/psycho_zaku.jpg", price: 2790.00, description: "Bandai® Gunpla Master Grade 1/100 VER KA Model Kit MG MS-06R ZAKU II HIGH MOBILITY TYPE PSYCHO ZAKU VER KA" },
+    { id: 5.0, name: "Tetris wood puzzle", image: "images/Tetris.jpg", price: 159.00, description: "A wooden puzzle based on the classic Tetris game. Perfect for brain training and a stylish decorative piece." },
+    { id: 6.0, name: "Catan [EN]", image: "images/Catan.jpg", price: 1920.00, description: "The Settlers of Catan board game, a strategy game where players collect resources and build roads and settlements." },
+    { id: 7.0, name: "(BSF) WARHAMMER 40000: INTRODUCTORY SET (ENG)", image: "images/wh40000is.jpg", price: 2450.00, description: "A great way to begin your journey into the Warhammer 40,000 hobby. Includes everything you need to start playing the legendary tabletop game." },
+    { id: 8.0, name: "Warhammer 40k: Adeptus Custodes: Allarus Custodians", image: "images/whc.jpg", price: 2150.00, description: "Adeptus Custodes miniatures from the Warhammer 40k universe, highly detailed for collectors and gamers alike." },
+    { id: 9.0, name: "Honkai: Star Rail Qingque 1/10 Figure", image: "images/QQ.jpg", price: 1190.00, description: "A detailed 1/10 scale figure of Qingque from Honkai: Star Rail." },
+    { id: 10.0, name: "Plarail Bullet Train N700S Basic Set", image: "images/N700.jpg", price: 2150.00, description: "All-in- one set for those who want to start Plarail with [Shinkansen N700S]!" }
 ];
 
-// Array of games/DLC data
+// Array of games/DLC data, id end with .1 is games, ._2 is game DLC
 const games = [
-    { id: 1.1, name: "Warhammer 40,000: Space Marine 2", image: "images/sm2.jpg", price: 1490.00 },
-    { id: 2.1, name: "HELLDIVERS™ 2", image: "images/hd2.jpg", price: 1290.00 },
-    { id: 3.1, name: "ELDEN RING", image: "images/edl.jpg", price: 1790.00 },
-    { id: 4.1, name: "NieR:Automata™", image: "images/Nier_Automata.jpg", price: 1390.00 },
-    { id: 5.1, name: "NieR Replicant™ ver.1.22474487139...", image: "images/Nier_Replicant.jpg", price: 1990.00 },
-    { id: 6.1, name: "Cyberpunk 2077", image: "images/Cyberpunk.jpg", price: 1799.00 },
-    { id: 7.1, name: "DARK SOULS™ III", image: "images/ds.jpg", price: 1500.00 },
-    { id: 8.1, name: "Cities: Skylines", image: "images/cs1.jpg", price: 819.00 },
-    { id: 9.1, name: "Stellaris", image: "images/Stellaris.jpg", price: 1089.00 },
-    { id: 9.02, name: "Stellaris: Apocalypse", image: "images/St_Apo.jpg", price: 669.00 }
+    { id: 1.1, name: "Warhammer 40,000: Space Marine 2", image: "images/sm2.jpg", price: 1490.00, description: "Embody the superhuman skill and brutality of a Space Marine. Unleash deadly abilities and devastating weaponry to obliterate the relentless Tyranid swarms. Defend the Imperium in spectacular third-person action in solo or multiplayer modes." },
+    { id: 2.1, name: "HELLDIVERS™ 2", image: "images/hd2.jpg", price: 1290.00, description: "HELLDIVERS™ 2 is a 3rd person squad-based shooter that sees the elite forces of the Helldivers battling to win an intergalactic struggle to rid the galaxy of the rising alien threats." },
+    { id: 3.1, name: "ELDEN RING", image: "images/edl.jpg", price: 1790.00, description: "The Lands Between are part of a vast continent where magnificent open fields and huge dungeons with complex and three-dimensional designs are seamlessly connected. As you explore, the joy of discovering unknown and overwhelming threats awaits you." },
+    { id: 4.1, name: "NieR:Automata™", image: "images/Nier_Automata.jpg", price: 1390.00, description: "NieR: Automata tells the story of androids 2B, 9S and A2 and their battle to reclaim the machine-driven dystopia overrun by powerful machines. Humanity has been driven from the Earth by mechanical beings from another world. In a final effort to take back the planet, the human resistance sends a force of android soldiers to destroy the invaders. Now, a war between machines and androids rages on... A war that could soon unveil a long-forgotten truth of the world."},
+    { id: 5.1, name: "NieR Replicant™ ver.1.22474487139...", image: "images/Nier_Replicant.jpg", price: 1990.00, description: "A thousand-year lie that would live on for eternity... NieR Replicant ver.1.22474487139... is an updated version of NieR Replicant, previously only released in Japan. Discover the one-of-a-kind prequel to the critically-acclaimed masterpiece NieR:Automata. Now with a modern upgrade, experience masterfully revived visuals, a fascinating storyline and more! " },
+    { id: 6.1, name: "Cyberpunk 2077", image: "images/Cyberpunk.jpg", price: 1799.00, description: "Cyberpunk 2077 is an open-world, action-adventure RPG set in the megalopolis of Night City, where you play as a cyberpunk mercenary wrapped up in a do-or-die fight for survival." },
+    { id: 7.1, name: "DARK SOULS™ III", image: "images/ds.jpg", price: 1500.00, description: "The third and final chapter of the Dark Souls series, As fires fade and the world falls into ruin, journey into a universe filled with more colossal enemies and environments. Players will be immersed into a world of epic atmosphere and darkness through faster gameplay and amplified combat intensity. " },
+    { id: 8.1, name: "Cities: Skylines", image: "images/cs1.jpg", price: 819.00, description: "Cities: Skylines is a modern take on the classic city simulation. The game introduces new game play elements to realize the thrill and hardships of creating and maintaining a real city whilst expanding on some well-established tropes of the city building experience. You’re only limited by your imagination, so take control and reach for the sky!" },
+    { id: 9.1, name: "Stellaris", image: "images/Stellaris.jpg", price: 1089.00, description: "Get ready to explore, discover and interact with a multitude of species as you journey among the stars. Forge a galactic empire by sending out science ships to survey and explore, while construction ships build stations around newly discovered planets. Discover buried treasures and galactic wonders as you spin a direction for your society, creating limitations and evolutions for your explorers. Alliances will form and wars will be declared." },
+    { id: 9.02, name: "Stellaris: Apocalypse", image: "images/St_Apo.jpg", price: 669.00, description: "Stellaris: Apocalypse is a full expansion which redefines stellar warfare for all players with a host of new offensive and defensive options. Destroy entire worlds with terrifying new planet-killer weapons, fight against (or alongside) ruthless space pirates, and maybe discover a few non-violent game features as well." }
 ];
 
 // Generic function to dynamically display products
@@ -231,7 +231,7 @@ function addToCart(productId, price, itemName) {
     }
 }
 
-// Example of a function to update the cart display (this is just a placeholder)
+// function to update the cart display
 function updateCart() {
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
     document.getElementById('cart-total').innerText = totalItems; // Update cart total display
