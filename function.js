@@ -86,12 +86,17 @@ function openProductModal(productId) {
     const productDetailsHtml = `
         <div class="row">
             <div class="col-md-6">
-                <img src="${product.image}" class="img-fluid" alt="${product.name}">
+                <img src="${product.image}" class="img-fluid img-responsive mb-3" width="600" alt="${product.name}">
             </div>
             <div class="col-md-6">
                 <h2>${product.name}</h2>
                 <p><strong>Price:</strong> ${product.price.toFixed(2)} baht</p>
                 <p>${product.description || 'No description available.'}</p>
+                <div class="input-group mb-3" style="width: 130px;">
+                    <button class="btn btn-outline-secondary" onclick="changeQuantityItem('qty-${product.id}', -1)">-</button>
+                    <input type="text" class="form-control text-center" id="qty-${product.id}" min="1" value="1">
+                    <button class="btn btn-outline-secondary" onclick="changeQuantityItem('qty-${product.id}', 1)">+</button>
+                </div>
                 <button class="btn btn-warning" onclick="addToCart(${product.id}, ${product.price}, '${product.name}')">Add to Cart</button>
             </div>
         </div>
