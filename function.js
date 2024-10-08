@@ -344,6 +344,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const searchButton = document.querySelector('button[type="submit"]'); // Get the search button
     const brandLink = document.querySelector('.navbar-brand'); // Get the "Big E" brand link
 
+    // Function to show more products (if the "Show More" button exists)
+    function triggerShowMoreButtons() {
+        const moreButton = document.getElementById('More');
+        const moreButton2 = document.getElementById('games-more-btn');
+        if (moreButton && moreButton.style.display !== 'none') {
+            moreButton.click(); // Trigger the "Show More" button
+            moreButton2.click(); // Trigger the "More Game" button
+        }
+    }
+
     // Function to filter products based on the search query and scroll to the first match
     function filterProducts(query) {
         const products = document.querySelectorAll('.product-item');
@@ -371,7 +381,19 @@ document.addEventListener("DOMContentLoaded", function () {
     searchButton.addEventListener('click', function (e) {
         e.preventDefault(); // Prevent form submission
         const query = searchInput.value.toLowerCase();
-        filterProducts(query); // Filter products and scroll to the first match
+
+        if (query) {
+            // If there is a search query, trigger the "Show More" buttons immediately
+            triggerShowMoreButtons();
+
+            // After giving the "Show More" button time to load, filter the products
+            setTimeout(function () {
+                filterProducts(query); // Filter products and scroll to the first match
+            }, 200); // Small delay to allow "Show More" to complete loading
+        } else {
+            // If there's no search query, just show all products
+            filterProducts(query);
+        }
     });
 
     // Listen for click event on the brand link (Big E)

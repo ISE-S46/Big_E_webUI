@@ -25,7 +25,7 @@
 
             <!-- Brand name centered for small screens -->
             <a class="navbar-brand ms-5" href="#" style="text-align: center;">
-                <h1>Big E</h1>
+                <h1><strong>Big E</strong></h1>
             </a>
 
             <!-- Cart button for small screens -->
@@ -153,7 +153,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="productModalLabel">Product Details</h5>
+                    <h3 class="modal-title" id="productModalLabel"><strong>Product Details</strong></h3>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="product-modal-body">
@@ -179,19 +179,29 @@
                     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item">
-                                <img src="images/Nier_Automata.jpg" class="d-block w-100" alt="Nier Automata">
+                                <a href="#" onclick="openProductModal(4.1); return false;">
+                                    <img src="images/Nier_Automata.jpg" class="d-block w-100" alt="Nier Automata">
+                                </a>
                             </div>
                             <div class="carousel-item">
-                                <img src="images/ds.jpg" class="d-block w-100" alt="Dark soul III">
+                                <a href="#" onclick="openProductModal(7.1); return false;">
+                                    <img src="images/ds.jpg" class="d-block w-100" alt="Dark soul III">
+                                </a>
                             </div>
                             <div class="carousel-item active">
-                                <img src="images/Aerial.jpg" class="d-block w-100" alt="Aerial">
+                                <a href="#" onclick="openProductModal(1.0); return false;">
+                                    <img src="images/Aerial.jpg" class="d-block w-100" alt="Aerial">
+                                </a>
                             </div>
                             <div class="carousel-item">
-                                <img src="images/psycho_zaku.jpg" class="d-block w-100" alt="zaku">
+                                <a href="#" onclick="openProductModal(4.0); return false;">
+                                    <img src="images/psycho_zaku.jpg" class="d-block w-100" alt="zaku">
+                                </a>
                             </div>
                             <div class="carousel-item">
-                                <img src="images/hd2.jpg" class="d-block w-100" alt="hell divers">
+                                <a href="#" onclick="openProductModal(2.1); return false;">
+                                    <img src="images/hd2.jpg" class="d-block w-100" alt="hell divers">
+                                </a>
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
