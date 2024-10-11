@@ -30,6 +30,65 @@ const games = [
     { id: 9.02, name: "Stellaris: Apocalypse", image: "images/St_Apo.jpg", price: 669.00, description: "Stellaris: Apocalypse is a full expansion which redefines stellar warfare for all players with a host of new offensive and defensive options. Destroy entire worlds with terrifying new planet-killer weapons, fight against (or alongside) ruthless space pirates, and maybe discover a few non-violent game features as well." }
 ];
 
+// Function to filter and display products in their respective sections
+function filterProductsByCriteria() {
+    const category = document.getElementById('categoryFilter').value;
+    const priceRange = document.getElementById('priceFilter').value;
+
+    const allToys = [...toys]; // Toys data
+    const allGames = [...games]; // Games data
+
+    // Filter toys
+    let filteredToys = allToys.filter(product => {
+        return applyFilters(product, category, priceRange, 'toys');
+    });
+
+    // Filter games
+    let filteredGames = allGames.filter(product => {
+        return applyFilters(product, category, priceRange, 'games');
+    });
+
+    // Display the filtered toys in the toys container
+    displayProducts(filteredToys, 'products-container', 'More');
+
+    // Display the filtered games in the games container
+    displayProducts(filteredGames, 'games-container', 'games-more-btn');
+}
+
+// Helper function to apply filters based on category and price range
+function applyFilters(product, category, priceRange, section) {
+    // Filter by category
+    if (category !== 'all' && category !== section) {
+        return false;
+    }
+
+    // Filter by price range
+    const price = product.price;
+    if (priceRange === '0-500' && price > 500) return false;
+    if (priceRange === '500-1500' && (price <= 500 || price > 1500)) return false;
+    if (priceRange === '1500-3000' && (price <= 1500 || price > 3000)) return false;
+    if (priceRange === '3000+' && price <= 3000) return false;
+
+    return true;
+}
+
+// Listen for filter changes
+document.getElementById('categoryFilter').addEventListener('change', filterProductsByCriteria);
+document.getElementById('priceFilter').addEventListener('change', filterProductsByCriteria);
+
+// Call this function on page load to initialize the filtered view
+document.addEventListener('DOMContentLoaded', filterProductsByCriteria);
+
+// Reset filter function
+function resetFilter() {
+    document.getElementById('categoryFilter').value = 'all';
+    document.getElementById('priceFilter').value = 'all';
+    filterProductsByCriteria(); // Call the filter function to reset the view
+}
+
+// Attach event listener to reset filter button
+document.getElementById('resetFilter').addEventListener('click', resetFilter);
+
 // Generic function to dynamically display products
 function displayProducts(products, containerId, moreButtonId, limit = productsPerPage) {
     const productsContainer = document.getElementById(containerId);
