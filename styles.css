@@ -11,3 +11,6 @@ html {
 #Quantitybar{
     width: 130px;
 }
+.product-item a:hover .card-title{
+    color: #ffb067;
+}
