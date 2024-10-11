@@ -30,35 +30,33 @@ const games = [
     { id: 9.02, name: "Stellaris: Apocalypse", image: "images/St_Apo.jpg", price: 669.00, description: "Stellaris: Apocalypse is a full expansion which redefines stellar warfare for all players with a host of new offensive and defensive options. Destroy entire worlds with terrifying new planet-killer weapons, fight against (or alongside) ruthless space pirates, and maybe discover a few non-violent game features as well." }
 ];
 
-// Function to filter and display products in their respective sections
 function filterProductsByCriteria() {
     const category = document.getElementById('categoryFilter').value;
     const priceRange = document.getElementById('priceFilter').value;
 
-    const allToys = [...toys]; // Toys data
-    const allGames = [...games]; // Games data
-
     // Filter toys
-    let filteredToys = allToys.filter(product => {
-        return applyFilters(product, category, priceRange, 'toys');
-    });
+    let filteredToys = toys.filter(product => applyFilters(product, category, priceRange, 'toys'));
 
     // Filter games
-    let filteredGames = allGames.filter(product => {
-        return applyFilters(product, category, priceRange, 'games');
-    });
+    let filteredGames = games.filter(product => applyFilters(product, category, priceRange, 'games'));
 
-    // Display the filtered toys in the toys container
+    // Filter best sellers (this can include both toys and games)
+    let filteredBestSellers = bestSellers.filter(product => applyFilters(product, category, priceRange, ''));
+
+    // Display the filtered toys in the toys section
     displayProducts(filteredToys, 'products-container', 'More');
 
-    // Display the filtered games in the games container
+    // Display the filtered games in the games section
     displayProducts(filteredGames, 'games-container', 'games-more-btn');
+
+    // Display the filtered best sellers in the best sellers section
+    displayProducts(filteredBestSellers, 'best-seller-container', 'best-seller-more-btn');
 }
 
 // Helper function to apply filters based on category and price range
 function applyFilters(product, category, priceRange, section) {
-    // Filter by category
-    if (category !== 'all' && category !== section) {
+    // Filter by category (only for toys and games, skip for best sellers)
+    if (category !== 'all' && category !== section && section !== '') {
         return false;
     }
 
