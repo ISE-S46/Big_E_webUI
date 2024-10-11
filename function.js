@@ -51,7 +51,7 @@ function displayProducts(products, containerId, moreButtonId, limit = productsPe
                             </div>
                         </a>
                         <div class="mt-auto">
-                            <div class="input-group center" style="width: 130px;">
+                            <div class="input-group center" id="Quantitybar">
                                 <button class="btn btn-outline-secondary" onclick="changeQuantityItem('qty-${product.id}', -1)">-</button>
                                 <input type="text" class="form-control text-center" id="qty-${product.id}" min="1" value="1">
                                 <button class="btn btn-outline-secondary" onclick="changeQuantityItem('qty-${product.id}', 1)">+</button>
@@ -92,7 +92,7 @@ function openProductModal(productId) {
                 <h2>${product.name}</h2>
                 <p><strong>Price:</strong> ${product.price.toFixed(2)} baht</p>
                 <p>${product.description || 'No description available.'}</p>
-                <div class="input-group mb-3" style="width: 130px;">
+                <div class="input-group mb-3" id="Quantitybar">
                     <button class="btn btn-outline-secondary" onclick="changeQuantityItem('qty-${product.id}', -1)">-</button>
                     <input type="text" class="form-control text-center" id="qty-${product.id}" min="1" value="1">
                     <button class="btn btn-outline-secondary" onclick="changeQuantityItem('qty-${product.id}', 1)">+</button>
@@ -256,7 +256,7 @@ function checkout() {
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <span>${item.name}</span><br>
-                        <div class="input-group mt-2" style="width: 150px;">
+                        <div class="input-group mt-2" id="Quantitybar">
                             <button class="btn btn-outline-secondary" onclick="changeQuantity(${index}, -1)">-</button>
                             <input type="text" class="form-control text-center" id="qty-input-${item.productId}" value="${item.quantity}" readonly>
                             <button class="btn btn-outline-secondary" onclick="changeQuantity(${index}, 1)">+</button>
