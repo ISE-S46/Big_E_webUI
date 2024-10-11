@@ -9,7 +9,7 @@ const toys = [
     { id: 3.0, name: "PG GUNDAM EXIA", image: "images/exia.jpg", price: 6490.00, description: "Bandai® Gunpla Perfect Grade 1/60 Model Kit PG GN-001 GUNDAM EXIA" },
     { id: 4.0, name: "MG MS-06R ZAKU II HIGH MOBILITY TYPE PSYCHO ZAKU VER KA", image: "images/psycho_zaku.jpg", price: 2790.00, description: "Bandai® Gunpla Master Grade 1/100 VER KA Model Kit MG MS-06R ZAKU II HIGH MOBILITY TYPE PSYCHO ZAKU VER KA" },
     { id: 5.0, name: "Tetris wood puzzle", image: "images/Tetris.jpg", price: 159.00, description: "A wooden puzzle based on the classic Tetris game. Perfect for brain training and a stylish decorative piece." },
-    { id: 6.0, name: "Catan [EN]", image: "images/Catan.jpg", price: 1920.00, description: "The Settlers of Catan board game, a strategy game where players collect resources and build roads and settlements." },
+    { id: 6.0, name: "Catan [EN]", image: "images/Catan.jpg", price: 669.00, description: "The Settlers of Catan board game, a strategy game where players collect resources and build roads and settlements." },
     { id: 7.0, name: "(BSF) WARHAMMER 40000: INTRODUCTORY SET (ENG)", image: "images/wh40000is.jpg", price: 2450.00, description: "A great way to begin your journey into the Warhammer 40,000 hobby. Includes everything you need to start playing the legendary tabletop game." },
     { id: 8.0, name: "Warhammer 40k: Adeptus Custodes: Allarus Custodians", image: "images/whc.jpg", price: 2150.00, description: "Adeptus Custodes miniatures from the Warhammer 40k universe, highly detailed for collectors and gamers alike." },
     { id: 9.0, name: "Honkai: Star Rail Qingque 1/10 Figure", image: "images/QQ.jpg", price: 1190.00, description: "A detailed 1/10 scale figure of Qingque from Honkai: Star Rail." },
@@ -30,18 +30,31 @@ const games = [
     { id: 9.02, name: "Stellaris: Apocalypse", image: "images/St_Apo.jpg", price: 669.00, description: "Stellaris: Apocalypse is a full expansion which redefines stellar warfare for all players with a host of new offensive and defensive options. Destroy entire worlds with terrifying new planet-killer weapons, fight against (or alongside) ruthless space pirates, and maybe discover a few non-violent game features as well." }
 ];
 
+// Filter products based on selected criteria
 function filterProductsByCriteria() {
     const category = document.getElementById('categoryFilter').value;
-    const priceRange = document.getElementById('priceFilter').value;
 
-    // Filter toys
-    let filteredToys = toys.filter(product => applyFilters(product, category, priceRange, 'toys'));
+    // Get the selected price ranges from checkboxes
+    const selectedPriceRanges = Array.from(document.querySelectorAll('#priceFilter .form-check-input:checked'))
+        .map(checkbox => checkbox.value);
 
-    // Filter games
-    let filteredGames = games.filter(product => applyFilters(product, category, priceRange, 'games'));
+    // Filter toys based on selected criteria
+    let filteredToys = toys.filter(product => applyFilters(product, category, selectedPriceRanges, 'toys'));
 
-    // Filter best sellers (this can include both toys and games)
-    let filteredBestSellers = bestSellers.filter(product => applyFilters(product, category, priceRange, ''));
+    // Filter games based on selected criteria
+    let filteredGames = games.filter(product => applyFilters(product, category, selectedPriceRanges, 'games'));
+
+    // Filter best sellers, which could be a mix of toys and games
+    let filteredBestSellers = bestSellers.filter(product => {
+        if (toys.some(toy => toy.id === product.id)) {
+            // It's a toy, apply toy filters
+            return applyFilters(product, category, selectedPriceRanges, 'toys');
+        } else if (games.some(game => game.id === product.id)) {
+            // It's a game, apply game filters
+            return applyFilters(product, category, selectedPriceRanges, 'games');
+        }
+        return false; // If not found in either, exclude it
+    });
 
     // Display the filtered toys in the toys section
     displayProducts(filteredToys, 'products-container', 'More');
@@ -50,22 +63,31 @@ function filterProductsByCriteria() {
     displayProducts(filteredGames, 'games-container', 'games-more-btn');
 
     // Display the filtered best sellers in the best sellers section
-    displayProducts(filteredBestSellers, 'best-seller-container', 'best-seller-more-btn');
+    displayProducts(filteredBestSellers, 'best-seller-container');
 }
 
 // Helper function to apply filters based on category and price range
-function applyFilters(product, category, priceRange, section) {
+function applyFilters(product, category, priceRanges, section) {
     // Filter by category (only for toys and games, skip for best sellers)
     if (category !== 'all' && category !== section && section !== '') {
         return false;
     }
 
     // Filter by price range
-    const price = product.price;
-    if (priceRange === '0-500' && price > 500) return false;
-    if (priceRange === '500-1500' && (price <= 500 || price > 1500)) return false;
-    if (priceRange === '1500-3000' && (price <= 1500 || price > 3000)) return false;
-    if (priceRange === '3000+' && price <= 3000) return false;
+    if (priceRanges.length > 0) {
+        const price = product.price;
+        let matchesPrice = false;
+
+        // Check if the product falls within any of the selected price ranges
+        priceRanges.forEach(priceRange => {
+            if (priceRange === '0-500' && price <= 500) matchesPrice = true;
+            if (priceRange === '500-1500' && price > 500 && price <= 1500) matchesPrice = true;
+            if (priceRange === '1500-3000' && price > 1500 && price <= 3000) matchesPrice = true;
+            if (priceRange === '3000+' && price > 3000) matchesPrice = true;
+        });
+
+        if (!matchesPrice) return false; // Exclude product if no price range matches
+    }
 
     return true;
 }
@@ -80,8 +102,13 @@ document.addEventListener('DOMContentLoaded', filterProductsByCriteria);
 // Reset filter function
 function resetFilter() {
     document.getElementById('categoryFilter').value = 'all';
-    document.getElementById('priceFilter').value = 'all';
-    filterProductsByCriteria(); // Call the filter function to reset the view
+    
+    // Uncheck all price range checkboxes
+    const priceCheckboxes = document.querySelectorAll('#priceFilter .form-check-input');
+    priceCheckboxes.forEach(checkbox => checkbox.checked = false);
+
+    // Call the filter function to reset the view
+    filterProductsByCriteria();
 }
 
 // Attach event listener to reset filter button
