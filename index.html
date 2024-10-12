@@ -179,27 +179,27 @@
                     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item">
-                                <a href="#" onclick="openProductModal(4.1); return false;">
+                                <a href="#" onclick="openProductModal(4-10); return false;">
                                     <img src="images/Nier_Automata.jpg" class="d-block w-100" alt="Nier Automata">
                                 </a>
                             </div>
                             <div class="carousel-item">
-                                <a href="#" onclick="openProductModal(7.1); return false;">
+                                <a href="#" onclick="openProductModal(7-10); return false;">
                                     <img src="images/ds.jpg" class="d-block w-100" alt="Dark soul III">
                                 </a>
                             </div>
                             <div class="carousel-item active">
-                                <a href="#" onclick="openProductModal(1.0); return false;">
+                                <a href="#" onclick="openProductModal(1-0); return false;">
                                     <img src="images/Aerial.jpg" class="d-block w-100" alt="Aerial">
                                 </a>
                             </div>
                             <div class="carousel-item">
-                                <a href="#" onclick="openProductModal(4.0); return false;">
+                                <a href="#" onclick="openProductModal(4-0); return false;">
                                     <img src="images/psycho_zaku.jpg" class="d-block w-100" alt="zaku">
                                 </a>
                             </div>
                             <div class="carousel-item">
-                                <a href="#" onclick="openProductModal(2.1); return false;">
+                                <a href="#" onclick="openProductModal(2-10); return false;">
                                     <img src="images/hd2.jpg" class="d-block w-100" alt="hell divers">
                                 </a>
                             </div>
@@ -237,51 +237,43 @@
         <h1 class="text-center mt-4" id="text-shadow"><strong>Store</strong></h1>
     </div>
 
-    <!-- Filter Controls Section -->
-    <div class="container my-4">
-        <h2>Filter Products</h2>
+    <div class="container">
+        <!-- Filter Controls Section -->
+        <div class="card shadow-sm p-3 mb-5 bg-body-tertiary">
+            <h4>Filter</h4>
+            <!-- Filter Form (Category, Price Range, etc.) -->
+            <div class="form-group mt-3">
+                <label for="categoryFilter">Category:</label>
+                <select id="categoryFilter" class="form-select">
+                    <option value="all">All</option>
+                    <option value="toys">Toys/Models</option>
+                    <option value="games">Games/DLC</option>
+                </select>
+            </div>
 
-        <!-- Category Filter -->
-        <div class="form-group">
-            <label for="categoryFilter">Category:</label>
-            <select id="categoryFilter" class="form-select">
-                <option value="all">All</option>
-                <option value="toys">Toys/Models</option>
-                <option value="games">Games/DLC</option>
-            </select>
-        </div>
-
-        <!-- Price Filter -->
-        <div class="form-group mt-3">
-            <h2>Price Range:</h2>
+            <!-- Price Range Filter -->
+            <label for="priceFilter">Price Range:</label>
             <div id="priceFilter">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="0-500" id="priceRange1">
-                    <label class="form-check-label" for="priceRange1">
-                        0 - 500 Baht
-                    </label>
+                    <label class="form-check-label" for="priceRange1">0 - 500 Baht</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="500-1500" id="priceRange2">
-                    <label class="form-check-label" for="priceRange2">
-                        500 - 1500 Baht
-                    </label>
+                    <label class="form-check-label" for="priceRange2">500 - 1500 Baht</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="1500-3000" id="priceRange3">
-                    <label class="form-check-label" for="priceRange3">
-                        1500 - 3000 Baht
-                    </label>
+                    <label class="form-check-label" for="priceRange3">1500 - 3000 Baht</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="3000+" id="priceRange4">
-                    <label class="form-check-label" for="priceRange4">
-                        3000+ Baht
-                    </label>
+                    <label class="form-check-label" for="priceRange4">3000+ Baht</label>
                 </div>
             </div>
+
+            <button id="resetFilter" class="btn btn-danger mt-3">Reset Filter</button>
         </div>
-        <button id="resetFilter" class="btn btn-danger mt-3">Reset Filter</button>
     </div>
 
     <!-- Best Seller Section -->

@@ -2,32 +2,45 @@ let cart = [];
 
 let productsPerPage = 8; // Show 8 products initially (2 rows of 4 products)
 
-// Array of toys data, id end with .0 is toys
+// Array of toys data, id end with -0 is toys
 const toys = [
-    { id: 1.0, name: "HG GUNDAM AERIAL REBUILD", image: "images/Aerial.jpg", price: 590.00, description: "Bandai® Gundam Gunpla High Grade Plastic Model Kits Series HG XVX-016RN GUNDAM AERIAL REBUILD The repaired version of the Gundam Aerial from Mobile Suit Gundam: The Witch from Mercury." },
-    { id: 2.0, name: "PG RX-0 UNICORN GUNDAM", image: "images/PG_Unicorn.webp", price: 6800.00, description: "Bandai® Gunpla Perfect Grade 1/60 Model Kit PG RX-0 UNICORN GUNDAM" },
-    { id: 3.0, name: "PG GUNDAM EXIA", image: "images/exia.jpg", price: 6490.00, description: "Bandai® Gunpla Perfect Grade 1/60 Model Kit PG GN-001 GUNDAM EXIA" },
-    { id: 4.0, name: "MG MS-06R ZAKU II HIGH MOBILITY TYPE PSYCHO ZAKU VER KA", image: "images/psycho_zaku.jpg", price: 2790.00, description: "Bandai® Gunpla Master Grade 1/100 VER KA Model Kit MG MS-06R ZAKU II HIGH MOBILITY TYPE PSYCHO ZAKU VER KA" },
-    { id: 5.0, name: "Tetris wood puzzle", image: "images/Tetris.jpg", price: 159.00, description: "A wooden puzzle based on the classic Tetris game. Perfect for brain training and a stylish decorative piece." },
-    { id: 6.0, name: "Catan [EN]", image: "images/Catan.jpg", price: 669.00, description: "The Settlers of Catan board game, a strategy game where players collect resources and build roads and settlements." },
-    { id: 7.0, name: "(BSF) WARHAMMER 40000: INTRODUCTORY SET (ENG)", image: "images/wh40000is.jpg", price: 2450.00, description: "A great way to begin your journey into the Warhammer 40,000 hobby. Includes everything you need to start playing the legendary tabletop game." },
-    { id: 8.0, name: "Warhammer 40k: Adeptus Custodes: Allarus Custodians", image: "images/whc.jpg", price: 2150.00, description: "Adeptus Custodes miniatures from the Warhammer 40k universe, highly detailed for collectors and gamers alike." },
-    { id: 9.0, name: "Honkai: Star Rail Qingque 1/10 Figure", image: "images/QQ.jpg", price: 1190.00, description: "A detailed 1/10 scale figure of Qingque from Honkai: Star Rail." },
-    { id: 10.0, name: "Plarail Bullet Train N700S Basic Set", image: "images/N700.jpg", price: 2150.00, description: "All-in- one set for those who want to start Plarail with [Shinkansen N700S]!" }
+    { id: 1-0, name: "HG GUNDAM AERIAL REBUILD", image: "images/Aerial.jpg", price: 590.00, description: "Bandai® Gundam Gunpla High Grade Plastic Model Kits Series HG XVX-016RN GUNDAM AERIAL REBUILD The repaired version of the Gundam Aerial from Mobile Suit Gundam: The Witch from Mercury." },
+    { id: 2-0, name: "PG RX-0 UNICORN GUNDAM", image: "images/PG_Unicorn.webp", price: 6800.00, description: "Bandai® Gunpla Perfect Grade 1/60 Model Kit PG RX-0 UNICORN GUNDAM" },
+    { id: 3-0, name: "PG GUNDAM EXIA", image: "images/exia.jpg", price: 6490.00, description: "Bandai® Gunpla Perfect Grade 1/60 Model Kit PG GN-001 GUNDAM EXIA" },
+    { id: 4-0, name: "MG MS-06R ZAKU II HIGH MOBILITY TYPE PSYCHO ZAKU VER KA", image: "images/psycho_zaku.jpg", price: 2790.00, description: "Bandai® Gunpla Master Grade 1/100 VER KA Model Kit MG MS-06R ZAKU II HIGH MOBILITY TYPE PSYCHO ZAKU VER KA" },
+    { id: 5-0, name: "Tetris wood puzzle", image: "images/Tetris.jpg", price: 159.00, description: "A wooden puzzle based on the classic Tetris game. Perfect for brain training and a stylish decorative piece." },
+    { id: 6-0, name: "Catan [EN]", image: "images/Catan.jpg", price: 669.00, description: "The Settlers of Catan board game, a strategy game where players collect resources and build roads and settlements." },
+    { id: 7-0, name: "(BSF) WARHAMMER 40000: INTRODUCTORY SET (ENG)", image: "images/wh40000is.jpg", price: 2450.00, description: "A great way to begin your journey into the Warhammer 40,000 hobby. Includes everything you need to start playing the legendary tabletop game." },
+    { id: 8-0, name: "Warhammer 40k: Adeptus Custodes: Allarus Custodians", image: "images/whc.jpg", price: 2150.00, description: "Adeptus Custodes miniatures from the Warhammer 40k universe, highly detailed for collectors and gamers alike." },
+    { id: 9-0, name: "Honkai: Star Rail Qingque 1/10 Figure", image: "images/QQ.jpg", price: 1190.00, description: "A detailed 1/10 scale figure of Qingque from Honkai: Star Rail." },
+    { id: 10-0, name: "Plarail Bullet Train N700S Basic Set", image: "images/N700.jpg", price: 2150.00, description: "All-in- one set for those who want to start Plarail with [Shinkansen N700S]!" }
 ];
 
-// Array of games/DLC data, id end with .1 is games, ._2 is game DLC
+// Array of games/DLC data, id end with -10 is games, -2_ is game DLC
 const games = [
-    { id: 1.1, name: "Warhammer 40,000: Space Marine 2", image: "images/sm2.jpg", price: 1490.00, description: "Embody the superhuman skill and brutality of a Space Marine. Unleash deadly abilities and devastating weaponry to obliterate the relentless Tyranid swarms. Defend the Imperium in spectacular third-person action in solo or multiplayer modes." },
-    { id: 2.1, name: "HELLDIVERS™ 2", image: "images/hd2.jpg", price: 1290.00, description: "HELLDIVERS™ 2 is a 3rd person squad-based shooter that sees the elite forces of the Helldivers battling to win an intergalactic struggle to rid the galaxy of the rising alien threats." },
-    { id: 3.1, name: "ELDEN RING", image: "images/edl.jpg", price: 1790.00, description: "The Lands Between are part of a vast continent where magnificent open fields and huge dungeons with complex and three-dimensional designs are seamlessly connected. As you explore, the joy of discovering unknown and overwhelming threats awaits you." },
-    { id: 4.1, name: "NieR:Automata™", image: "images/Nier_Automata.jpg", price: 1390.00, description: "NieR: Automata tells the story of androids 2B, 9S and A2 and their battle to reclaim the machine-driven dystopia overrun by powerful machines. Humanity has been driven from the Earth by mechanical beings from another world. In a final effort to take back the planet, the human resistance sends a force of android soldiers to destroy the invaders. Now, a war between machines and androids rages on... A war that could soon unveil a long-forgotten truth of the world."},
-    { id: 5.1, name: "NieR Replicant™ ver.1.22474487139...", image: "images/Nier_Replicant.jpg", price: 1990.00, description: "A thousand-year lie that would live on for eternity... NieR Replicant ver.1.22474487139... is an updated version of NieR Replicant, previously only released in Japan. Discover the one-of-a-kind prequel to the critically-acclaimed masterpiece NieR:Automata. Now with a modern upgrade, experience masterfully revived visuals, a fascinating storyline and more! " },
-    { id: 6.1, name: "Cyberpunk 2077", image: "images/Cyberpunk.jpg", price: 1799.00, description: "Cyberpunk 2077 is an open-world, action-adventure RPG set in the megalopolis of Night City, where you play as a cyberpunk mercenary wrapped up in a do-or-die fight for survival." },
-    { id: 7.1, name: "DARK SOULS™ III", image: "images/ds.jpg", price: 1500.00, description: "The third and final chapter of the Dark Souls series, As fires fade and the world falls into ruin, journey into a universe filled with more colossal enemies and environments. Players will be immersed into a world of epic atmosphere and darkness through faster gameplay and amplified combat intensity. " },
-    { id: 8.1, name: "Cities: Skylines", image: "images/cs1.jpg", price: 819.00, description: "Cities: Skylines is a modern take on the classic city simulation. The game introduces new game play elements to realize the thrill and hardships of creating and maintaining a real city whilst expanding on some well-established tropes of the city building experience. You’re only limited by your imagination, so take control and reach for the sky!" },
-    { id: 9.1, name: "Stellaris", image: "images/Stellaris.jpg", price: 1089.00, description: "Get ready to explore, discover and interact with a multitude of species as you journey among the stars. Forge a galactic empire by sending out science ships to survey and explore, while construction ships build stations around newly discovered planets. Discover buried treasures and galactic wonders as you spin a direction for your society, creating limitations and evolutions for your explorers. Alliances will form and wars will be declared." },
-    { id: 9.02, name: "Stellaris: Apocalypse", image: "images/St_Apo.jpg", price: 669.00, description: "Stellaris: Apocalypse is a full expansion which redefines stellar warfare for all players with a host of new offensive and defensive options. Destroy entire worlds with terrifying new planet-killer weapons, fight against (or alongside) ruthless space pirates, and maybe discover a few non-violent game features as well." }
+    { id: 1-10, name: "Warhammer 40,000: Space Marine 2", image: "images/sm2.jpg", price: 1490.00, description: "Embody the superhuman skill and brutality of a Space Marine. Unleash deadly abilities and devastating weaponry to obliterate the relentless Tyranid swarms. Defend the Imperium in spectacular third-person action in solo or multiplayer modes." },
+    { id: 2-10, name: "HELLDIVERS™ 2", image: "images/hd2.jpg", price: 1290.00, description: "HELLDIVERS™ 2 is a 3rd person squad-based shooter that sees the elite forces of the Helldivers battling to win an intergalactic struggle to rid the galaxy of the rising alien threats." },
+    { id: 3-10, name: "ELDEN RING", image: "images/edl.jpg", price: 1790.00, description: "The Lands Between are part of a vast continent where magnificent open fields and huge dungeons with complex and three-dimensional designs are seamlessly connected. As you explore, the joy of discovering unknown and overwhelming threats awaits you." },
+    { id: 4-10, name: "NieR:Automata™", image: "images/Nier_Automata.jpg", price: 1390.00, description: "NieR: Automata tells the story of androids 2B, 9S and A2 and their battle to reclaim the machine-driven dystopia overrun by powerful machines. Humanity has been driven from the Earth by mechanical beings from another world. In a final effort to take back the planet, the human resistance sends a force of android soldiers to destroy the invaders. Now, a war between machines and androids rages on... A war that could soon unveil a long-forgotten truth of the world."},
+    { id: 5-10, name: "NieR Replicant™ ver.1.22474487139...", image: "images/Nier_Replicant.jpg", price: 1990.00, description: "A thousand-year lie that would live on for eternity... NieR Replicant ver.1.22474487139... is an updated version of NieR Replicant, previously only released in Japan. Discover the one-of-a-kind prequel to the critically-acclaimed masterpiece NieR:Automata. Now with a modern upgrade, experience masterfully revived visuals, a fascinating storyline and more! " },
+    { id: 6-10, name: "Cyberpunk 2077", image: "images/Cyberpunk.jpg", price: 1799.00, description: "Cyberpunk 2077 is an open-world, action-adventure RPG set in the megalopolis of Night City, where you play as a cyberpunk mercenary wrapped up in a do-or-die fight for survival." },
+    { id: 7-10, name: "DARK SOULS™ III", image: "images/ds.jpg", price: 1500.00, description: "The third and final chapter of the Dark Souls series, As fires fade and the world falls into ruin, journey into a universe filled with more colossal enemies and environments. Players will be immersed into a world of epic atmosphere and darkness through faster gameplay and amplified combat intensity. " },
+    { id: 8-10, name: "Cities: Skylines", image: "images/cs1.jpg", price: 819.00, description: "Cities: Skylines is a modern take on the classic city simulation. The game introduces new game play elements to realize the thrill and hardships of creating and maintaining a real city whilst expanding on some well-established tropes of the city building experience. You’re only limited by your imagination, so take control and reach for the sky!" },
+    { id: 9-10, name: "Stellaris", image: "images/Stellaris.jpg", price: 1089.00, description: "Get ready to explore, discover and interact with a multitude of species as you journey among the stars. Forge a galactic empire by sending out science ships to survey and explore, while construction ships build stations around newly discovered planets. Discover buried treasures and galactic wonders as you spin a direction for your society, creating limitations and evolutions for your explorers. Alliances will form and wars will be declared." },
+    { id: 9-21, name: "Stellaris: Apocalypse", image: "images/St_Apo.jpg", price: 669.00, description: "Stellaris: Apocalypse is a full expansion which redefines stellar warfare for all players with a host of new offensive and defensive options. Destroy entire worlds with terrifying new planet-killer weapons, fight against (or alongside) ruthless space pirates, and maybe discover a few non-violent game features as well." }
+];
+// Combine toys and games into one array
+const allProducts = [
+    ...toys.map(item => ({ ...item, type: 'toy' })),   // Add 'type' property to each toy
+    ...games.map(item => ({ ...item, type: 'game' }))  // Add 'type' property to each game
+];
+
+// Combine toys and games for best sellers
+const bestSellers = [
+    games[3],  // Example: ELDEN RING (from games)
+    toys[0],   // Example: HG GUNDAM AERIAL REBUILD (from toys)
+    games[1],  // Example: HELLDIVERS™ 2 (from games)
+    toys[2],   // Example: PG GUNDAM EXIA (from toys)
 ];
 
 // Filter products based on selected criteria
@@ -115,7 +128,7 @@ function resetFilter() {
 document.getElementById('resetFilter').addEventListener('click', resetFilter);
 document.getElementById('resetFilter1').addEventListener('click', resetFilter);
 
-// Generic function to dynamically display products
+// function to dynamically display products
 function displayProducts(products, containerId, moreButtonId, limit = productsPerPage) {
     const productsContainer = document.getElementById(containerId);
     productsContainer.innerHTML = ''; // Clear existing content
@@ -137,9 +150,9 @@ function displayProducts(products, containerId, moreButtonId, limit = productsPe
                         </a>
                         <div class="mt-auto">
                             <div class="input-group center" id="Quantitybar">
-                                <button class="btn btn-outline-secondary" onclick="changeQuantityItem('qty-${product.id}', -1)">-</button>
-                                <input type="text" class="form-control text-center" id="qty-${product.id}" min="1" value="1">
-                                <button class="btn btn-outline-secondary" onclick="changeQuantityItem('qty-${product.id}', 1)">+</button>
+                                <button class="btn btn-outline-secondary" onclick="changeQuantityItem(${product.id}, -1)">-</button>
+                                <input type="text" class="form-control text-center qty-input" id="qty-${product.id}" min="1" value="1">
+                                <button class="btn btn-outline-secondary" onclick="changeQuantityItem(${product.id}, 1)">+</button>
                             </div>
                             <button class="btn btn-warning mt-3" onclick="addToCart(${product.id}, ${product.price}, '${product.name}')">Add to Cart</button>
                         </div>
@@ -161,11 +174,17 @@ function displayProducts(products, containerId, moreButtonId, limit = productsPe
 
 // Function to open the modal with product details
 function openProductModal(productId) {
-    const product = toys.find(p => p.id === productId) || games.find(p => p.id === productId);
+    // Check that the allProducts array is available and contains both toys and games
+    const product = allProducts.find(p => p.id === productId);
 
     if (!product) {
+        console.error('Product not found for ID:', productId);
         return;
     }
+
+    // Get the current quantity value from the main product card (if available)
+    const cardQtyInput = document.querySelector(`#qty-${productId}`);
+    const qty = cardQtyInput ? parseInt(cardQtyInput.value) : 1; // Default to 1 if no value is set
 
     // Create the HTML for product details to display inside the modal
     const productDetailsHtml = `
@@ -178,11 +197,11 @@ function openProductModal(productId) {
                 <p><strong>Price:</strong> ${product.price.toFixed(2)} baht</p>
                 <p>${product.description || 'No description available.'}</p>
                 <div class="input-group mb-3" id="Quantitybar">
-                    <button class="btn btn-outline-secondary" onclick="changeQuantityItem('qty-${product.id}', -1)">-</button>
-                    <input type="text" class="form-control text-center" id="qty-${product.id}" min="1" value="1">
-                    <button class="btn btn-outline-secondary" onclick="changeQuantityItem('qty-${product.id}', 1)">+</button>
+                    <button class="btn btn-outline-secondary" onclick="changeQuantityItem(${product.id}, -1, 'modal')">-</button>
+                    <input type="text" class="form-control text-center qty-input" id="modal-qty-${productId}" min="1" value="${qty}">
+                    <button class="btn btn-outline-secondary" onclick="changeQuantityItem(${product.id}, 1, 'modal')">+</button>
                 </div>
-                <button class="btn btn-warning" onclick="addToCart(${product.id}, ${product.price}, '${product.name}')">Add to Cart</button>
+                <button class="btn btn-warning" onclick="addToCart(${product.id}, ${product.price}, '${product.name}', 'modal')">Add to Cart</button>
             </div>
         </div>
     `;
@@ -193,12 +212,51 @@ function openProductModal(productId) {
     // Open the modal
     const productModal = new bootstrap.Modal(document.getElementById('productModal'));
     productModal.show();
+
+    // Synchronize the modal quantity input with product cards in the main sections
+    synchronizeQuantityInput(productId);
 }
 
-//stop screen jumping
-$('#readmore').click(function(e) {
-    e.preventDefault();
-  });
+// Function to synchronize quantity across modal and all product cards (including best seller section)
+function synchronizeQuantityInput(productId) {
+    // Get the modal's quantity input element
+    const modalQtyInput = document.getElementById(`modal-qty-${productId}`);
+
+    // Get all other quantity input elements for the same product across sections (cards and modal)
+    const otherQtyInputs = document.querySelectorAll(`[id^="qty-${productId}"]`);
+
+    // Update the modal's quantity input based on the current values in other sections
+    if (otherQtyInputs.length > 0) {
+        modalQtyInput.value = otherQtyInputs[0].value;  // Use the first match as the synchronized value
+    }
+
+    // Sync all quantity inputs when the modal's input is changed
+    modalQtyInput.addEventListener('input', function () {
+        otherQtyInputs.forEach(input => input.value = modalQtyInput.value);
+    });
+
+    // Sync the card quantity inputs when the modal's quantity is changed
+    otherQtyInputs.forEach(input => {
+        input.addEventListener('input', function () {
+            modalQtyInput.value = input.value;
+        });
+    });
+}
+
+// Function to change quantity in both modal and product cards
+function changeQuantityItem(productId, delta, source) {
+    const qtyInputs = document.querySelectorAll(`[id^="qty-${productId}"]`);
+
+    qtyInputs.forEach(inputElement => {
+        let currentValue = parseInt(inputElement.value);
+        if (!isNaN(currentValue) && currentValue + delta > 0) {
+            inputElement.value = currentValue + delta;
+        }
+    });
+
+    // Synchronize quantity inputs across all locations (modal and product cards)
+    synchronizeQuantityInput(productId);
+}
 
 // Show more products for a specific section
 function showMoreProducts(products, containerId, moreButtonId) {
@@ -243,54 +301,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// Combine toys and games for best sellers (you can mix or filter based on specific criteria)
-const bestSellers = [
-    games[3],  // Example: ELDEN RING (from games)
-    toys[0],   // Example: HG GUNDAM AERIAL REBUILD (from toys)
-    games[1],  // Example: HELLDIVERS™ 2 (from games)
-    toys[2],   // Example: PG GUNDAM EXIA (from toys)
-];
-
-// Function to dynamically display all best seller products
-function displayBestSellers() {
-    const bestSellerContainer = document.getElementById('best-seller-container');
-    bestSellerContainer.innerHTML = ''; // Clear existing content
-
-    // Loop through the bestSellers array and display all products
-    bestSellers.forEach(product => {
-        const productCard = `
-            <div class="col-6 col-md-3 mb-3 product-item" id="product-${product.id}">
-                <div class="card text-center d-flex flex-column h-100 mb-3 shadow">
-                    <a href="#" class="text-dark link-underline link-underline-opacity-0" onclick="openProductModal(${product.id}); return false;">
-                        <img src="${product.image}" class="card-img-top" alt="${product.name}">
-                        <div class="card-body">
-                            <h5 class="card-title">${product.name}</h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        `;
-        bestSellerContainer.innerHTML += productCard; // Append product card
-    });
-}
-
-// Automatically display all best sellers when the page loads
-document.addEventListener('DOMContentLoaded', function () {
-    displayBestSellers(); // Display all best sellers on page load
-});
-
-function changeQuantityItem(inputId, delta) {
-    const inputElement = document.getElementById(inputId);
-    let currentValue = parseInt(inputElement.value);
-
-    if (!isNaN(currentValue) && currentValue + delta > 0) {
-        inputElement.value = currentValue + delta;
+// Function to add product to the cart
+function addToCart(productId, price, itemName, source = 'card') {
+    // Get the quantity input element (from the modal or card)
+    let qtyInput;
+    if (source === 'modal') {
+        qtyInput = document.getElementById(`modal-qty-${productId}`);
+    } else {
+        qtyInput = document.getElementById(`qty-${productId}`);
     }
-}
 
-function addToCart(productId, price, itemName) {
-    // Get the quantity input element
-    let qtyInput = document.getElementById(`qty-${productId}`);
     let qty = parseFloat(qtyInput.value);
 
     if (qty > 0) {
