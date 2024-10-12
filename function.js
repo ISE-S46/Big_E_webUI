@@ -123,7 +123,7 @@ function displayProducts(products, containerId, moreButtonId, limit = productsPe
     // Loop through the products array and display only the number specified by 'limit'
     products.slice(0, limit).forEach(product => {
         const productCard = `
-            <div class="col-md-3 mb-3 product-item" id="product-${product.id}">
+            <div class="col-6 col-md-3 mb-3 product-item" id="product-${product.id}">
                 <div class="card text-center d-flex flex-column h-100 mb-3 shadow">
                     <a href="#" onclick="openProductModal(${product.id}); return false;">
                         <img src="${product.image}" class="card-img-top" alt="${product.name}">
@@ -259,7 +259,7 @@ function displayBestSellers() {
     // Loop through the bestSellers array and display all products
     bestSellers.forEach(product => {
         const productCard = `
-            <div class="col-md-3 mb-3 product-item" id="product-${product.id}">
+            <div class="col-6 col-md-3 mb-3 product-item" id="product-${product.id}">
                 <div class="card text-center d-flex flex-column h-100 mb-3 shadow">
                     <a href="#" class="text-dark link-underline link-underline-opacity-0" onclick="openProductModal(${product.id}); return false;">
                         <img src="${product.image}" class="card-img-top" alt="${product.name}">
