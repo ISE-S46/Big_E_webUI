@@ -113,6 +113,7 @@ function resetFilter() {
 
 // Attach event listener to reset filter button
 document.getElementById('resetFilter').addEventListener('click', resetFilter);
+document.getElementById('resetFilter1').addEventListener('click', resetFilter);
 
 // Generic function to dynamically display products
 function displayProducts(products, containerId, moreButtonId, limit = productsPerPage) {
