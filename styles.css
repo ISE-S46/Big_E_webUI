@@ -2,15 +2,69 @@
     width: 60%;
     margin: 0 auto 0 auto;
 }
+
 html {
     scroll-behavior: smooth;
 }
-#text-shadow{
+
+#text-shadow {
     text-shadow: 2px 2px 1px #ffb067;
 }
-#Quantitybar{
+
+#Quantitybar {
     width: 130px;
 }
-.product-item a:hover .card-title{
+
+.product-item a:hover .card-title {
     color: #ffb067;
+}
+
+@media only screen and (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+    }
+
+    h4,
+    h5,
+    h6 {
+        font-size: 1rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        font-size: 0.85rem;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    body {
+        font-size: 12px;
+    }
+
+    h1 {
+        font-size: 1.25rem;
+    }
+
+    h2 {
+        font-size: 1.15rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+    }
 }
