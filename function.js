@@ -103,15 +103,23 @@ function setupFilterListeners() {
     document.addEventListener('DOMContentLoaded', filterProductsByCriteria);
 }
 
-// Reset filter function
+// Function to reset the filter and button visibility
 function resetFilter() {
     document.getElementById('categoryFilter').value = 'all';
 
     // Uncheck all price range checkboxes
-    document.querySelectorAll('#priceFilter .form-check-input').forEach(checkbox => checkbox.checked = false);
+    const priceCheckboxes = document.querySelectorAll('#priceFilter .form-check-input');
+    priceCheckboxes.forEach(checkbox => checkbox.checked = false);
 
-    // Reset the product display
+    // Reset the products display
     filterProductsByCriteria();
+
+    // Show only the "Show More" button and hide the "Show Less" button for both sections
+    document.getElementById('show-less-products-container').style.display = 'none';
+    document.getElementById('More').style.display = 'inline-block'; // Show More button for toys section
+
+    document.getElementById('show-less-games-container').style.display = 'none';
+    document.getElementById('games-more-btn').style.display = 'inline-block'; // Show More button for games section
 }
 
 // Setup reset button event listeners
