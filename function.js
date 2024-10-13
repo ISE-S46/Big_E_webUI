@@ -1,5 +1,4 @@
 let cart = [];
-
 let productsPerPage = 8; // Show 8 products initially (2 rows of 4 products)
 
 // Array of toys data, id end with -0 is toys
@@ -43,151 +42,160 @@ const bestSellers = [
     toys[2],   // Example: PG GUNDAM EXIA (from toys)
 ];
 
-// Filter products based on selected criteria
+// Function to filter products based on selected criteria
 function filterProductsByCriteria() {
     const category = document.getElementById('categoryFilter').value;
+    const selectedPriceRanges = Array.from(document.querySelectorAll('#priceFilter .form-check-input:checked')).map(checkbox => checkbox.value);
 
-    // Get the selected price ranges from checkboxes
-    const selectedPriceRanges = Array.from(document.querySelectorAll('#priceFilter .form-check-input:checked'))
-        .map(checkbox => checkbox.value);
+    // Filter toys, games, and best sellers
+    const filteredToys = filterByCategoryAndPrice(toys, category, selectedPriceRanges, 'toys');
+    const filteredGames = filterByCategoryAndPrice(games, category, selectedPriceRanges, 'games');
+    const filteredBestSellers = bestSellers.filter(product => filterByProductType(product, category, selectedPriceRanges));
 
-    // Filter toys based on selected criteria
-    let filteredToys = toys.filter(product => applyFilters(product, category, selectedPriceRanges, 'toys'));
-
-    // Filter games based on selected criteria
-    let filteredGames = games.filter(product => applyFilters(product, category, selectedPriceRanges, 'games'));
-
-    // Filter best sellers, which could be a mix of toys and games
-    let filteredBestSellers = bestSellers.filter(product => {
-        if (toys.some(toy => toy.id === product.id)) {
-            // It's a toy, apply toy filters
-            return applyFilters(product, category, selectedPriceRanges, 'toys');
-        } else if (games.some(game => game.id === product.id)) {
-            // It's a game, apply game filters
-            return applyFilters(product, category, selectedPriceRanges, 'games');
-        }
-        return false; // If not found in either, exclude it
-    });
-
-    // Display the filtered toys in the toys section
+    // Display filtered products in their respective sections
     displayProducts(filteredToys, 'products-container', 'More');
-
-    // Display the filtered games in the games section
     displayProducts(filteredGames, 'games-container', 'games-more-btn');
+    displayBestSellers(filteredBestSellers);
+}
 
-    // Display the filtered best sellers in the best sellers section
-    displayProducts(filteredBestSellers, 'best-seller-container');
+// Helper function to filter products by category and price
+function filterByCategoryAndPrice(products, category, priceRanges, section) {
+    return products.filter(product => applyFilters(product, category, priceRanges, section));
+}
+
+// Helper function to determine whether a product is a toy or game
+function filterByProductType(product, category, priceRanges) {
+    if (toys.some(toy => toy.id === product.id)) {
+        return applyFilters(product, category, priceRanges, 'toys');
+    } else if (games.some(game => game.id === product.id)) {
+        return applyFilters(product, category, priceRanges, 'games');
+    }
+    return false; // Exclude if product is neither toy nor game
 }
 
 // Helper function to apply filters based on category and price range
 function applyFilters(product, category, priceRanges, section) {
-    // Filter by category (only for toys and games, skip for best sellers)
-    if (category !== 'all' && category !== section && section !== '') {
-        return false;
-    }
+    // Category filter (skip best sellers section)
+    if (category !== 'all' && category !== section) return false;
 
-    // Filter by price range
-    if (priceRanges.length > 0) {
+    // Price range filter
+    if (priceRanges.length === 0) return true;
+
+    return priceRanges.some(priceRange => {
         const price = product.price;
-        let matchesPrice = false;
-
-        // Check if the product falls within any of the selected price ranges
-        priceRanges.forEach(priceRange => {
-            if (priceRange === '0-500' && price <= 500) matchesPrice = true;
-            if (priceRange === '500-1500' && price > 500 && price <= 1500) matchesPrice = true;
-            if (priceRange === '1500-3000' && price > 1500 && price <= 3000) matchesPrice = true;
-            if (priceRange === '3000+' && price > 3000) matchesPrice = true;
-        });
-
-        if (!matchesPrice) return false; // Exclude product if no price range matches
-    }
-
-    return true;
+        switch (priceRange) {
+            case '0-500': return price <= 500;
+            case '500-1500': return price > 500 && price <= 1500;
+            case '1500-3000': return price > 1500 && price <= 3000;
+            case '3000+': return price > 3000;
+            default: return false;
+        }
+    });
 }
 
-// Listen for filter changes
-document.getElementById('categoryFilter').addEventListener('change', filterProductsByCriteria);
-document.getElementById('priceFilter').addEventListener('change', filterProductsByCriteria);
+// Event listener for filter changes
+function setupFilterListeners() {
+    const categoryFilter = document.getElementById('categoryFilter');
+    const priceFilter = document.getElementById('priceFilter');
 
-// Call this function on page load to initialize the filtered view
-document.addEventListener('DOMContentLoaded', filterProductsByCriteria);
+    categoryFilter.addEventListener('change', filterProductsByCriteria);
+    priceFilter.addEventListener('change', filterProductsByCriteria);
+    document.addEventListener('DOMContentLoaded', filterProductsByCriteria);
+}
 
 // Reset filter function
 function resetFilter() {
     document.getElementById('categoryFilter').value = 'all';
-    
-    // Uncheck all price range checkboxes
-    const priceCheckboxes = document.querySelectorAll('#priceFilter .form-check-input');
-    priceCheckboxes.forEach(checkbox => checkbox.checked = false);
 
-    // Call the filter function to reset the view
+    // Uncheck all price range checkboxes
+    document.querySelectorAll('#priceFilter .form-check-input').forEach(checkbox => checkbox.checked = false);
+
+    // Reset the product display
     filterProductsByCriteria();
 }
 
-// Attach event listener to reset filter button
-document.getElementById('resetFilter').addEventListener('click', resetFilter);
-document.getElementById('resetFilter1').addEventListener('click', resetFilter);
+// Setup reset button event listeners
+function setupResetListeners() {
+    document.getElementById('resetFilter').addEventListener('click', resetFilter);
+    document.getElementById('resetFilter1').addEventListener('click', resetFilter);
+}
 
-// function to dynamically display products
+// Initialize listeners on page load
+setupFilterListeners();
+setupResetListeners();
+
+// Function to dynamically display products (optimized for both with and without 'More' button)
 function displayProducts(products, containerId, moreButtonId, limit = productsPerPage) {
     const productsContainer = document.getElementById(containerId);
-    productsContainer.innerHTML = ''; // Clear existing content
+    const moreButton = document.getElementById(moreButtonId);
 
-    // Loop through the products array and display only the number specified by 'limit'
+    // Clear existing content
+    productsContainer.innerHTML = '';
+
+    // Handle 'More' button visibility only if limit is defined
+    if (moreButton) {
+        moreButton.style.display = (limit >= products.length) ? 'none' : 'inline-block';
+    }
+
+    // Display products (only show up to 'limit' if pagination is required)
     products.slice(0, limit).forEach(product => {
-        const productCard = `
-            <div class="col-6 col-md-3 mb-3 product-item" id="product-${product.id}">
-                <div class="card text-center d-flex flex-column h-100 mb-3 shadow">
-                    <a href="#" onclick="openProductModal(${product.id}); return false;">
-                        <img src="${product.image}" class="card-img-top" alt="${product.name}">
+        productsContainer.innerHTML += createProductCard(product);
+    });
+}
+
+// Function to create the product card HTML
+function createProductCard(product) {
+    return `
+        <div class="col-6 col-md-3 mb-3 product-item" id="product-${product.id}">
+            <div class="card text-center d-flex flex-column h-100 mb-3 shadow">
+                <a href="#" onclick="openProductModal(${product.id}); return false;">
+                    <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                </a>
+                <div class="card-body d-flex flex-column h-100">
+                    <a href="#" class="text-dark link-underline link-underline-opacity-0" onclick="openProductModal(${product.id}); return false;">
+                        <h5 class="card-title">${product.name}</h5>
+                        <p class="card-text">${product.price.toFixed(2)} baht</p>
                     </a>
-                    <div class="card-body d-flex flex-column h-100">
-                        <a href="#" class="text-dark link-underline link-underline-opacity-0" onclick="openProductModal(${product.id}); return false;">
-                            <div class="card-body d-flex flex-column h-100">
-                                <h5 class="card-title">${product.name}</h5>
-                                <p class="card-text">${product.price.toFixed(2)} baht</p>
-                            </div>
-                        </a>
-                        <div class="mt-auto">
-                            <div class="input-group center" id="Quantitybar">
-                                <button class="btn btn-outline-secondary" onclick="changeQuantityItem(${product.id}, -1)">-</button>
-                                <input type="text" class="form-control text-center qty-input" id="qty-${product.id}" min="1" value="1">
-                                <button class="btn btn-outline-secondary" onclick="changeQuantityItem(${product.id}, 1)">+</button>
-                            </div>
-                            <button class="btn btn-warning mt-3" onclick="addToCart(${product.id}, ${product.price}, '${product.name}')">Add to Cart</button>
+                    <div class="mt-auto">
+                        <div class="input-group center" id="Quantitybar">
+                            <button class="btn btn-outline-secondary" onclick="changeQuantityItem(${product.id}, -1)">-</button>
+                            <input type="text" class="form-control text-center qty-input" id="qty-${product.id}" min="1" value="1">
+                            <button class="btn btn-outline-secondary" onclick="changeQuantityItem(${product.id}, 1)">+</button>
                         </div>
+                        <button class="btn btn-warning mt-3" onclick="addToCart(${product.id}, ${product.price}, '${product.name}')">Add to Cart</button>
                     </div>
                 </div>
             </div>
-        `;
-        productsContainer.innerHTML += productCard; // Append product card
-    });
-
-    // Hide the "More product" button if all products are displayed
-    const moreButton = document.getElementById(moreButtonId);
-    if (limit >= products.length) {
-        moreButton.style.display = 'none';
-    } else {
-        moreButton.style.display = 'inline-block';
-    }
+        </div>
+    `;
 }
 
 // Function to open the modal with product details
 function openProductModal(productId) {
-    // Check that the allProducts array is available and contains both toys and games
     const product = allProducts.find(p => p.id === productId);
 
-    if (!product) {
-        console.error('Product not found for ID:', productId);
-        return;
-    }
+    if (!product) return console.error('Product not found for ID:', productId);
 
-    // Get the current quantity value from the main product card (if available)
-    const cardQtyInput = document.querySelector(`#qty-${productId}`);
-    const qty = cardQtyInput ? parseInt(cardQtyInput.value) : 1; // Default to 1 if no value is set
+    // Get the current quantity value from the main product card, default to 1 if not found
+    const qty = document.querySelector(`#qty-${productId}`)?.value || 1;
 
-    // Create the HTML for product details to display inside the modal
-    const productDetailsHtml = `
+    // Insert the product details into the modal body and show modal
+    document.getElementById('product-modal-body').innerHTML = createProductModal(product, qty);
+    const productModal = new bootstrap.Modal(document.getElementById('productModal'));
+    productModal.show();
+
+    // Synchronize quantity input between modal and product cards
+    synchronizeQuantityInput(productId);
+}
+
+// Function to filter and display products in the best sellers section
+function displayBestSellers(filteredBestSellers) {
+    displayProducts(filteredBestSellers, 'best-seller-container', '', filteredBestSellers.length); // Show all filtered best sellers (no 'More' button)
+}
+
+// Helper function to generate modal HTML content
+function createProductModal(product, qty) {
+    return `
         <div class="row">
             <div class="col-md-6">
                 <img src="${product.image}" class="img-fluid img-responsive mb-3" width="600" alt="${product.name}">
@@ -198,53 +206,38 @@ function openProductModal(productId) {
                 <p>${product.description || 'No description available.'}</p>
                 <div class="input-group mb-3" id="Quantitybar">
                     <button class="btn btn-outline-secondary" onclick="changeQuantityItem(${product.id}, -1, 'modal')">-</button>
-                    <input type="text" class="form-control text-center qty-input" id="modal-qty-${productId}" min="1" value="${qty}">
+                    <input type="text" class="form-control text-center qty-input" id="modal-qty-${product.id}" min="1" value="${qty}">
                     <button class="btn btn-outline-secondary" onclick="changeQuantityItem(${product.id}, 1, 'modal')">+</button>
                 </div>
                 <button class="btn btn-warning" onclick="addToCart(${product.id}, ${product.price}, '${product.name}', 'modal')">Add to Cart</button>
             </div>
         </div>
     `;
-
-    // Insert the product details into the modal body
-    document.getElementById('product-modal-body').innerHTML = productDetailsHtml;
-
-    // Open the modal
-    const productModal = new bootstrap.Modal(document.getElementById('productModal'));
-    productModal.show();
-
-    // Synchronize the modal quantity input with product cards in the main sections
-    synchronizeQuantityInput(productId);
 }
 
-// Function to synchronize quantity across modal and all product cards (including best seller section)
+// Function to synchronize quantity across modal and product cards
 function synchronizeQuantityInput(productId) {
-    // Get the modal's quantity input element
     const modalQtyInput = document.getElementById(`modal-qty-${productId}`);
-
-    // Get all other quantity input elements for the same product across sections (cards and modal)
     const otherQtyInputs = document.querySelectorAll(`[id^="qty-${productId}"]`);
 
-    // Update the modal's quantity input based on the current values in other sections
-    if (otherQtyInputs.length > 0) {
-        modalQtyInput.value = otherQtyInputs[0].value;  // Use the first match as the synchronized value
-    }
+    // Sync modal quantity input with other product cards
+    if (otherQtyInputs.length > 0) modalQtyInput.value = otherQtyInputs[0].value;
 
-    // Sync all quantity inputs when the modal's input is changed
-    modalQtyInput.addEventListener('input', function () {
+    // Sync all quantity inputs when modal's input is changed
+    modalQtyInput.addEventListener('input', () => {
         otherQtyInputs.forEach(input => input.value = modalQtyInput.value);
     });
 
-    // Sync the card quantity inputs when the modal's quantity is changed
+    // Sync modal input when any other card input is changed
     otherQtyInputs.forEach(input => {
-        input.addEventListener('input', function () {
+        input.addEventListener('input', () => {
             modalQtyInput.value = input.value;
         });
     });
 }
 
 // Function to change quantity in both modal and product cards
-function changeQuantityItem(productId, delta, source) {
+function changeQuantityItem(productId, delta, source = 'card') {
     const qtyInputs = document.querySelectorAll(`[id^="qty-${productId}"]`);
 
     qtyInputs.forEach(inputElement => {
@@ -254,104 +247,54 @@ function changeQuantityItem(productId, delta, source) {
         }
     });
 
-    // Synchronize quantity inputs across all locations (modal and product cards)
+    // Synchronize quantity inputs across modal and product cards
     synchronizeQuantityInput(productId);
 }
 
-// Show more products for a specific section
-function showMoreProducts(products, containerId, moreButtonId) {
-    displayProducts(products, containerId, moreButtonId, products.length); // Show all products
+// Function to handle "Show More" and "Show Less" for any section
+function toggleProductDisplay(products, containerId, moreButtonId, showAll) {
+    const moreButton = document.getElementById(moreButtonId);
+    const showLessButton = document.getElementById(`show-less-${containerId}`);
+
+    // Show all products or only initial products
+    displayProducts(products, containerId, moreButtonId, showAll ? products.length : productsPerPage);
+
+    // Toggle visibility of "Show Less" and "More" buttons
+    moreButton.style.display = showAll ? 'none' : 'inline-block';
+    showLessButton.style.display = showAll ? 'inline-block' : 'none';
 }
 
-// Show less products for a specific section
-function showLessProducts(products, containerId, moreButtonId) {
-    displayProducts(products, containerId, moreButtonId, productsPerPage); // Show only the initial products
-}
-
-// Add event listener to the "More product" button
+// Add event listener to the "More" and "Show Less" buttons dynamically
 document.addEventListener('DOMContentLoaded', function () {
-    // Display toys
-    displayProducts(toys, 'products-container', 'More'); // Ensure 'More' is the ID for the toys section button
-
-    // Attach event listener for "More" button in toys section
+    // Toggle display for toys section
     document.getElementById('More').addEventListener('click', function () {
-        showMoreProducts(toys, 'products-container', 'More');
-        document.getElementById('show-less-products-container').style.display = 'inline-block'; // Show the Show Less button
+        toggleProductDisplay(toys, 'products-container', 'More', true);
     });
 
-    // Attach event listener for "Show Less" button in toys section
     document.getElementById('show-less-products-container').addEventListener('click', function () {
-        showLessProducts(toys, 'products-container', 'More');
-        this.style.display = 'none'; // Hide the Show Less button
+        toggleProductDisplay(toys, 'products-container', 'More', false);
     });
 
-    // Display games
-    displayProducts(games, 'games-container', 'games-more-btn'); // Ensure 'games-more-btn' is the ID for the games section button
-
-    // Attach event listener for "More Games/DLC" button
+    // Toggle display for games section
     document.getElementById('games-more-btn').addEventListener('click', function () {
-        showMoreProducts(games, 'games-container', 'games-more-btn');
-        document.getElementById('show-less-games-container').style.display = 'inline-block'; // Show the Show Less button
+        toggleProductDisplay(games, 'games-container', 'games-more-btn', true);
     });
 
-    // Attach event listener for "Show Less" button in games section
     document.getElementById('show-less-games-container').addEventListener('click', function () {
-        showLessProducts(games, 'games-container', 'games-more-btn');
-        this.style.display = 'none'; // Hide the Show Less button
+        toggleProductDisplay(games, 'games-container', 'games-more-btn', false);
     });
 });
 
-// Function to add product to the cart
-function addToCart(productId, price, itemName, source = 'card') {
-    // Get the quantity input element (from the modal or card)
-    let qtyInput;
-    if (source === 'modal') {
-        qtyInput = document.getElementById(`modal-qty-${productId}`);
-    } else {
-        qtyInput = document.getElementById(`qty-${productId}`);
-    }
-
-    let qty = parseFloat(qtyInput.value);
-
-    if (qty > 0) {
-        // Check if the item already exists in the cart
-        const existingItem = cart.find(item => item.productId === productId);
-
-        if (existingItem) {
-            // Update the quantity if the item already exists in the cart
-            existingItem.quantity += qty;
-        } else {
-            // Add new item to the cart
-            cart.push({ productId: productId, quantity: qty, price: price, name: itemName });
-        }
-
-        // Update the cart display (both badge and modal)
-        updateCart();
-
-        // Update the toast content with the item added message
-        document.getElementById('toast-body-added').innerHTML = `${itemName} has been added to your cart.`;
-
-        // Show the toast
-        const addedToCartToast = new bootstrap.Toast(document.getElementById('addedToCartToast'));
-        addedToCartToast.show();
-    } else {
-        // Show quantity error modal
-        let quantityModal = new bootstrap.Modal(document.getElementById('quantityModal'));
-        quantityModal.show();
-    }
-}
-
-// function to update the cart display
-function updateCart() {
+// Helper function to update the cart total and display
+function updateCartDisplay() {
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    document.getElementById('cart-total').innerText = totalItems; // Update cart total display
+    document.getElementById('cart-total').innerText = totalItems;
     document.getElementById('cart-total-lg').innerText = totalItems;
 }
 
-function checkout() {
+// Helper function to update the modal body with the current cart summary
+function updateCartModal() {
     const modalBody = document.getElementById('cart-modal-body');
-    const checkoutButton = document.querySelector('#proceedToCheckoutButton'); // Get the checkout button
-
     let cartSummary = '';
 
     if (cart.length > 0) {
@@ -377,30 +320,65 @@ function checkout() {
         });
         cartSummary += '</ul>';
 
-        let totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
         cartSummary += `<p class="mt-3"><strong>Total Price: ${totalPrice.toFixed(2)} Baht</strong></p>`;
 
-        // Show the "Proceed to Checkout" button if cart is not empty
-        checkoutButton.style.display = 'block';
+        document.querySelector('#proceedToCheckoutButton').style.display = 'block';
     } else {
         cartSummary = '<p>Your cart is empty.</p>';
-
-        // Hide the "Proceed to Checkout" button if cart is empty
-        checkoutButton.style.display = 'none';
+        document.querySelector('#proceedToCheckoutButton').style.display = 'none';
     }
 
-    // Update the modal body with the cart summary
     modalBody.innerHTML = cartSummary;
 }
 
-// Function to proceed to checkout (can be customized)
+// Function to add product to the cart
+function addToCart(productId, price, itemName, source = 'card') {
+    let qtyInput = (source === 'modal') ? document.getElementById(`modal-qty-${productId}`) : document.getElementById(`qty-${productId}`);
+    let qty = parseFloat(qtyInput.value);
+
+    if (qty > 0) {
+        const existingItem = cart.find(item => item.productId === productId);
+
+        if (existingItem) {
+            existingItem.quantity += qty;
+        } else {
+            cart.push({ productId, quantity: qty, price, name: itemName });
+        }
+
+        updateCartDisplay();
+        updateCartModal();
+
+        document.getElementById('toast-body-added').innerHTML = `${itemName} has been added to your cart.`;
+        const addedToCartToast = new bootstrap.Toast(document.getElementById('addedToCartToast'));
+        addedToCartToast.show();
+    } else {
+        let quantityModal = new bootstrap.Modal(document.getElementById('quantityModal'));
+        quantityModal.show();
+    }
+}
+
+// Function to change quantity (increase or decrease)
+function changeQuantity(index, delta) {
+    const item = cart[index];
+    item.quantity = Math.max(1, item.quantity + delta);
+
+    updateCartDisplay();
+    updateCartModal();
+}
+
+// Function to remove item from the cart
+function removeItem(index) {
+    cart.splice(index, 1);
+    updateCartDisplay();
+    updateCartModal();
+}
+
+// Function to proceed to checkout
 function proceedToCheckout() {
     const checkoutSummaryBody = document.getElementById('checkout-summary-body');
+    const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
-    // Calculate the total price
-    let totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-
-    // Create the cart summary content
     let summaryContent = '<ul class="list-group">';
     cart.forEach(item => {
         summaryContent += `
@@ -411,115 +389,73 @@ function proceedToCheckout() {
     });
     summaryContent += '</ul>';
 
-    // Add the total price at the end
     summaryContent += `<p class="mt-3"><strong>Total Price: ${totalPrice.toFixed(2)} Baht</strong></p>`;
 
-    // Update the modal body with the cart summary and total price
     checkoutSummaryBody.innerHTML = summaryContent;
-
-    // Show the checkout summary modal
     const checkoutSummaryModal = new bootstrap.Modal(document.getElementById('checkoutSummaryModal'));
     checkoutSummaryModal.show();
 }
 
+// Function to clear the cart
 function clearCart() {
-    cart = []; // Clear the cart array
-    updateCart(); // Update the cart display
-    checkout(); // Refresh the modal to show the empty cart
+    cart = [];
+    updateCartDisplay();
+    updateCartModal();
 }
-
-function changeQuantity(index, delta) {
-    const item = cart[index];
-    if (item.quantity + delta > 0) {
-        item.quantity += delta;
-    } else {
-        // If the quantity reaches 0, you can remove the item or keep it at 1.
-        item.quantity = 1;
-    }
-
-    // Update the cart and refresh the modal content
-    updateCart();
-    checkout(); // Refreshes the modal to show updated quantities
-}
-
-function removeItem(index) {
-    cart.splice(index, 1); // Remove item from the cart array
-    updateCart(); // Update the cart display (cart totals)
-    checkout(); // Refresh the modal to show updated cart contents
-}
-
 document.addEventListener("DOMContentLoaded", function () {
-    // Get the search form and input
     const searchInput = document.querySelector('.form-control[type="search"]');
-    const searchButton = document.querySelector('button[type="submit"]'); // Get the search button
-    const brandLink = document.querySelector('.navbar-brand'); // Get the "Big E" brand link
+    const searchButton = document.querySelector('button[type="submit"]');
+    const brandLink = document.querySelector('.navbar-brand');
 
-    // Function to show more products (if the "Show More" button exists)
+    // Helper function to trigger "Show More" buttons
     function triggerShowMoreButtons() {
-        const moreButton = document.getElementById('More');
-        const moreButton2 = document.getElementById('games-more-btn');
-        if (moreButton && moreButton.style.display !== 'none') {
-            moreButton.click(); // Trigger the "Show More" button
-            moreButton2.click(); // Trigger the "More Game" button
-        }
+        const buttons = ['More', 'games-more-btn'];
+        buttons.forEach(id => {
+            const button = document.getElementById(id);
+            if (button && button.style.display !== 'none') {
+                button.click();
+            }
+        });
     }
 
-    // Function to filter products based on the search query and scroll to the first match
+    // Helper function to filter products and scroll to the first match
     function filterProducts(query) {
         const products = document.querySelectorAll('.product-item');
         let firstMatch = null;
 
-        products.forEach(function (product) {
+        products.forEach((product) => {
             const title = product.querySelector('.card-title').textContent.toLowerCase();
-            if (title.includes(query)) {
-                product.style.display = 'block'; // Show product if it matches
-                if (!firstMatch) {
-                    firstMatch = product; // Save the first matching product
-                }
-            } else {
-                product.style.display = 'none'; // Hide product if it doesn't match
-            }
+            const match = title.includes(query);
+            product.style.display = match ? 'block' : 'none';
+            if (match && !firstMatch) firstMatch = product;
         });
 
-        // Scroll to the first matched product if one exists
-        if (firstMatch) {
-            firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
+        if (firstMatch) firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
-    // Listen for click event on the search button
+    // Search button event listener
     searchButton.addEventListener('click', function (e) {
-        e.preventDefault(); // Prevent form submission
+        e.preventDefault();
         const query = searchInput.value.toLowerCase();
-
+        
         if (query) {
-            // If there is a search query, trigger the "Show More" buttons immediately
             triggerShowMoreButtons();
-
-            // After giving the "Show More" button time to load, filter the products
-            setTimeout(function () {
-                filterProducts(query); // Filter products and scroll to the first match
-            }, 200); // Small delay to allow "Show More" to complete loading
+            setTimeout(() => filterProducts(query), 200); // Wait for "Show More" to load
         } else {
-            // If there's no search query, just show all products
-            filterProducts(query);
+            filterProducts(query); // Show all products if no query
         }
     });
 
-    // Listen for click event on the brand link (Big E)
-    brandLink.addEventListener('click', function (e) {
-        // Clear the search input
+    // Brand link event listener to clear search and show all products
+    brandLink.addEventListener('click', function () {
         searchInput.value = '';
-
-        // Show all products again
-        const products = document.querySelectorAll('.product-item');
-        products.forEach(function (product) {
-            product.style.display = 'block'; // Show all products
+        document.querySelectorAll('.product-item').forEach(product => {
+            product.style.display = 'block';
         });
     });
 
     // Prevent default form submission behavior
     document.querySelector('form[role="search"]').addEventListener('submit', function (e) {
-        e.preventDefault(); // Prevent form submission
+        e.preventDefault();
     });
 });
