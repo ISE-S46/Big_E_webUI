@@ -24,7 +24,7 @@
             </button>
 
             <!-- Brand name centered for small screens -->
-            <a class="navbar-brand ms-5" href="#" style="text-align: center;">
+            <a class="navbar-brand ms-5" href="#" style="text-align: center;" id="resetFilter1">
                 <h1><strong>Big E</strong></h1>
             </a>
 
@@ -179,27 +179,27 @@
                     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item">
-                                <a href="#" onclick="openProductModal(4.1); return false;">
+                                <a href="#" onclick="openProductModal(4-10); return false;">
                                     <img src="images/Nier_Automata.jpg" class="d-block w-100" alt="Nier Automata">
                                 </a>
                             </div>
                             <div class="carousel-item">
-                                <a href="#" onclick="openProductModal(7.1); return false;">
+                                <a href="#" onclick="openProductModal(7-10); return false;">
                                     <img src="images/ds.jpg" class="d-block w-100" alt="Dark soul III">
                                 </a>
                             </div>
                             <div class="carousel-item active">
-                                <a href="#" onclick="openProductModal(1.0); return false;">
+                                <a href="#" onclick="openProductModal(1-0); return false;">
                                     <img src="images/Aerial.jpg" class="d-block w-100" alt="Aerial">
                                 </a>
                             </div>
                             <div class="carousel-item">
-                                <a href="#" onclick="openProductModal(4.0); return false;">
+                                <a href="#" onclick="openProductModal(4-0); return false;">
                                     <img src="images/psycho_zaku.jpg" class="d-block w-100" alt="zaku">
                                 </a>
                             </div>
                             <div class="carousel-item">
-                                <a href="#" onclick="openProductModal(2.1); return false;">
+                                <a href="#" onclick="openProductModal(2-10); return false;">
                                     <img src="images/hd2.jpg" class="d-block w-100" alt="hell divers">
                                 </a>
                             </div>
@@ -235,6 +235,45 @@
 
     <div class="container-fluid" id="text-shadow">
         <h1 class="text-center mt-4" id="text-shadow"><strong>Store</strong></h1>
+    </div>
+
+    <div class="container mt-3">
+        <!-- Filter Controls Section -->
+        <div class="card shadow-sm p-3 mb-5 bg-body-tertiary">
+            <h4>Filter</h4>
+            <!-- Filter Form (Category, Price Range, etc.) -->
+            <div class="form-group mt-3">
+                <label for="categoryFilter">Category:</label>
+                <select id="categoryFilter" class="form-select">
+                    <option value="all">All</option>
+                    <option value="toys">Toys/Models</option>
+                    <option value="games">Games/DLC</option>
+                </select>
+            </div>
+
+            <!-- Price Range Filter -->
+            <label for="priceFilter">Price Range:</label>
+            <div id="priceFilter">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="0-500" id="priceRange1">
+                    <label class="form-check-label" for="priceRange1">0 - 500 Baht</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="500-1500" id="priceRange2">
+                    <label class="form-check-label" for="priceRange2">500 - 1500 Baht</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="1500-3000" id="priceRange3">
+                    <label class="form-check-label" for="priceRange3">1500 - 3000 Baht</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="3000+" id="priceRange4">
+                    <label class="form-check-label" for="priceRange4">3000+ Baht</label>
+                </div>
+            </div>
+
+            <button id="resetFilter" class="btn btn-danger mt-3">Reset Filter</button>
+        </div>
     </div>
 
     <!-- Best Seller Section -->
@@ -297,8 +336,10 @@
                             <img src="images/facebook.png" alt="Facebook" class="img-responsive mx-1" width="27"
                                 height="27">
                             <img src="images/instagram.png" alt="IG" class="img-responsive mx-1" width="27" height="27">
-                            <img src="images/github.png" alt="Github" class="img-responsive mx-1" width="27"
-                                height="27">
+                            <a href="https://github.com/ISE-S46/Big_E_webUI">
+                                <img src="images/github.png" alt="Github" class="img-responsive mx-1" width="27"
+                                    height="27">
+                            </a>
                         </li>
                     </ul>
                 </div>
