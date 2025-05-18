@@ -19,6 +19,15 @@ html {
     color: #ffb067;
 }
 
+#ProductPageBody {
+    padding-top: 60px;
+}
+
+#CarouselImage {
+    height: 460px;
+    overflow: hidden;
+}
+
 @media only screen and (max-width: 768px) {
     body {
         font-size: 14px;
@@ -49,6 +58,15 @@ html {
     .btn {
         font-size: 0.85rem;
     }
+
+    #ProductPageBody {
+        padding-top: 50px;
+    }
+
+    #CarouselImage {
+        height: 360px;
+        overflow: hidden;
+    }
 }
 
 @media only screen and (max-width: 480px) {
@@ -66,5 +84,14 @@ html {
 
     h3 {
         font-size: 1rem;
+    }
+
+    #ProductPageBody {
+        padding-top: 40px;
+    }
+
+    #CarouselImage {
+        height: 260px;
+        overflow: hidden;
     }
 }

@@ -38,7 +38,7 @@ const CarouselItem = [
     games[3],
     games[6],
     toys[0],
-    toys[3],
+    toys[1],
     games[1]
 ];
 

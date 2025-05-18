@@ -7,7 +7,7 @@ function renderCarousel(products) {
         slides += `
             <div class="carousel-item ${activeClass}">
                 <a id="CarouselProduct-${product.id}" href="Product.html?id=${product.id}&type=${product.type}" data-product-id="${product.id}" data-product-type="${product.type}">
-                    <img src="${product.image}" class="d-block w-100" alt="${product.name}">
+                    <img src="${product.image}" loading="lazy" class="d-block w-100" alt="${product.name}">
                 </a>
             </div>
         `;
