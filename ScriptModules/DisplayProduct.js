@@ -25,12 +25,26 @@ function createProductCard(product) {
                     </a>
                     <div class="mt-auto">
                         <div class="input-group center" id="Quantitybar">
-                            <button class="btn btn-outline-secondary" onclick="changeQuantityItem(${product.id}, -1)">-</button>
-                            <input type="text" class="form-control text-center qty-input" id="qty-${product.id}" min="1" value="1">
-                            <button class="btn btn-outline-secondary" onclick="changeQuantityItem(${product.id}, 1)">+</button>
+                            <button class="btn btn-outline-secondary DecreaseQunatity-btn" 
+                                    data-product-id="${product.id}"
+                                    data-product-type="${product.type}">
+                                -
+                            </button>
+                            <input type="text" class="form-control text-center qty-input" id="qty-${product.id}-${product.type}" min="1" value="1">
+                            <button class="btn btn-outline-secondary IncreaseQunatity-btn" 
+                                    data-product-id="${product.id}"
+                                    data-product-type="${product.type}">
+                                +
+                            </button>
                         </div>
-                        <button class="btn btn-warning mt-3" onclick="addToCart(${product.id}, ${product.price}, '${product.name}')">Add to Cart</button>
-                    </div>
+                        <button class="btn btn-warning mt-3 add-to-cart-btn"
+                                data-product-id="${product.id}"
+                                data-product-type="${product.type}"
+                                data-price="${product.price}"
+                                data-name="${product.name}">
+                            Add to Cart
+                        </button>
+                
                 </div>
             </div>
         </div>

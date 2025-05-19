@@ -1,17 +1,19 @@
-import { toys, games } from "./ScriptModules/Products.js";
-import { ShowProductDeatil } from './ScriptModules/ProductDetail.js';
+import { toys, games, bestSellers, CarouselItem } from "./ScriptModules/Products.js";
+import { renderCarousel } from "./ScriptModules/Carousel.js";
+import { displayProducts } from "./ScriptModules/DisplayProduct.js";
 import { addToCart } from "./ScriptModules/Cart.js";
 import { cart, updateCartDisplay, changeQuantityItem } from "./ScriptModules/SynchronizeQuantity.js";
 
-const params = new URLSearchParams(window.location.search);
-const id = params.get('id');
-const type = params.get('type');
-
-const allProducts = [...toys, ...games];
+let productsMainPage = 16;
 
 document.addEventListener('DOMContentLoaded', () => {
+    renderCarousel(CarouselItem);
+
     updateCartDisplay(cart);
-    openProduct(id, type);
+
+    displayProducts(bestSellers, 'best-seller-container', productsMainPage);
+    displayProducts(toys, 'toys-container', productsMainPage);
+    displayProducts(games, 'games-container', productsMainPage);
 
     document.body.addEventListener('click', event => {
         const btn = event.target.closest('button');
@@ -32,16 +34,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-function openProduct(id, type) {
-    const product = allProducts.find(p => p.id == id && p.type === type);
-
-    if (!product) {
-        return console.error(`Product not found for id: ${id}, type: ${type}`);
-    }
-
-    // Get the current quantity value from the main product card, default to 1 if not found
-    const qty = document.querySelector(`#qty-${id}`)?.value || 1;
-
-    document.getElementById('product-container').innerHTML = ShowProductDeatil(product, qty);
-
-}
+// const moreButton = document.getElementById(moreButtonId);

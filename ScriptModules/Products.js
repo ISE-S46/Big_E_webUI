@@ -21,11 +21,8 @@ const games = [
     { id: 7, name: "DARK SOULS™ III", image: "images/games/dsIII.jpg", price: 1500.00, description: "The third and final chapter of the Dark Souls series, As fires fade and the world falls into ruin, journey into a universe filled with more colossal enemies and environments. Players will be immersed into a world of epic atmosphere and darkness through faster gameplay and amplified combat intensity. ", type: 'game' },
     { id: 8, name: "Cities: Skylines", image: "images/games/cs1.jpg", price: 819.00, description: "Cities: Skylines is a modern take on the classic city simulation. The game introduces new game play elements to realize the thrill and hardships of creating and maintaining a real city whilst expanding on some well-established tropes of the city building experience. You’re only limited by your imagination, so take control and reach for the sky!", type: 'game' },
     { id: 9, name: "Stellaris", image: "images/games/Stellaris.jpg", price: 1089.00, description: "Get ready to explore, discover and interact with a multitude of species as you journey among the stars. Forge a galactic empire by sending out science ships to survey and explore, while construction ships build stations around newly discovered planets. Discover buried treasures and galactic wonders as you spin a direction for your society, creating limitations and evolutions for your explorers. Alliances will form and wars will be declared.", type: 'game' },
-    { id: 9-1, name: "Stellaris: Apocalypse", image: "images/games/St_Apo.jpg", price: 669.00, description: "Stellaris: Apocalypse is a full expansion which redefines stellar warfare for all players with a host of new offensive and defensive options. Destroy entire worlds with terrifying new planet-killer weapons, fight against (or alongside) ruthless space pirates, and maybe discover a few non-violent game features as well.", type: 'game' }
+    { id: 1, name: "Stellaris: Apocalypse", image: "images/games/St_Apo.jpg", price: 669.00, description: "Stellaris: Apocalypse is a full expansion which redefines stellar warfare for all players with a host of new offensive and defensive options. Destroy entire worlds with terrifying new planet-killer weapons, fight against (or alongside) ruthless space pirates, and maybe discover a few non-violent game features as well.", type: 'StellarisDLC' }
 ];
-
-// Combine toys and games into one product array
-const allProducts = [...toys, ...games];
 
 const bestSellers = [
     games[3],
@@ -42,4 +39,4 @@ const CarouselItem = [
     games[1]
 ];
 
-export { toys, games, allProducts, bestSellers, CarouselItem };
+export { toys, games, bestSellers, CarouselItem };

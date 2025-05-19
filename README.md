@@ -23,4 +23,4 @@ Functional front-end mockup of e-commerce website that focus on selling toys and
     #### Or
 - Install live server extension on VSCode and click Go live button
 
-![BigE](images/BigE.png)
+![BigE](images/UI/BigE.png)
