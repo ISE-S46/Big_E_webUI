@@ -1,7 +1,7 @@
 import { cart } from "./SynchronizeQuantity.js";
 
 function CheckoutCart() {
-    
+
     const existingModal = document.getElementById('checkoutSummaryModal');
     if (existingModal) existingModal.remove();
 
@@ -18,8 +18,13 @@ function CheckoutCart() {
             total += itemTotal;
             summaryHTML += `
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    ${item.name} (x${item.quantity})
-                    <span>${itemTotal.toFixed(2)} baht</span>
+                    <p><strong>${item.name}</strong> (x${item.quantity})</p>
+                    <div class="d-flex align-items-center">
+                        <span>${itemTotal.toFixed(2)} baht</span>
+                        <button class="btn btn-sm ms-3 delete-item-btn">
+                            <img src="/images/UI/trash.png" alt="delete" class="img-responsive" width="30" height="30">
+                        </button>
+                    </div>
                 </li>
             `;
         });
@@ -33,14 +38,14 @@ function CheckoutCart() {
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="checkoutSummaryLabel">Checkout Summary</h5>
+                        <h5 class="modal-title" id="checkoutSummaryLabel">Cart Summary</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" id="checkout-summary-body">
                         ${summaryHTML}
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
@@ -56,22 +61,3 @@ function CheckoutCart() {
 }
 
 export { CheckoutCart }
-
-// <div class="modal fade modal-lg" id="checkoutSummaryModal" tabindex="-1" aria-labelledby="checkoutSummaryLabel"
-//     aria-hidden="true">
-//     <div class="modal-dialog">
-//         <div class="modal-content">
-//             <div class="modal-header">
-//                 <h5 class="modal-title" id="checkoutSummaryLabel">Checkout Summary</h5>
-//                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-//             </div>
-//             <div class="modal-body" id="checkout-summary-body">
-//                 <!-- Total price and cart summary will be dynamically loaded here -->
-//                 <p>Your cart summary will be shown here.</p>
-//             </div>
-//             <div class="modal-footer">
-//                 <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
-//             </div>
-//         </div>
-//     </div>
-// </div>
