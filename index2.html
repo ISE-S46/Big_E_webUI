@@ -23,7 +23,7 @@
             </button>
 
             <!-- Brand name centered for small screens -->
-            <a class="navbar-brand ms-5" href="#" style="text-align: center;" id="resetFilter1">
+            <a class="navbar-brand ms-5" href="#" style="text-align: center;" id="ResetFilterReloadPage">
                 <h1><strong>Big E</strong></h1>
             </a>
 
@@ -31,7 +31,7 @@
             <div class="d-lg-none align-items-center">
                 <button class="btn" data-bs-toggle="modal" data-bs-target="#cartModal" onclick="checkout()">
                     <span id="cart-total" class="badge bg-danger">0</span>
-                    <img src="images/cart.png" alt="checkout" class="img-responsive" width="40" height="40">
+                    <img src="images/UI/cart.png" alt="checkout" class="img-responsive" width="40" height="40">
                 </button>
             </div>
 
@@ -41,7 +41,7 @@
                     <!--Account button for small screens-->
                     <div class="d-lg-none d-flex align-items-center ms-0">
                         <a href="#">
-                            <img src="images/account.png" alt="Account" class="img-responsive" width="40" height="40">
+                            <img src="images/UI/account.png" alt="Account" class="img-responsive" width="40" height="40">
                         </a>
                     </div>
                     <li class="nav-item">
@@ -70,7 +70,7 @@
                 <!--Account button for larger screens-->
                 <div class="ms-3 d-none d-lg-flex">
                     <a href="#">
-                        <img src="images/account.png" alt="Account" class="img-responsive" width="40" height="40">
+                        <img src="images/UI/account.png" alt="Account" class="img-responsive" width="40" height="40">
                     </a>
                 </div>
 
@@ -78,7 +78,7 @@
                 <div class="ms-3 d-none d-lg-flex">
                     <button class="btn" data-bs-toggle="modal" data-bs-target="#cartModal" onclick="checkout()">
                         <span id="cart-total-lg" class="badge bg-danger">0</span>
-                        <img src="images/cart.png" alt="checkout" class="img-responsive" width="50" height="50">
+                        <img src="images/UI/cart.png" alt="checkout" class="img-responsive" width="50" height="50">
                     </button>
                 </div>
             </div>
@@ -87,7 +87,7 @@
 
     <!--Banner-->
     <div class="container-flex">
-        <img src="images/banner.png" class="img-responsive center w-100 mt-5 mt-md-3 mt-lg-0" alt="Banner">
+        <img src="images/UI/banner.png" class="img-responsive center w-100 mt-5 mt-md-3 mt-lg-0" alt="Banner">
     </div>
 
     <div class="container bg-white mt-3 shadow rounded" id="AboutUs">
@@ -123,11 +123,11 @@
         </div>
     </div>
 
-    <!-- Filter Controls Section -->
+    <!-- Filter Controls Section 
     <div class="container mt-3">
         <div class="card shadow-sm p-3 mb-5 bg-body-tertiary">
             <h4>Filter</h4>
-            <!-- Filter Form (Category, Price Range) -->
+            Filter Form (Category, Price Range)
             <div class="form-group mt-3">
                 <label for="categoryFilter">Category:</label>
                 <select id="categoryFilter" class="form-select">
@@ -137,7 +137,7 @@
                 </select>
             </div>
 
-            <!-- Price Range Filter -->
+            Price Range Filter
             <label for="priceFilter">Price Range:</label>
             <div id="priceFilter">
                 <div class="form-check">
@@ -160,7 +160,7 @@
 
             <button id="resetFilter" class="btn btn-danger mt-3">Reset Filter</button>
         </div>
-    </div>
+    </div> -->
 
     <!-- Best Seller Section -->
     <div class="container" id="best-seller-section">
@@ -178,12 +178,12 @@
             <h1 class="mt-4" id="text-shadow">Toys/Models</h1>
         </a>
         <!-- Product Catalog for toys-->
-        <div class="row mb-3" id="products-container">
+        <div class="row mb-3" id="toys-container">
             
         </div>
         <div class="text-center">
-            <button id="More" class="btn btn-primary shadow">More product</button>
-            <button id="show-less-products-container" class="btn btn-secondary shadow" style="display: none;">Show
+            <button id="More-toys" class="btn btn-primary shadow">More product</button>
+            <button id="show-less-toys-container" class="btn btn-secondary shadow" style="display: none;">Show
                 Less</button>
         </div>
     </div>
@@ -197,7 +197,7 @@
 
         </div>
         <div class="text-center mb-5">
-            <button id="games-more-btn" class="btn btn-primary shadow">More Games/DLC</button>
+            <button id="More-games" class="btn btn-primary shadow">More Games/DLC</button>
             <button id="show-less-games-container" class="btn btn-secondary shadow" style="display: none;">Show
                 Less</button>
         </div>
@@ -219,11 +219,11 @@
                         <li><a class="link-light link-offset-2 link-underline link-underline-opacity-0"
                                 href="./index2.html#games-section">Games/DLC</a></li>
                         <li class="mt-3">
-                            <img src="images/instagram.png" alt="IG" class="img-responsive mx-1" width="27" height="27">
-                            <img src="images/facebook.png" alt="Facebook" class="img-responsive mx-1" width="27"
+                            <img src="images/UI/instagram.png" alt="IG" class="img-responsive mx-1" width="27" height="27">
+                            <img src="images/UI/facebook.png" alt="Facebook" class="img-responsive mx-1" width="27"
                                 height="27">
                             <a href="https://github.com/ISE-S46/Big_E_webUI">
-                                <img src="images/github.png" alt="Github" class="img-responsive mx-1" width="27"
+                                <img src="images/UI/github.png" alt="Github" class="img-responsive mx-1" width="27"
                                     height="27">
                             </a>
                         </li>
@@ -233,15 +233,15 @@
                     <h3 class="text-white" id="Contact">Contact</h3>
                     <dl class="row">
                         <dt class="col-sm-2">
-                            <img src="images/phone.png" alt="Phone" class="img-responsive" width="27" height="27">
+                            <img src="images/UI/phone.png" alt="Phone" class="img-responsive" width="27" height="27">
                         </dt>
                         <dd class="col-sm-9">+66 12 345 678</dd>
                         <dt class="col-sm-2">
-                            <img src="images/Mail.png" alt="Mail" class="img-responsive" width="27" height="27">
+                            <img src="images/UI/Mail.png" alt="Mail" class="img-responsive" width="27" height="27">
                         </dt>
                         <dd class="col-sm-9">gu.phoowagone_st@tni.ac.th</dd>
                         <dt class="col-sm-2">
-                            <img src="images/location.png" alt="Location" class="img-responsive text-center mt-1" width="27"
+                            <img src="images/UI/location.png" alt="Location" class="img-responsive text-center mt-1" width="27"
                                 height="27">
                         </dt>
                         <dd class="col-sm-9">1771/1 Pattanakarn Road,<br>Suan Luang, Bangkok 10250</dd>

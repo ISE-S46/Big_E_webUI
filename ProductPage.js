@@ -6,10 +6,10 @@ const id = parseInt(params.get('id'));
 const type = params.get('type');
 
 document.addEventListener('DOMContentLoaded', () => {
-    openProductModal(id, type);
+    openProduct(id, type);
 });
 
-function openProductModal(id, type) {
+function openProduct(id, type) {
     const product = allProducts.find(p => p.id == id && p.type === type);
 
     if (!product) {
@@ -19,7 +19,7 @@ function openProductModal(id, type) {
     // Get the current quantity value from the main product card, default to 1 if not found
     const qty = document.querySelector(`#qty-${id}`)?.value || 1;
 
-    // Show product modal
+    // Show product
     document.getElementById('product-container').innerHTML = ShowProductDeatil(product, qty);
 
     synchronizeQuantityInput(id);
