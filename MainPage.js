@@ -1,7 +1,7 @@
 import { toys, games, bestSellers, CarouselItem } from "./ScriptModules/Products.js";
 import { renderCarousel } from "./ScriptModules/Carousel.js";
 import { displayProducts } from "./ScriptModules/DisplayProduct.js";
-import { addToCart } from "./ScriptModules/Cart.js";
+import { addToCart } from "./ScriptModules/addToCart.js";
 import { cart, updateCartDisplay, changeQuantityItem } from "./ScriptModules/SynchronizeQuantity.js";
 
 let productsMainPage = 16;

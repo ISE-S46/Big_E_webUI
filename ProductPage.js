@@ -1,6 +1,6 @@
 import { toys, games } from "./ScriptModules/Products.js";
 import { ShowProductDeatil } from './ScriptModules/ProductDetail.js';
-import { addToCart } from "./ScriptModules/Cart.js";
+import { addToCart } from "./ScriptModules/addToCart.js";
 import { cart, updateCartDisplay, changeQuantityItem } from "./ScriptModules/SynchronizeQuantity.js";
 
 const params = new URLSearchParams(window.location.search);
@@ -39,9 +39,6 @@ function openProduct(id, type) {
         return console.error(`Product not found for id: ${id}, type: ${type}`);
     }
 
-    // Get the current quantity value from the main product card, default to 1 if not found
-    const qty = document.querySelector(`#qty-${id}`)?.value || 1;
-
-    document.getElementById('product-container').innerHTML = ShowProductDeatil(product, qty);
+    document.getElementById('product-container').innerHTML = ShowProductDeatil(product);
 
 }

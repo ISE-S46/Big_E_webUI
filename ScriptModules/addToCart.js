@@ -2,33 +2,30 @@ import { cart, saveCart, updateCartDisplay } from "./SynchronizeQuantity.js";
 
 function addToCart(id, type, price, itemName) {
 
-    let qtyInput = document.getElementById(`qty-${id}-${type}`);
-    let qty = parseInt(qtyInput.value);
+    let qtyInputs = document.querySelectorAll(`input.qty-input[data-product-id="${id}"][data-product-type="${type}"]`);
 
     // console.log(id, type, price, itemName);
     // console.log(qtyInput);
-    // console.log(qty);
 
-    if (qty > 0) {
-        const existingItem = cart.find(item => item.id == id && item.type === type);
-        const alertToast = document.getElementById('toast-body-added');
+    if (qtyInputs.length === 0) return;
 
-        if (existingItem) {
-            existingItem.quantity += qty;
-            // console.log("added same product to cart");
-        } else {
-            cart.push({ id, type, quantity: qty, price, name: itemName });
-            // console.log("added to cart");
-        }
-        // console.log(cart);
+    let qty = parseInt(qtyInputs[0].value);
 
-        saveCart();
-        updateCartDisplay(cart);
-        showAddedToCartToast(id, type, qty, itemName);
-    } else {
+    if (isNaN(qty) || qty <= 0) {
         showAddedToCartToast(id, type, 0, itemName);
-        // console.log("bruh");
+        return;
     }
+
+    const existingItem = cart.find(item => item.id == id && item.type === type);
+    if (existingItem) {
+        existingItem.quantity += qty;
+    } else {
+        cart.push({ id, type, quantity: qty, price, name: itemName });
+    }
+
+    saveCart();
+    updateCartDisplay(cart);
+    showAddedToCartToast(id, type, qty, itemName);
 }
 
 function showAddedToCartToast(id, type,qty, itemName) {

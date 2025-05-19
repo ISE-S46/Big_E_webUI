@@ -11,18 +11,19 @@ function updateCartDisplay(cart) {
 }
 
 function changeQuantityItem(id, type, change) {
-    const inputId = `qty-${id}-${type}`;
 
-    const qtyInput = document.getElementById(inputId);
+    const qtyInput = document.querySelectorAll(`input.qty-input[data-product-id="${id}"][data-product-type="${type}"]`);
 
     if (!qtyInput) return;
 
-    let currentQty = parseInt(qtyInput.value) || 1;
-    let newQty = currentQty + change;
+    qtyInput.forEach(input => {
+        let currentQty = parseInt(input.value) || 1;
+        let newQty = currentQty + change;
 
-    if (newQty < 1) newQty = 1;
+        if (newQty < 1) newQty = 1;
 
-    qtyInput.value = newQty;
+        input.value = newQty;
+    });
 }
 
 export { cart, saveCart, updateCartDisplay, changeQuantityItem };
