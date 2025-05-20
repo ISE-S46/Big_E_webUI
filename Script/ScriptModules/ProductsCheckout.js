@@ -1,4 +1,4 @@
-import { cart } from "./SynchronizeQuantity.js";
+import { cart } from './SynchronizeQuantity.js';
 
 function CheckoutCart() {
 
@@ -17,11 +17,11 @@ function CheckoutCart() {
             const itemTotal = item.price * item.quantity;
             total += itemTotal;
             summaryHTML += `
-                <li class="list-group-item d-flex justify-content-between align-items-center">
+                <li class="list-group-item d-flex justify-content-between align-items-center item-li" data-product-id="${item.id}" data-product-type="${item.type}">
                     <p><strong>${item.name}</strong> (x${item.quantity})</p>
                     <div class="d-flex align-items-center">
                         <span>${itemTotal.toFixed(2)} baht</span>
-                        <button class="btn btn-sm ms-3 delete-item-btn">
+                        <button class="btn btn-sm ms-3 delete-item-btn" data-product-id="${item.id}" data-product-type="${item.type}">
                             <img src="/images/UI/trash.png" alt="delete" class="img-responsive" width="30" height="30">
                         </button>
                     </div>
@@ -29,10 +29,9 @@ function CheckoutCart() {
             `;
         });
         summaryHTML += `</ul>
-            <div class="mt-3"><strong>Total:</strong> ${total.toFixed(2)} baht</div>`;
+            <div class="mt-3 total-price"><strong>Total:</strong> ${total.toFixed(2)} baht</div>`;
     }
 
-    // Modal HTML string
     const modalHTML = `
         <div class="modal fade modal-lg" id="checkoutSummaryModal" tabindex="-1" aria-labelledby="checkoutSummaryLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -60,4 +59,8 @@ function CheckoutCart() {
     checkoutModal.show();
 }
 
-export { CheckoutCart }
+function getCartTotal() {
+    return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+}
+
+export { CheckoutCart, getCartTotal }

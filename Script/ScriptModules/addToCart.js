@@ -1,4 +1,4 @@
-import { cart, saveCart, updateCartDisplay } from "./SynchronizeQuantity.js";
+import { cart, saveCart, updateCartQuantityDisplay } from './SynchronizeQuantity.js';
 
 function addToCart(id, type, price, itemName) {
 
@@ -24,7 +24,7 @@ function addToCart(id, type, price, itemName) {
     }
 
     saveCart();
-    updateCartDisplay(cart);
+    updateCartQuantityDisplay(cart);
     showAddedToCartToast(id, type, qty, itemName);
 }
 
