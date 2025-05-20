@@ -3,8 +3,6 @@ function displayProducts(products, containerId, limit) {
 
     productsContainer.innerHTML = '';
 
-    // console.log(products)
-
     // Display products up to limit
     products.slice(0, limit).forEach(product => {
         productsContainer.innerHTML += createProductCard(product);

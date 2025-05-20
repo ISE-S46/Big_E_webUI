@@ -8,6 +8,8 @@ function CheckoutCart() {
     // Create total price and cart summary
     let total = 0;
     let summaryHTML = '';
+    let ClearAllbtn = '';
+    let CheckoutButton = '';
 
     if (cart.length === 0) {
         summaryHTML = `<p>Your cart is empty.</p>`;
@@ -30,6 +32,9 @@ function CheckoutCart() {
         });
         summaryHTML += `</ul>
             <div class="mt-3 total-price"><strong>Total:</strong> ${total.toFixed(2)} baht</div>`;
+
+        ClearAllbtn += `<button type="button" class="btn btn-danger ClearAll-btn" >Clear All</button>`;
+        CheckoutButton += `<button type="button" class="btn btn-success" id="Checkout-btn">Checkout</button>`;
     }
 
     const modalHTML = `
@@ -43,8 +48,10 @@ function CheckoutCart() {
                     <div class="modal-body" id="checkout-summary-body">
                         ${summaryHTML}
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <div class="modal-footer" id="CartButton">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        ${ClearAllbtn}
+                        ${CheckoutButton}
                     </div>
                 </div>
             </div>

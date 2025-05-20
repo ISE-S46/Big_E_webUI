@@ -1,11 +1,8 @@
-import { cart, saveCart, updateCartQuantityDisplay } from './SynchronizeQuantity.js';
+import { cart, updateCartQuantityDisplay } from './SynchronizeQuantity.js';
 
 function addToCart(id, type, price, itemName) {
 
     let qtyInputs = document.querySelectorAll(`input.qty-input[data-product-id="${id}"][data-product-type="${type}"]`);
-
-    // console.log(id, type, price, itemName);
-    // console.log(qtyInput);
 
     if (qtyInputs.length === 0) return;
 
@@ -23,7 +20,6 @@ function addToCart(id, type, price, itemName) {
         cart.push({ id, type, quantity: qty, price, name: itemName });
     }
 
-    saveCart();
     updateCartQuantityDisplay(cart);
     showAddedToCartToast(id, type, qty, itemName);
 }

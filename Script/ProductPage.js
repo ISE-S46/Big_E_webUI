@@ -1,7 +1,7 @@
 import { toys, games } from "./ScriptModules/Data.js";
 import { ShowProductDeatil } from "./ScriptModules/ProductDetail.js";
 import { addToCart } from "./ScriptModules/addToCart.js";
-import { cart, updateCartQuantityDisplay, changeQuantityItem, RemoveProductFromCart } from "./ScriptModules/SynchronizeQuantity.js";
+import { cart, updateCartQuantityDisplay, changeQuantityItem, RemoveProductFromCart, ClearCartAll } from "./ScriptModules/SynchronizeQuantity.js";
 import { CheckoutCart } from "./ScriptModules/ProductsCheckout.js";
 
 const params = new URLSearchParams(window.location.search);
@@ -38,6 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             case btn.classList.contains('delete-item-btn'):
                 RemoveProductFromCart(id, type);
+                break;
+
+            case btn.classList.contains('ClearAll-btn'):
+                ClearCartAll();
                 break;
         }
 
