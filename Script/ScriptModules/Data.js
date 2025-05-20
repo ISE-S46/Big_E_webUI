@@ -28,7 +28,8 @@ const bestSellers = [
     games[3],
     toys[0],
     games[1],
-    toys[2]
+    toys[2],
+    games[4]
 ];
 
 const CarouselItem = [

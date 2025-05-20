@@ -1,21 +1,36 @@
-import { toys, games, bestSellers, CarouselItem } from "./ScriptModules/Data.js";
-import { renderCarousel } from "./ScriptModules/Carousel.js";
+import { toys, games, bestSellers } from "./ScriptModules/Data.js";
 import { displayProducts } from "./ScriptModules/DisplayProduct.js";
 import { addToCart } from "./ScriptModules/addToCart.js";
 import { cart, updateCartQuantityDisplay, changeQuantityItem, RemoveProductFromCart, ClearCartAll } from "./ScriptModules/SynchronizeQuantity.js";
 import { CheckoutCart } from "./ScriptModules/ProductsCheckout.js";
 
-let productsMainPage = 16;
-let BestSellerProduct = 4;
+let productsPerPage = 24;
+
+const params = new URLSearchParams(window.location.search);
+const CatalogType = params.get('catalog');
 
 document.addEventListener('DOMContentLoaded', () => {
-    renderCarousel(CarouselItem);
 
     updateCartQuantityDisplay(cart);
 
-    displayProducts(bestSellers, 'best-seller-container', BestSellerProduct);
-    displayProducts(toys, 'toys-container', productsMainPage);
-    displayProducts(games, 'games-container', productsMainPage);
+    const CatalogHead = document.querySelector(".CatalogHead");
+
+    switch (true) {
+        case (CatalogType == "best-seller"):
+            displayProducts(bestSellers, 'Product-section', productsPerPage);
+            CatalogHead.innerHTML += `<h1 id="text-shadow">Best Sellers</h1>`;
+            break;
+
+        case (CatalogType == "toys"):
+            displayProducts(toys, 'Product-section', productsPerPage);
+            CatalogHead.innerHTML += `<h1 id="text-shadow">Toys/Models</h1>`;
+            break;
+
+        case (CatalogType == "games"):
+            displayProducts(games, 'Product-section', productsPerPage);
+            CatalogHead.innerHTML += `<h1 id="text-shadow">Games/DLC</h1>`;
+            break;
+    }
 
     document.body.addEventListener('click', event => {
         const btn = event.target.closest('button');
@@ -56,5 +71,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-
-// const moreButton = document.getElementById(moreButtonId);

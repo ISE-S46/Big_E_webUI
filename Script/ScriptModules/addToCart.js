@@ -47,7 +47,7 @@ function showAddedToCartToast(id, type,qty, itemName) {
 
     const toastEl = document.getElementById(uniqueId);
     const toast = new bootstrap.Toast(toastEl, {
-        delay: 1500, // Show for 1.5 seconds instead of the default 5s
+        delay: 1000, // Show for 1 seconds instead of the default 5s
       });
 
     toast.show();
