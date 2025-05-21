@@ -1,17 +1,17 @@
-function displayProducts(products, containerId, limit) {
+function displayProducts(products, containerId, limitPerpage) {
     const productsContainer = document.getElementById(containerId);
 
     productsContainer.innerHTML = '';
 
-    // Display products up to limit
-    products.slice(0, limit).forEach(product => {
+    // Display products up to limitPerpage
+    products.slice(0, limitPerpage).forEach(product => {
         productsContainer.innerHTML += createProductCard(product);
     });
 }
 
 function createProductCard(product) {
     return `
-        <div class="col-6 col-md-3 mb-3 product-item" id="product-${product.id}">
+        <div class="col-6 col-md-4 col-lg-3 mb-3 product-item" id="product-${product.id}">
             <div class="card text-center d-flex flex-column h-100 mb-3 shadow">
                 <a href="Product.html?id=${product.id}&type=${product.type}" data-product-id="${product.id}" data-product-type="${product.type}">
                     <img src="${product.image}" class="card-img-top" alt="${product.name}">

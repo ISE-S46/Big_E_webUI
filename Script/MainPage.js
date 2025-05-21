@@ -5,7 +5,7 @@ import { addToCart } from "./ScriptModules/addToCart.js";
 import { cart, updateCartQuantityDisplay, changeQuantityItem, RemoveProductFromCart, ClearCartAll } from "./ScriptModules/SynchronizeQuantity.js";
 import { CheckoutCart } from "./ScriptModules/ProductsCheckout.js";
 
-let productsMainPage = 16;
+let productsMainPage = 12;
 let BestSellerProduct = 4;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -56,5 +56,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-
-// const moreButton = document.getElementById(moreButtonId);

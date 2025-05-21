@@ -20,8 +20,11 @@ function CheckoutCart() {
             total += itemTotal;
             summaryHTML += `
                 <li class="list-group-item d-flex justify-content-between align-items-center item-li" data-product-id="${item.id}" data-product-type="${item.type}">
-                    <p><strong>${item.name}</strong> (x${item.quantity})</p>
-                    <div class="d-flex align-items-center">
+                    <div>
+                        <strong>${item.name}</strong>
+                        <p>(x${item.quantity})</p>
+                    </div>
+                    <div class="d-flex align-items-center text-end">
                         <span>${itemTotal.toFixed(2)} baht</span>
                         <button class="btn btn-sm ms-3 delete-item-btn" data-product-id="${item.id}" data-product-type="${item.type}">
                             <img src="/images/UI/trash.png" alt="delete" class="img-responsive" width="30" height="30">

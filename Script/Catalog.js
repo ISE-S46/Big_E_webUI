@@ -3,6 +3,7 @@ import { displayProducts } from "./ScriptModules/DisplayProduct.js";
 import { addToCart } from "./ScriptModules/addToCart.js";
 import { cart, updateCartQuantityDisplay, changeQuantityItem, RemoveProductFromCart, ClearCartAll } from "./ScriptModules/SynchronizeQuantity.js";
 import { CheckoutCart } from "./ScriptModules/ProductsCheckout.js";
+import { initPriceFilter } from "./ScriptModules/Filter.js";
 
 let productsPerPage = 24;
 
@@ -17,17 +18,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     switch (true) {
         case (CatalogType == "best-seller"):
-            displayProducts(bestSellers, 'Product-section', productsPerPage);
+            initPriceFilter(bestSellers, 'Product-section', productsPerPage);
             CatalogHead.innerHTML += `<h1 id="text-shadow">Best Sellers</h1>`;
             break;
 
         case (CatalogType == "toys"):
-            displayProducts(toys, 'Product-section', productsPerPage);
+            initPriceFilter(toys, 'Product-section', productsPerPage);
             CatalogHead.innerHTML += `<h1 id="text-shadow">Toys/Models</h1>`;
             break;
 
         case (CatalogType == "games"):
-            displayProducts(games, 'Product-section', productsPerPage);
+            initPriceFilter(toys, 'Product-section', productsPerPage);
             CatalogHead.innerHTML += `<h1 id="text-shadow">Games/DLC</h1>`;
             break;
     }

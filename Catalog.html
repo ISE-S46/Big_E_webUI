@@ -43,10 +43,10 @@
                         </a>
                     </div>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html#AboutUs">About Us</a>
+                        <a class="nav-link" href="./index.html#AboutUs">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html#Contact">Contact</a>
+                        <a class="nav-link" href="#Contact">Contact</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -85,50 +85,38 @@
 
     <div class="toast-body" id="toast-body-added"></div>
 
-    <!-- Filter Controls Section 
-    <div class="container mt-3">
-        <div class="card shadow-sm p-3 mb-5 bg-body-tertiary">
-            <h4>Filter</h4>
-            Filter Form (Category, Price Range)
-            <div class="form-group mt-3">
-                <label for="categoryFilter">Category:</label>
-                <select id="categoryFilter" class="form-select">
-                    <option value="all">All</option>
-                    <option value="toys">Toys/Models</option>
-                    <option value="games">Games/DLC</option>
-                </select>
-            </div>
+    <div class="container-flex mt-4 mx-2 mx-md-3 px-md-1">
+        <div class="row justify-content-center mt-3">
+            <div class="col-12 col-md-3 col-lg-2 mt-3 mt-md-5 order-md-1">
+                <div class="card shadow-sm p-3 mb-5 bg-body-tertiary">
+                    <h4>Filter</h4>
+                    <!--filter by prices-->
+                    <div class="mb-3">
+                        <label class="form-label">price range (baht)</label>
+                        <div class="d-flex justify-content-between mb-3">
+                            <div class="me-2 w-100">
+                                <input type="text" class="form-control" placeholder="min price" min="0" max="10000"
+                                    id="minRange">
+                            </div>
+                            _
+                            <div class="ms-2 w-100">
+                                <input type="text" class="form-control" placeholder="max price" min="0" max="10000"
+                                    id="maxRange">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary w-100 price-filter-btn">Enter</button>
+                    </div>
 
-            Price Range Filter
-            <label for="priceFilter">Price Range:</label>
-            <div id="priceFilter">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="0-500" id="priceRange1">
-                    <label class="form-check-label" for="priceRange1">0 - 500 Baht</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="500-1500" id="priceRange2">
-                    <label class="form-check-label" for="priceRange2">500 - 1500 Baht</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="1500-3000" id="priceRange3">
-                    <label class="form-check-label" for="priceRange3">1500 - 3000 Baht</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="3000+" id="priceRange4">
-                    <label class="form-check-label" for="priceRange4">3000+ Baht</label>
+                    <button class="btn btn-outline-secondary w-100 reset-filter-btn">Reset Filter</button>
                 </div>
             </div>
+            <div class="col-12 col-md-9 order-md-2">
+                <div class="CatalogHead"></div>
+                <!--products will be display here-->
+                <div class="row mb-3" id="Product-section">
 
-            <button id="resetFilter" class="btn btn-danger mt-3">Reset Filter</button>
-        </div>
-    </div> -->
-
-    <!--toys or games will be display here-->
-    <div class="container mt-4">
-        <div class="CatalogHead"></div>
-        <div class="row mt-3 mb-3" id="Product-section">
-
+                </div>
+            </div>
         </div>
     </div>
 
