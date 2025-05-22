@@ -58,7 +58,7 @@ function HandleCartButton() {
 
     const total = getCartTotal();
     const totalPrice = document.querySelector('.total-price')
-    totalPrice.innerHTML = `<strong>Total:</strong> ${total.toFixed(2)} baht`;
+    totalPrice.innerHTML = `<strong>Total:</strong> ${total.toLocaleString("th-TH", {maximumFractionDigits: 2})} baht`;
 
     if (total === 0) {
         const message = document.getElementById("checkout-summary-body");

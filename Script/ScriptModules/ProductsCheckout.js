@@ -25,7 +25,7 @@ function CheckoutCart() {
                         <p>(x${item.quantity})</p>
                     </div>
                     <div class="d-flex align-items-center text-end">
-                        <span>${itemTotal.toFixed(2)} baht</span>
+                        <span>${itemTotal.toLocaleString("th-TH", {maximumFractionDigits: 2})} baht</span>
                         <button class="btn btn-sm ms-3 delete-item-btn" data-product-id="${item.id}" data-product-type="${item.type}">
                             <img src="/images/UI/trash.png" alt="delete" class="img-responsive" width="30" height="30">
                         </button>
@@ -34,7 +34,7 @@ function CheckoutCart() {
             `;
         });
         summaryHTML += `</ul>
-            <div class="mt-3 total-price"><strong>Total:</strong> ${total.toFixed(2)} baht</div>`;
+            <div class="mt-3 total-price"><strong>Total:</strong> ${total.toLocaleString("th-TH", {maximumFractionDigits: 2})} baht</div>`;
 
         ClearAllbtn += `<button type="button" class="btn btn-danger ClearAll-btn" >Clear All</button>`;
         CheckoutButton += `<button type="button" class="btn btn-success" id="Checkout-btn">Checkout</button>`;

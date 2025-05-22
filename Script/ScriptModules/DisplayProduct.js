@@ -31,7 +31,7 @@ function createProductCard(product) {
                 <div class="card-body d-flex flex-column h-100">
                     <a href="Product.html?id=${product.id}&type=${product.type}" data-product-id="${product.id}" data-product-type="${product.type}" class="text-dark link-underline link-underline-opacity-0">
                         <h5 class="card-title">${product.name}</h5>
-                        <p class="card-text">${product.price.toFixed(2)} baht</p>
+                        <p class="card-text">${product.price.toLocaleString("th-TH", {maximumFractionDigits: 2})} baht</p>
                     </a>
                     <div class="mt-auto">
                         <div class="input-group center" id="Quantitybar">

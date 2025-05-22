@@ -6,7 +6,7 @@ function ShowProductDeatil(product) {
             </div>
             <div class="col-md-6 mt-4 mb-3">
                 <h2>${product.name}</h2>
-                <p><strong>Price:</strong> ${product.price.toFixed(2)} baht</p>
+                <p><strong>Price:</strong> ${product.price.toLocaleString("th-TH", {maximumFractionDigits: 2})} baht</p>
                 <p>${product.description || 'No description available.'}</p>
                 <div class="input-group my-3" id="Quantitybar">
                     <button class="btn btn-outline-secondary DecreaseQunatity-btn" 
