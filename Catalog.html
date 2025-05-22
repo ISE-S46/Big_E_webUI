@@ -114,8 +114,25 @@
             <div class="col-12 col-md-9 order-md-2">
                 <div class="CatalogHead"></div>
                 <div id="TopNavAndSortBy" class="row">
-                    <p class="col-12 col-md-6">Placeholder for sort by function</p>
-                    <nav aria-label="Page navigation" id="TopNav" class="col">
+                    <div class="col-12 col-md-6 mt-2">
+                        <div class="dropdown d-flex align-items-center">
+                            <span>
+                                <h5 class="m-0">Sort By: </h5>
+                            </span>
+                            <button id="sortDropdownBtn" class="btn btn-secondary dropdown-toggle ms-2 shadow" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                default
+                            </button>
+                            <ul class="dropdown-menu sort-drop-down">
+                                <li><a class="dropdown-item" href="#" data-sort="default">default</a></li>
+                                <li><a class="dropdown-item" href="#" data-sort="price-asc">Price : min → max</a></li>
+                                <li><a class="dropdown-item" href="#" data-sort="price-desc">Price : max → min</a></li>
+                                <li><a class="dropdown-item" href="#" data-sort="newest">Newest</a></li>
+                                <li><a class="dropdown-item" href="#" data-sort="oldest">Oldest</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <nav aria-label="Page navigation" id="TopNav" class="col mt-2">
 
                     </nav>
                 </div>
