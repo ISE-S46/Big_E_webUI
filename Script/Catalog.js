@@ -1,5 +1,4 @@
 import { toys, games, bestSellers } from "./ScriptModules/Data.js";
-import { displayProducts } from "./ScriptModules/DisplayProduct.js";
 import { addToCart } from "./ScriptModules/addToCart.js";
 import { cart, updateCartQuantityDisplay, changeQuantityItem, RemoveProductFromCart, ClearCartAll } from "./ScriptModules/SynchronizeQuantity.js";
 import { CheckoutCart } from "./ScriptModules/ProductsCheckout.js";
@@ -9,6 +8,7 @@ let productsPerPage = 24;
 
 const params = new URLSearchParams(window.location.search);
 const CatalogType = params.get('catalog');
+const CurrentPage = params.get('page');
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -18,17 +18,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     switch (true) {
         case (CatalogType == "best-seller"):
-            initPriceFilter(bestSellers, 'Product-section', productsPerPage);
+            initPriceFilter(bestSellers, 'Product-section', productsPerPage, CurrentPage);
             CatalogHead.innerHTML += `<h1 id="text-shadow">Best Sellers</h1>`;
             break;
 
         case (CatalogType == "toys"):
-            initPriceFilter(toys, 'Product-section', productsPerPage);
+            initPriceFilter(toys, 'Product-section', productsPerPage, CurrentPage);
             CatalogHead.innerHTML += `<h1 id="text-shadow">Toys/Models</h1>`;
             break;
 
         case (CatalogType == "games"):
-            initPriceFilter(toys, 'Product-section', productsPerPage);
+            initPriceFilter(games, 'Product-section', productsPerPage, CurrentPage);
             CatalogHead.innerHTML += `<h1 id="text-shadow">Games/DLC</h1>`;
             break;
     }
