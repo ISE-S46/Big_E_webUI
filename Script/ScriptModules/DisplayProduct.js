@@ -22,36 +22,37 @@ function displayProducts(products, containerId, limitPerPage, currentPage = 1) {
 }
 
 function createProductCard(product) {
+    const { id, type, image, name, price, description } = product;
     return `
-        <div class="col-6 col-md-4 col-lg-3 mb-3 product-item" id="product-${product.id}">
+        <div class="col-6 col-md-4 col-lg-3 mb-3 product-item" id="product-${id}">
             <div class="card text-center d-flex flex-column h-100 mb-3 shadow">
-                <a href="Product.html?id=${product.id}&type=${product.type}" data-product-id="${product.id}" data-product-type="${product.type}">
-                    <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                <a href="Product.html?id=${id}&type=${type}" data-product-id="${id}" data-product-type="${type}">
+                    <img src="${image}" class="card-img-top" alt="${name}">
                 </a>
                 <div class="card-body d-flex flex-column h-100">
-                    <a href="Product.html?id=${product.id}&type=${product.type}" data-product-id="${product.id}" data-product-type="${product.type}" class="text-dark link-underline link-underline-opacity-0">
-                        <h5 class="card-title">${product.name}</h5>
-                        <p class="card-text">${product.price.toLocaleString("th-TH", {maximumFractionDigits: 2})} baht</p>
+                    <a href="Product.html?id=${id}&type=${type}" data-product-id="${id}" data-product-type="${type}" class="text-dark link-underline link-underline-opacity-0">
+                        <h5 class="card-title">${name}</h5>
+                        <p class="card-text">${price.toLocaleString("th-TH", {maximumFractionDigits: 2})} baht</p>
                     </a>
                     <div class="mt-auto">
                         <div class="input-group center" id="Quantitybar">
                             <button class="btn btn-outline-secondary DecreaseQunatity-btn" 
-                                    data-product-id="${product.id}"
-                                    data-product-type="${product.type}">
+                                    data-product-id="${id}"
+                                    data-product-type="${type}">
                                 -
                             </button>
-                            <input type="text" class="form-control text-center qty-input" data-product-id="${product.id}" data-product-type="${product.type}" min="1" value="1">
+                            <input type="text" class="form-control text-center qty-input" data-product-id="${id}" data-product-type="${type}" min="1" value="1">
                             <button class="btn btn-outline-secondary IncreaseQunatity-btn" 
-                                    data-product-id="${product.id}"
-                                    data-product-type="${product.type}">
+                                    data-product-id="${id}"
+                                    data-product-type="${type}">
                                 +
                             </button>
                         </div>
                         <button class="btn btn-warning mt-3 add-to-cart-btn"
-                                data-product-id="${product.id}"
-                                data-product-type="${product.type}"
-                                data-price="${product.price}"
-                                data-name="${product.name}">
+                                data-product-id="${id}"
+                                data-product-type="${type}"
+                                data-price="${price}"
+                                data-name="${name}">
                             Add to Cart
                         </button>
                 

@@ -25,7 +25,7 @@ function CheckoutCart() {
                         <p>(x${item.quantity})</p>
                     </div>
                     <div class="d-flex align-items-center text-end">
-                        <span>${itemTotal.toLocaleString("th-TH", {maximumFractionDigits: 2})} baht</span>
+                        <span>${itemTotal.toLocaleString("th-TH", { maximumFractionDigits: 2 })} baht</span>
                         <button class="btn btn-sm ms-3 delete-item-btn" data-product-id="${item.id}" data-product-type="${item.type}">
                             <img src="/images/UI/trash.png" alt="delete" class="img-responsive" width="30" height="30">
                         </button>
@@ -34,10 +34,16 @@ function CheckoutCart() {
             `;
         });
         summaryHTML += `</ul>
-            <div class="mt-3 total-price"><strong>Total:</strong> ${total.toLocaleString("th-TH", {maximumFractionDigits: 2})} baht</div>`;
+            <div class="mt-3 total-price-checkout">
+                <p><strong>Total:</strong> ${total.toLocaleString("th-TH", { maximumFractionDigits: 2 })} baht</p>
+            </div>`;
 
         ClearAllbtn += `<button type="button" class="btn btn-danger ClearAll-btn" >Clear All</button>`;
-        CheckoutButton += `<button type="button" class="btn btn-success" id="Checkout-btn">Checkout</button>`;
+        CheckoutButton += `
+            <a href="./Checkout.html">
+                <button type="button" class="btn btn-success" id="Checkout-btn">Checkout</button>
+            </a>
+        `;
     }
 
     const modalHTML = `
@@ -73,4 +79,61 @@ function getCartTotal() {
     return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 }
 
-export { CheckoutCart, getCartTotal }
+function CheckoutPage() {
+    const CartProductWindow = document.getElementById('CartProductSummary');
+    const Displaytotalprice = document.querySelector('.total-price');
+
+    CartProductWindow.innerHTML = '';
+    Displaytotalprice.innerHTML = '';
+
+    let total = 0;
+    let summaryHTML = '';
+    let TotalPrice = '';
+    //let ClearAllbtn = '';
+
+    if (cart.length !== 0) {
+        summaryHTML = `<ul class="list-group">`;
+        cart.forEach(item => {
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
+            summaryHTML += `
+                <li class="list-group-item d-flex justify-content-between align-items-center item-li" data-product-id="${item.id}" data-product-type="${item.type}">
+                    <div>
+                        <strong>${item.name}</strong>
+                        <div class="input-group my-3" id="Quantitybar">
+                            <button class="btn btn-outline-secondary DecreaseQunatity-btn" 
+                                    data-product-id="${item.id}"
+                                    data-product-type="${item.type}">
+                                -
+                            </button>
+                            <input type="text" class="form-control text-center qty-input" data-product-id="${item.id}" data-product-type="${item.type}" min="1" value="1">
+                            <button class="btn btn-outline-secondary IncreaseQunatity-btn" 
+                                    data-product-id="${item.id}"
+                                    data-product-type="${item.type}">
+                                +
+                            </button>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center text-end">
+                        <span>${itemTotal.toLocaleString("th-TH", { maximumFractionDigits: 2 })} baht</span>
+                        <button class="btn btn-sm ms-3 delete-item-btn" data-product-id="${item.id}" data-product-type="${item.type}">
+                            <img src="/images/UI/trash.png" alt="delete" class="img-responsive" width="30" height="30">
+                        </button>
+                    </div>
+                </li>
+            `;
+        });
+        summaryHTML += `</ul>`;
+
+        TotalPrice = `<p><strong>Total:</strong> ${total.toLocaleString("th-TH", { maximumFractionDigits: 2 })} baht</p>`;
+
+    } else {
+        summaryHTML = `<p>Your cart is empty.</p>`;
+        TotalPrice = `<p><strong>Total:</strong> 0 baht</p>`;
+    }
+
+    CartProductWindow.innerHTML = summaryHTML;
+    Displaytotalprice.innerHTML = TotalPrice;
+}
+
+export { CheckoutCart, getCartTotal, CheckoutPage }

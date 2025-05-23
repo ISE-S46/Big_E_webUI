@@ -3,11 +3,12 @@ function renderCarousel(products) {
 
     products.forEach((product, index) => {
         const activeClass = index === 0 ? 'active' : '';
+        const { id, type, image, name, } = product;
 
         slides += `
             <div class="carousel-item ${activeClass}">
-                <a href="Product.html?id=${product.id}&type=${product.type}" data-product-id="${product.id}" data-product-type="${product.type}">
-                    <img src="${product.image}" loading="lazy" class="d-block w-100" alt="${product.name}">
+                <a href="Product.html?id=${id}&type=${type}" data-product-id="${id}" data-product-type="${type}">
+                    <img src="${image}" loading="lazy" class="d-block w-100" alt="${name}">
                 </a>
             </div>
         `;

@@ -4,7 +4,7 @@ import { displayProducts } from "./ScriptModules/DisplayProduct.js";
 import { addToCart } from "./ScriptModules/addToCart.js";
 import { cart, updateCartQuantityDisplay, changeQuantityItem, RemoveProductFromCart, ClearCartAll } from "./ScriptModules/SynchronizeQuantity.js";
 import { CheckoutCart } from "./ScriptModules/ProductsCheckout.js";
-import { RedirectSearchUrl, searchProducts } from "./ScriptModules/SearchProduct.js";
+import { RedirectSearchUrl } from "./ScriptModules/SearchProduct.js";
 
 let productsMainPage = 12;
 let BestSellerProduct = 4;

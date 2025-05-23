@@ -34,8 +34,10 @@ function RemoveProductFromCart(id, type) {
 
     updateCartQuantityDisplay(cart);
 
-    const Cartlist = document.querySelector(`li.item-li[data-product-id="${id}"][data-product-type="${type}"]`);
-    Cartlist.remove();
+    const Cartlist = document.querySelectorAll(`li.item-li[data-product-id="${id}"][data-product-type="${type}"]`);
+    Cartlist.forEach(item => {
+        item.remove();
+    });
 
     HandleCartButton()
 
@@ -50,20 +52,31 @@ function ClearCartAll() {
     const CartList = document.querySelectorAll(`li.item-li`);
     CartList.forEach(item => item.remove());
 
-    HandleCartButton()
+    HandleCartButton();
 
 }
 
 function HandleCartButton() {
 
     const total = getCartTotal();
-    const totalPrice = document.querySelector('.total-price')
-    totalPrice.innerHTML = `<strong>Total:</strong> ${total.toLocaleString("th-TH", {maximumFractionDigits: 2})} baht`;
+    const totalPrice = document.querySelector('.total-price');
+    const totalPriceCheckout = document.querySelector('.total-price-checkout');
 
-    if (total === 0) {
+    if (totalPriceCheckout) {
+        totalPriceCheckout.innerHTML = `<p><strong>Total:</strong> ${total.toLocaleString("th-TH", { maximumFractionDigits: 2 })} baht</p>`;
+    }
+
+    totalPrice.innerHTML = `<p><strong>Total:</strong> ${total.toLocaleString("th-TH", { maximumFractionDigits: 2 })} baht</p>`;
+
+    const Checkoutmessage = document.getElementById("CartProductSummary");
+
+    if (total === 0 && Checkoutmessage) {
+        Checkoutmessage.innerHTML = `<p>Your cart is empty.</p>`;
+
+    } else if (total === 0) {
+        const CheckoutBtn = document.getElementById("Checkout-btn");
         const message = document.getElementById("checkout-summary-body");
         const ClearAll = document.querySelector(".ClearAll-btn")
-        const CheckoutBtn = document.getElementById("Checkout-btn");
 
         message.innerHTML = `<p>Your cart is empty.</p>`;
         CheckoutBtn.remove();

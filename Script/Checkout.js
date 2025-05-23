@@ -1,23 +1,16 @@
-import { allProducts } from "./ScriptModules/Data.js";
-import { openProduct } from "./ScriptModules/ProductDetail.js";
-import { addToCart } from "./ScriptModules/addToCart.js";
 import { cart, updateCartQuantityDisplay, changeQuantityItem, RemoveProductFromCart, ClearCartAll } from "./ScriptModules/SynchronizeQuantity.js";
-import { CheckoutCart } from "./ScriptModules/ProductsCheckout.js";
+import { CheckoutCart, CheckoutPage } from "./ScriptModules/ProductsCheckout.js";
 import { RedirectSearchUrl } from "./ScriptModules/SearchProduct.js";
-
-const params = new URLSearchParams(window.location.search);
-const id = params.get('id');
-const type = params.get('type');
 
 document.addEventListener('DOMContentLoaded', () => {
     updateCartQuantityDisplay(cart);
-    openProduct(id, type, allProducts);
+    CheckoutPage();
 
     document.getElementById('searchInput').value = '';
 
     document.querySelector('form[role="search"]').addEventListener('submit', function (e) {
         e.preventDefault();
-    
+
         RedirectSearchUrl();
     });
 
