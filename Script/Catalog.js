@@ -3,7 +3,7 @@ import { addToCart } from "./ScriptModules/addToCart.js";
 import { cart, updateCartQuantityDisplay, changeQuantityItem, RemoveProductFromCart, ClearCartAll } from "./ScriptModules/SynchronizeQuantity.js";
 import { CheckoutCart } from "./ScriptModules/ProductsCheckout.js";
 import { initPriceFilter } from "./ScriptModules/Filter.js";
-import { sortItems } from "./ScriptModules/SortProduct.js";
+import { applySort } from "./ScriptModules/SortProduct.js";
 import { RedirectSearchUrl, searchProducts } from "./ScriptModules/SearchProduct.js";
 
 let productsPerPage = 24;
@@ -11,6 +11,7 @@ let productsPerPage = 24;
 const params = new URLSearchParams(window.location.search);
 const CatalogType = params.get('catalog');
 const CurrentPage = params.get('page');
+const sortType = params.get('sort');
 
 let activeCatalogData = [];
 
@@ -57,20 +58,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!sortItem) return;
 
         e.preventDefault();
-
         const method = sortItem.dataset.sort;
-        const label = sortItem.textContent.trim();
-
-        // Update sort text on button
-        const sortBtn = document.getElementById('sortDropdownBtn');
-        if (sortBtn) {
-            sortBtn.textContent = label;
-        }
-
-        // Sort and re-render
-        const sortedCatalog = sortItems(activeCatalogData, method);
-        initPriceFilter(sortedCatalog, 'Product-section', productsPerPage, 1);
+        applySort(method, 1, activeCatalogData, productsPerPage);
     });
+
+    if (sortType) {
+        applySort(sortType, CurrentPage || 1, activeCatalogData, productsPerPage);
+    }
 
     document.body.addEventListener('click', event => {
         const btn = event.target.closest('button');
