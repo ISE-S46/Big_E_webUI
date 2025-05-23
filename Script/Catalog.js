@@ -1,9 +1,10 @@
-import { toys, games, bestSellers } from "./ScriptModules/Data.js";
+import { toys, games, allProducts, bestSellers } from "./ScriptModules/Data.js";
 import { addToCart } from "./ScriptModules/addToCart.js";
 import { cart, updateCartQuantityDisplay, changeQuantityItem, RemoveProductFromCart, ClearCartAll } from "./ScriptModules/SynchronizeQuantity.js";
 import { CheckoutCart } from "./ScriptModules/ProductsCheckout.js";
 import { initPriceFilter } from "./ScriptModules/Filter.js";
 import { sortItems } from "./ScriptModules/SortProduct.js";
+import { RedirectSearchUrl, searchProducts } from "./ScriptModules/SearchProduct.js";
 
 let productsPerPage = 24;
 
@@ -14,8 +15,15 @@ const CurrentPage = params.get('page');
 let activeCatalogData = [];
 
 document.addEventListener('DOMContentLoaded', () => {
-
     updateCartQuantityDisplay(cart);
+
+    document.getElementById('searchInput').value = '';
+
+    document.querySelector('form[role="search"]').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        RedirectSearchUrl();
+    });
 
     const CatalogHead = document.querySelector(".CatalogHead");
 
@@ -37,6 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
             initPriceFilter(games, 'Product-section', productsPerPage, CurrentPage);
             CatalogHead.innerHTML += `<h1 id="text-shadow">Games/DLC</h1>`;
             break;
+        default:
+            const SearchResult = searchProducts(CatalogType.toString(), allProducts);
+            activeCatalogData = SearchResult;
+            initPriceFilter(SearchResult, 'Product-section', productsPerPage, CurrentPage);
+            CatalogHead.innerHTML += `<h1>Search result for: <span id="text-shadow">${CatalogType}</span></h1>`;
     }
 
     document.querySelector('.dropdown-menu.sort-drop-down').addEventListener('click', function (e) {

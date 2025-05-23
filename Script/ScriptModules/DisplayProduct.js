@@ -80,7 +80,7 @@ function pagination(totalPages, currentPage, TopNav, BottomNav) {
             li.className = `page-item ${disabled ? 'disabled' : ''} ${active ? 'active' : ''} ${customClass}`;
 
             const a = document.createElement("a");
-            a.className = "page-link";
+            a.className = "page-link shadow-sm";
             a.href = `?catalog=${catalog}&page=${page}`;
             a.dataset.page = page;
             a.textContent = label;

@@ -41,6 +41,8 @@ const games = [
     { id: 25, name: "Portal", image: "images/games/portal.jpg", price: 220, description: "Portal™ is a new single player game from Valve. Set in the mysterious Aperture Science Laboratories, Portal has been called one of the most innovative new games on the horizon and will offer gamers hours of unique gameplay.", type: 'game', DATE: '2025-05-22' }
 ];
 
+const allProducts = [...toys, ...games];
+
 const bestSellers = [
     games[3],
     toys[4],
@@ -57,4 +59,4 @@ const CarouselItem = [
     games[12]
 ];
 
-export { toys, games, bestSellers, CarouselItem };
+export { toys, games, allProducts, bestSellers, CarouselItem };

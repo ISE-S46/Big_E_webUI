@@ -19,6 +19,10 @@ html {
     color: #ffb067;
 }
 
+a:hover .product-title {
+    color: #ffb067;
+}
+
 #ProductPageBody {
     padding-top: 60px;
 }

@@ -1,18 +1,25 @@
-import { toys, games } from "./ScriptModules/Data.js";
+import { allProducts } from "./ScriptModules/Data.js";
 import { ShowProductDeatil } from "./ScriptModules/ProductDetail.js";
 import { addToCart } from "./ScriptModules/addToCart.js";
 import { cart, updateCartQuantityDisplay, changeQuantityItem, RemoveProductFromCart, ClearCartAll } from "./ScriptModules/SynchronizeQuantity.js";
 import { CheckoutCart } from "./ScriptModules/ProductsCheckout.js";
+import { RedirectSearchUrl, searchProducts } from "./ScriptModules/SearchProduct.js";
 
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
 const type = params.get('type');
 
-const allProducts = [...toys, ...games];
-
 document.addEventListener('DOMContentLoaded', () => {
     updateCartQuantityDisplay(cart);
     openProduct(id, type);
+
+    document.getElementById('searchInput').value = '';
+
+    document.querySelector('form[role="search"]').addEventListener('submit', function (e) {
+        e.preventDefault();
+    
+        RedirectSearchUrl();
+    });
 
     document.body.addEventListener('click', event => {
         const btn = event.target.closest('button');

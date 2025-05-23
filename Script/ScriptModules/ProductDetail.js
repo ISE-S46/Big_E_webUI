@@ -6,7 +6,10 @@ function ShowProductDeatil(product) {
             </div>
             <div class="col-md-6 mt-4 mb-3">
                 <h2>${product.name}</h2>
-                <p><strong>Price:</strong> ${product.price.toLocaleString("th-TH", {maximumFractionDigits: 2})} baht</p>
+                <a href="./Catalog.html?catalog=${HandleCatalogData(product.type)[0]}&page=1" data-from="${HandleCatalogData(product.type)[1]}" class="link-underline link-underline-opacity-0">
+                    <h4 class="product-title">${HandleCatalogData(product.type)[0]}</h4>
+                </a>
+                <p><strong>Price:</strong> ${product.price.toLocaleString("th-TH", { maximumFractionDigits: 2 })} baht</p>
                 <p>${product.description || 'No description available.'}</p>
                 <div class="input-group my-3" id="Quantitybar">
                     <button class="btn btn-outline-secondary DecreaseQunatity-btn" 
@@ -31,6 +34,19 @@ function ShowProductDeatil(product) {
             </div>
         </div>
     `;
+}
+
+function HandleCatalogData(type) {
+    switch (type) {
+        case "game":
+            return ["games", "Games/DLC"];
+
+        case "toy":
+            return ["toys", "Toys/Models"];
+
+        case "StellarisDLC":
+            return ["games", "Games/DLC"];
+    }
 }
 
 export { ShowProductDeatil };
