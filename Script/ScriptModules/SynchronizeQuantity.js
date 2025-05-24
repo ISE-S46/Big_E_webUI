@@ -39,7 +39,33 @@ function RemoveProductFromCart(id, type) {
         item.remove();
     });
 
-    HandleCartButton()
+    HandleCartButtonAndTotalPrice()
+
+}
+
+function ProductQuantityCheckout(id, type, changeBy) {
+
+    const ProductQty = document.querySelector(`input.qty-input[data-product-id="${id}"][data-product-type="${type}"]`);
+    const cartItem = cart.find(item => item.id === id && item.type === type);
+
+    if (!ProductQty || !cartItem) {
+        return;
+    }
+
+    let itemQty = cartItem.quantity;
+    let itemPrice = cartItem.price * (itemQty + changeBy);
+
+    itemQty = Math.max(1, cartItem.quantity + changeBy);
+    itemPrice = Math.max(cartItem.price, itemPrice);
+
+    const index = cart.indexOf(cartItem);
+    cart[index].quantity = itemQty;
+
+    let QuantityPrice = document.querySelector(`.ProductQuantityPrice[data-product-id="${id}"][data-product-type="${type}"]`);
+    QuantityPrice.textContent =`${itemPrice.toLocaleString("th-TH", { maximumFractionDigits: 2 })} baht`;
+
+    updateCartQuantityDisplay(cart);
+    HandleCartButtonAndTotalPrice();
 
 }
 
@@ -52,21 +78,22 @@ function ClearCartAll() {
     const CartList = document.querySelectorAll(`li.item-li`);
     CartList.forEach(item => item.remove());
 
-    HandleCartButton();
+    HandleCartButtonAndTotalPrice();
 
 }
 
-function HandleCartButton() {
+function HandleCartButtonAndTotalPrice() {
 
     const total = getCartTotal();
-    const totalPrice = document.querySelector('.total-price');
-    const totalPriceCheckout = document.querySelector('.total-price-checkout');
+    const formattedTotal = total.toLocaleString("th-TH", { maximumFractionDigits: 2 });
+    const totalHtml = `<p><strong>Total:</strong> ${formattedTotal} baht</p>`;
 
-    if (totalPriceCheckout) {
-        totalPriceCheckout.innerHTML = `<p><strong>Total:</strong> ${total.toLocaleString("th-TH", { maximumFractionDigits: 2 })} baht</p>`;
-    }
+    const elements = [
+        document.querySelector('.total-price'),
+        document.querySelector('.total-price-checkout')
+    ];
 
-    totalPrice.innerHTML = `<p><strong>Total:</strong> ${total.toLocaleString("th-TH", { maximumFractionDigits: 2 })} baht</p>`;
+    elements.forEach(element => element && (element.innerHTML = totalHtml));
 
     const Checkoutmessage = document.getElementById("CartProductSummary");
 
@@ -85,4 +112,4 @@ function HandleCartButton() {
 
 }
 
-export { cart, updateCartQuantityDisplay, changeQuantityItem, RemoveProductFromCart, ClearCartAll };
+export { cart, updateCartQuantityDisplay, changeQuantityItem, RemoveProductFromCart, ProductQuantityCheckout, ClearCartAll };

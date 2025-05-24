@@ -1,4 +1,4 @@
-import { cart, updateCartQuantityDisplay, changeQuantityItem, RemoveProductFromCart, ClearCartAll } from "./ScriptModules/SynchronizeQuantity.js";
+import { cart, updateCartQuantityDisplay, changeQuantityItem, RemoveProductFromCart, ProductQuantityCheckout, ClearCartAll } from "./ScriptModules/SynchronizeQuantity.js";
 import { CheckoutCart, CheckoutPage } from "./ScriptModules/ProductsCheckout.js";
 import { RedirectSearchUrl } from "./ScriptModules/SearchProduct.js";
 
@@ -24,16 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
         switch (true) {
             case btn.classList.contains('DecreaseQunatity-btn'):
                 changeQuantityItem(id, type, -1);
+                ProductQuantityCheckout(id, type, -1);
                 break;
 
             case btn.classList.contains('IncreaseQunatity-btn'):
                 changeQuantityItem(id, type, 1);
-                break;
-
-            case btn.classList.contains('add-to-cart-btn'):
-                const price = btn.dataset.price;
-                const name = btn.dataset.name;
-                addToCart(id, type, price, name);
+                ProductQuantityCheckout(id, type, +1);
                 break;
 
             case btn.classList.contains('delete-item-btn'):

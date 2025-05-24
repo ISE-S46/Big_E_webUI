@@ -7,6 +7,15 @@ html {
     scroll-behavior: smooth;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+html, body {
+    height: 100%;
+}
+
 #text-shadow {
     text-shadow: 2px 2px 1px #ffb067;
 }

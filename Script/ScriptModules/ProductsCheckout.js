@@ -21,7 +21,9 @@ function CheckoutCart() {
             summaryHTML += `
                 <li class="list-group-item d-flex justify-content-between align-items-center item-li" data-product-id="${item.id}" data-product-type="${item.type}">
                     <div>
-                        <strong>${item.name}</strong>
+                        <a href="Product.html?id=${item.id}&type=${item.type}" data-product-id="${item.id}" data-product-type="${item.type}" class="text-dark link-underline link-underline-opacity-0">
+                            <strong class="product-title">${item.name}</strong>
+                        </a>
                         <p>(x${item.quantity})</p>
                     </div>
                     <div class="d-flex align-items-center text-end">
@@ -99,14 +101,16 @@ function CheckoutPage() {
             summaryHTML += `
                 <li class="list-group-item d-flex justify-content-between align-items-center item-li" data-product-id="${item.id}" data-product-type="${item.type}">
                     <div>
-                        <strong>${item.name}</strong>
+                        <a href="Product.html?id=${item.id}&type=${item.type}" data-product-id="${item.id}" data-product-type="${item.type}" class="text-dark link-underline link-underline-opacity-0">
+                            <strong class="product-title">${item.name}</strong>
+                        </a>
                         <div class="input-group my-3" id="Quantitybar">
                             <button class="btn btn-outline-secondary DecreaseQunatity-btn" 
                                     data-product-id="${item.id}"
                                     data-product-type="${item.type}">
                                 -
                             </button>
-                            <input type="text" class="form-control text-center qty-input" data-product-id="${item.id}" data-product-type="${item.type}" min="1" value="1">
+                            <input type="text" class="form-control text-center qty-input" data-product-id="${item.id}" data-product-type="${item.type}" min="1" value="${item.quantity}">
                             <button class="btn btn-outline-secondary IncreaseQunatity-btn" 
                                     data-product-id="${item.id}"
                                     data-product-type="${item.type}">
@@ -115,7 +119,7 @@ function CheckoutPage() {
                         </div>
                     </div>
                     <div class="d-flex align-items-center text-end">
-                        <span>${itemTotal.toLocaleString("th-TH", { maximumFractionDigits: 2 })} baht</span>
+                        <span class="ProductQuantityPrice" data-product-id="${item.id}" data-product-type="${item.type}">${itemTotal.toLocaleString("th-TH", { maximumFractionDigits: 2 })} baht</span>
                         <button class="btn btn-sm ms-3 delete-item-btn" data-product-id="${item.id}" data-product-type="${item.type}">
                             <img src="/images/UI/trash.png" alt="delete" class="img-responsive" width="30" height="30">
                         </button>
