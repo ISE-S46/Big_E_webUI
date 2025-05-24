@@ -22,7 +22,7 @@ function displayProducts(products, containerId, limitPerPage, currentPage = 1) {
 }
 
 function createProductCard(product) {
-    const { id, type, image, name, price, description } = product;
+    const { id, type, image, name, price } = product;
     return `
         <div class="col-6 col-md-4 col-lg-3 mb-3 product-item" id="product-${id}">
             <div class="card text-center d-flex flex-column h-100 mb-3 shadow">

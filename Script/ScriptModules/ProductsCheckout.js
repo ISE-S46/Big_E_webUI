@@ -1,4 +1,5 @@
 import { cart } from './SynchronizeQuantity.js';
+import { allProducts } from './Data.js';
 
 function CheckoutCart() {
 
@@ -15,20 +16,20 @@ function CheckoutCart() {
         summaryHTML = `<p>Your cart is empty.</p>`;
     } else {
         summaryHTML = `<ul class="list-group">`;
-        cart.forEach(item => {
-            const itemTotal = item.price * item.quantity;
+        cart.forEach(({ id, type, price, quantity, name }) => {
+            const itemTotal = price * quantity;
             total += itemTotal;
             summaryHTML += `
-                <li class="list-group-item d-flex justify-content-between align-items-center item-li" data-product-id="${item.id}" data-product-type="${item.type}">
+                <li class="list-group-item d-flex justify-content-between align-items-center item-li" data-product-id="${id}" data-product-type="${type}">
                     <div>
-                        <a href="Product.html?id=${item.id}&type=${item.type}" data-product-id="${item.id}" data-product-type="${item.type}" class="text-dark link-underline link-underline-opacity-0">
-                            <strong class="product-title">${item.name}</strong>
+                        <a href="Product.html?id=${id}&type=${type}" data-product-id="${id}" data-product-type="${type}" class="text-dark link-underline link-underline-opacity-0">
+                            <strong class="product-title">${name}</strong>
                         </a>
-                        <p>(x${item.quantity})</p>
+                        <p>(x${quantity})</p>
                     </div>
                     <div class="d-flex align-items-center text-end">
                         <span>${itemTotal.toLocaleString("th-TH", { maximumFractionDigits: 2 })} baht</span>
-                        <button class="btn btn-sm ms-3 delete-item-btn" data-product-id="${item.id}" data-product-type="${item.type}">
+                        <button class="btn btn-sm ms-3 delete-item-btn" data-product-id="${id}" data-product-type="${type}">
                             <img src="/images/UI/trash.png" alt="delete" class="img-responsive" width="30" height="30">
                         </button>
                     </div>
@@ -81,6 +82,10 @@ function getCartTotal() {
     return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 }
 
+function findProductByIdAndType(id, type) {
+    return allProducts.find(product => product.id == id && product.type === type);
+}
+
 function CheckoutPage() {
     const CartProductWindow = document.getElementById('CartProductSummary');
     const Displaytotalprice = document.querySelector('.total-price');
@@ -91,36 +96,46 @@ function CheckoutPage() {
     let total = 0;
     let summaryHTML = '';
     let TotalPrice = '';
-    //let ClearAllbtn = '';
 
     if (cart.length !== 0) {
         summaryHTML = `<ul class="list-group">`;
-        cart.forEach(item => {
-            const itemTotal = item.price * item.quantity;
+        cart.forEach(({ id, type, price, quantity, name }) => {
+            const itemTotal = price * quantity;
             total += itemTotal;
+
+            const product = findProductByIdAndType(id, type);
+            const productImage = product ? product.image : './images/default.jpg';
+
             summaryHTML += `
-                <li class="list-group-item d-flex justify-content-between align-items-center item-li" data-product-id="${item.id}" data-product-type="${item.type}">
-                    <div>
-                        <a href="Product.html?id=${item.id}&type=${item.type}" data-product-id="${item.id}" data-product-type="${item.type}" class="text-dark link-underline link-underline-opacity-0">
-                            <strong class="product-title">${item.name}</strong>
-                        </a>
-                        <div class="input-group my-3" id="Quantitybar">
-                            <button class="btn btn-outline-secondary DecreaseQunatity-btn" 
-                                    data-product-id="${item.id}"
-                                    data-product-type="${item.type}">
-                                -
-                            </button>
-                            <input type="text" class="form-control text-center qty-input" data-product-id="${item.id}" data-product-type="${item.type}" min="1" value="${item.quantity}">
-                            <button class="btn btn-outline-secondary IncreaseQunatity-btn" 
-                                    data-product-id="${item.id}"
-                                    data-product-type="${item.type}">
-                                +
-                            </button>
+                <li class="list-group-item d-flex justify-content-between align-items-center item-li" data-product-id="${id}" data-product-type="${type}">
+                    <div class="row align-items-stretch">
+                        <div class="col-auto">
+                            <a href="Product.html?id=${id}&type=${type}" data-product-id="${id}" data-product-type="${type}" class="text-dark link-underline link-underline-opacity-0">
+                                <img src="${productImage}" id="CheckoutProductImage"alt="${name}">
+                            </a>
+                        </div>
+                        <div class="col d-flex flex-column justify-content-between">
+                            <a href="Product.html?id=${id}&type=${type}" data-product-id="${id}" data-product-type="${type}" class="text-dark link-underline link-underline-opacity-0">
+                                <h5 class="product-title mt-2">${name}</h5>
+                            </a>
+                            <div class="input-group my-3" id="Quantitybar">
+                                <button class="btn btn-outline-secondary DecreaseQunatity-btn" 
+                                        data-product-id="${id}"
+                                        data-product-type="${type}">
+                                    -
+                                </button>
+                                <input type="text" class="form-control text-center qty-input" data-product-id="${id}" data-product-type="${type}" min="1" value="${quantity}">
+                                <button class="btn btn-outline-secondary IncreaseQunatity-btn" 
+                                        data-product-id="${id}"
+                                        data-product-type="${type}">
+                                    +
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div class="d-flex align-items-center text-end">
-                        <span class="ProductQuantityPrice" data-product-id="${item.id}" data-product-type="${item.type}">${itemTotal.toLocaleString("th-TH", { maximumFractionDigits: 2 })} baht</span>
-                        <button class="btn btn-sm ms-3 delete-item-btn" data-product-id="${item.id}" data-product-type="${item.type}">
+                        <h6 class="ProductQuantityPrice my-0" data-product-id="${id}" data-product-type="${type}">${itemTotal.toLocaleString("th-TH", { maximumFractionDigits: 2 })} baht</h6>
+                        <button class="btn btn-sm ms-3 delete-item-btn" data-product-id="${id}" data-product-type="${type}">
                             <img src="/images/UI/trash.png" alt="delete" class="img-responsive" width="30" height="30">
                         </button>
                     </div>

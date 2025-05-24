@@ -41,6 +41,11 @@ a:hover .product-title {
     overflow: hidden;
 }
 
+#CheckoutProductImage {
+    width: 250px;
+    object-fit: cover;
+}
+
 @media only screen and (max-width: 768px) {
     body {
         font-size: 14px;
@@ -80,6 +85,12 @@ a:hover .product-title {
         height: 360px;
         overflow: hidden;
     }
+
+    #CheckoutProductImage {
+        width: 160px;
+        object-fit: cover;
+    }
+
 }
 
 @media only screen and (max-width: 480px) {
