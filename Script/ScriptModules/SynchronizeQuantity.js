@@ -86,25 +86,26 @@ function HandleCartButtonAndTotalPrice() {
 
     const total = getCartTotal();
     const formattedTotal = total.toLocaleString("th-TH", { maximumFractionDigits: 2 });
-    const totalHtml = `<p><strong>Total:</strong> ${formattedTotal} baht</p>`;
+    const totalHtml = `<p class="mb-1"><strong>Subtotal:</strong> ${formattedTotal} baht</p>`;
 
-    const elements = [
+    const Totalprice = [
         document.querySelector('.total-price'),
         document.querySelector('.total-price-checkout')
     ];
 
-    elements.forEach(element => element && (element.innerHTML = totalHtml));
+    Totalprice.forEach(ProductPrice => ProductPrice && (ProductPrice.innerHTML = totalHtml));
 
-    const Checkoutmessage = document.getElementById("CartProductSummary");
+    const Checkoutmessage = document.getElementById('CartProductSummary');
 
     if (total === 0 && Checkoutmessage) {
         Checkoutmessage.innerHTML = `<p>Your cart is empty.</p>`;
+    } 
 
-    } else if (total === 0) {
-        const CheckoutBtn = document.getElementById("Checkout-btn");
-        const message = document.getElementById("checkout-summary-body");
-        const ClearAll = document.querySelector(".ClearAll-btn")
+    const ClearAll = document.querySelector('.ClearAll-btn');
+    const CheckoutBtn = document.getElementById('Checkout-btn');
+    const message = document.getElementById('checkout-summary-body');
 
+    if (total === 0 && ClearAll) {
         message.innerHTML = `<p>Your cart is empty.</p>`;
         CheckoutBtn.remove();
         ClearAll.remove();

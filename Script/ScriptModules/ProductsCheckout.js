@@ -29,7 +29,7 @@ function CheckoutCart() {
                     </div>
                     <div class="d-flex align-items-center text-end">
                         <span>${itemTotal.toLocaleString("th-TH", { maximumFractionDigits: 2 })} baht</span>
-                        <button class="btn btn-sm ms-3 delete-item-btn" data-product-id="${id}" data-product-type="${type}">
+                        <button class="btn btn-sm delete-item-btn" data-product-id="${id}" data-product-type="${type}">
                             <img src="/images/UI/trash.png" alt="delete" class="img-responsive" width="30" height="30">
                         </button>
                     </div>
@@ -38,13 +38,13 @@ function CheckoutCart() {
         });
         summaryHTML += `</ul>
             <div class="mt-3 total-price-checkout">
-                <p><strong>Total:</strong> ${total.toLocaleString("th-TH", { maximumFractionDigits: 2 })} baht</p>
+                <p><strong>Subtotal:</strong> ${total.toLocaleString("th-TH", { maximumFractionDigits: 2 })} baht</p>
             </div>`;
 
         ClearAllbtn += `<button type="button" class="btn btn-danger ClearAll-btn" >Clear All</button>`;
         CheckoutButton += `
-            <a href="./Checkout.html">
-                <button type="button" class="btn btn-success" id="Checkout-btn">Checkout</button>
+            <a href="./CartSummary.html">
+                <button type="button" class="btn btn-success" id="Checkout-btn">Cart Summary</button>
             </a>
         `;
     }
@@ -134,7 +134,7 @@ function CheckoutPage() {
                         </div>
                     </div>
                     <div class="d-flex align-items-center text-end">
-                        <h6 class="ProductQuantityPrice my-0" data-product-id="${id}" data-product-type="${type}">${itemTotal.toLocaleString("th-TH", { maximumFractionDigits: 2 })} baht</h6>
+                        <h6 class="ProductQuantityPrice my-0 ms-2" data-product-id="${id}" data-product-type="${type}">${itemTotal.toLocaleString("th-TH", { maximumFractionDigits: 2 })} baht</h6>
                         <button class="btn btn-sm ms-3 delete-item-btn" data-product-id="${id}" data-product-type="${type}">
                             <img src="/images/UI/trash.png" alt="delete" class="img-responsive" width="30" height="30">
                         </button>
@@ -144,11 +144,11 @@ function CheckoutPage() {
         });
         summaryHTML += `</ul>`;
 
-        TotalPrice = `<p><strong>Total:</strong> ${total.toLocaleString("th-TH", { maximumFractionDigits: 2 })} baht</p>`;
+        TotalPrice = `<p class="mb-1"><strong>Subtotal:</strong> ${total.toLocaleString("th-TH", { maximumFractionDigits: 2 })} baht</p>`;
 
     } else {
         summaryHTML = `<p>Your cart is empty.</p>`;
-        TotalPrice = `<p><strong>Total:</strong> 0 baht</p>`;
+        TotalPrice = `<p class="mb-1"><strong>Subtotal:</strong> 0 baht</p>`;
     }
 
     CartProductWindow.innerHTML = summaryHTML;

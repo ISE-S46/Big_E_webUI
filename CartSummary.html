@@ -87,24 +87,37 @@
 
     <div class="toast-body" id="toast-body-added"></div>
 
-    <div class="container-flex mt-4 mx-2 mx-md-3 px-md-1">
-        <div class="row justify-content-center mt-3">
-            <div class="col-12 col-md-7 mt-3 mt-md-5 order-md-1">
-                <h1 class="mt-5 mt-md-3" id="text-shadow">Cart</h1>
-                <div class="card my-3">
+    <div class="container-flex mt-5 mx-2 mx-md-3 px-md-1">
+        <div class="row justify-content-center align-items-start mt-2">
+            <div class="col-12 col-md-10 col-lg-9 mt-3 order-md-1">
+                <h1 class="pt-3" id="text-shadow">Cart</h1>
+                <button type="button" class="btn btn-danger ClearAll-Checkout">Clear All</button>
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-start">
+            <div class="col-12 col-md-7 order-md-1">
+                <div class="card mt-2 mb-4">
                     <div class="card-body">
-                        <div id="CartProductSummary">
-
-                        </div>
+                        <div id="CartProductSummary"></div>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-4 col-lg-2 mt-1 mt-md-5 order-md-2" id="CartPriceSummary">
-                <h1 class=" mt-md-3" id="text-shadow">Total Price</h1>
-                <div class="card my-3">
+            <div class="col-12 col-md-3 col-lg-2 order-md-2" id="CartPriceSummary">
+                <div class="card mt-2 mb-4">
                     <div class="card-body">
-                        <div class="total-price">
-
+                        <h4><strong>Summary</strong></h4>
+                        <div class="mt-2 total-price"></div>
+                        <div class="discount">
+                            <p><strong>Discount: </strong>(Placeholder)</p>
+                        </div>
+                        <form id="CouponForm" class="d-flex my-2">
+                            <input id="CouponSubmit" class="form-control me-2" type="text" placeholder="Coupon">
+                            <button class="btn btn-primary Coupon-Submit" type="submit">Apply</button>
+                        </form>
+                        <hr/>
+                        <p class="mt-2"><strong>Total: </strong>(Placeholder)</p>
+                        <div class="row mx-1">
+                            <button class="btn btn-success Final-Checkout">Checkout</button>
                         </div>
                     </div>
                 </div>

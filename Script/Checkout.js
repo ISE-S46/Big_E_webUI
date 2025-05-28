@@ -36,9 +36,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 RemoveProductFromCart(id, type);
                 break;
 
-            case btn.classList.contains('ClearAll-btn'):
+            case btn.classList.contains('ClearAll-btn') || btn.classList.contains('ClearAll-Checkout'):
                 ClearCartAll();
                 break;
+
+            case btn.classList.contains('Coupon-Submit'):
+                alert("Will add this function in fullstack version");
+                break;
+
+            case btn.classList.contains('Final-Checkout'):
+                
+                break;
+
         }
 
     });
