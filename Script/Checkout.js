@@ -40,17 +40,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 ClearCartAll();
                 break;
 
-            case btn.classList.contains('Coupon-Submit'):
-                alert("Will add this function in fullstack version");
-                break;
-
             case btn.classList.contains('Final-Checkout'):
-                
+                window.location = "Account.html"; // Placeholder method, will replace later in fullstack version
                 break;
 
         }
 
     });
+
+    let Coupon = document.getElementById('CouponForm');
+
+    Coupon.addEventListener('submit', function (e) {
+        e.preventDefault();
+        alert("Coupon handling function will be added later in fullstack version");
+    });
+
 
     document.querySelectorAll('[data-checkout]').forEach(button => {
         button.addEventListener('click', () => {
