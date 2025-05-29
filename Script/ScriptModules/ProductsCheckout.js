@@ -30,7 +30,7 @@ function CheckoutCart() {
                     <div class="d-flex align-items-center text-end">
                         <span>${itemTotal.toLocaleString("th-TH", { maximumFractionDigits: 2 })} baht</span>
                         <button class="btn btn-sm delete-item-btn" data-product-id="${id}" data-product-type="${type}">
-                            <img src="/images/UI/trash.png" alt="delete" class="img-responsive" width="30" height="30">
+                            <img src="./images/UI/trash.png" alt="delete" class="img-responsive" width="30" height="30">
                         </button>
                     </div>
                 </li>
@@ -136,7 +136,7 @@ function CheckoutPage() {
                     <div class="d-flex align-items-center text-end">
                         <h6 class="ProductQuantityPrice my-0 ms-2" data-product-id="${id}" data-product-type="${type}">${itemTotal.toLocaleString("th-TH", { maximumFractionDigits: 2 })} baht</h6>
                         <button class="btn btn-sm ms-3 delete-item-btn" data-product-id="${id}" data-product-type="${type}">
-                            <img src="/images/UI/trash.png" alt="delete" class="img-responsive" width="30" height="30">
+                            <img src="./images/UI/trash.png" alt="delete" class="img-responsive" width="30" height="30">
                         </button>
                     </div>
                 </li>
