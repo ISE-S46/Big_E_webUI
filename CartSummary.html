@@ -12,23 +12,20 @@
 
 <body class="bg-dark bg-opacity-25">
 
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" class="navbar bg-primary" data-bs-theme="dark">
         <div class="container-fluid mx-lg-5 mx-sm-0">
-
             <!-- Toggler for small screens -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                 aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <!-- Brand name centered for small screens -->
-            <a class="navbar-brand ms-5" href="#" style="text-align: center;" id="ResetFilterReloadPage">
+            <a class="navbar-brand ms-5" href="index.html#" style="text-align: center;" id="resetFilter1">
                 <h1><strong>Big E</strong></h1>
             </a>
 
             <!-- Cart button for small screens -->
-            <div class="d-lg-none align-items-center">
+            <div class="d-lg-none d-flex align-items-center ms-0">
                 <button class="btn checkout-btn" data-checkout>
                     <span id="cart-total" class="badge bg-danger">0</span>
                     <img src="images/UI/cart.png" alt="checkoutCart" class="img-responsive" width="40" height="40">
@@ -46,7 +43,7 @@
                         </a>
                     </div>
                     <li class="nav-item">
-                        <a class="nav-link" href="#AboutUs">About Us</a>
+                        <a class="nav-link" href="./index.html#AboutUs">About Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#Contact">Contact</a>
@@ -57,14 +54,16 @@
                             Store
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="./Catalog.html?catalog=best-seller&page=1">Best Sellers</a></li>
+                            <li><a class="dropdown-item" href="./Catalog.html?catalog=best-seller&page=1">Best
+                                    Sellers</a></li>
                             <li><a class="dropdown-item" href="./Catalog.html?catalog=toys&page=1">Toys/Models</a></li>
                             <li><a class="dropdown-item" href="./Catalog.html?catalog=games&page=1">Games/DLC</a></li>
                         </ul>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
-                    <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <input id="searchInput" class="form-control me-2" type="search" placeholder="Search"
+                        aria-label="Search">
                     <button class="btn btn-outline-warning search-btn" type="submit">Search</button>
                 </form>
 
@@ -86,84 +85,43 @@
         </div>
     </nav>
 
-    <!--Banner-->
-    <div class="container-flex">
-        <img src="images/UI/banner.png" class="img-responsive center w-100 mt-5 mt-md-3 mt-lg-0" alt="Banner">
-    </div>
+    <div class="toast-body" id="toast-body-added"></div>
 
-    <div class="container bg-white mt-3 mt-md-5 shadow rounded" id="AboutUs">
-        <div class="row">
-            <!--carousel-->
-            <div class="col-12 col-lg-6 mt-3" id="CarouselImage">
-                <div class="container-fluid">
-                    <h2 id="text-shadow"><strong>Our Products</strong></h2>
-                    <div id="productCarouselContainer">
-                        <!--Carousel will be display here-->
+    <div class="container-flex mt-5 mx-2 mx-md-3 px-md-1">
+        <div class="row justify-content-center align-items-start mt-2">
+            <div class="col-12 col-md-10 col-lg-9 mt-3 order-md-1">
+                <h1 class="pt-3" id="text-shadow">Cart</h1>
+                <button type="button" class="btn btn-danger ClearAll-Checkout">Clear All</button>
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-start">
+            <div class="col-12 col-md-7 order-md-1">
+                <div class="card mt-2 mb-4">
+                    <div class="card-body">
+                        <div id="CartProductSummary"></div>
                     </div>
                 </div>
             </div>
-
-            <!--About us-->
-            <div class="col-12 col-lg-6 mt-3 mb-5">
-                <div class="container-fluid">
-                    <h2 id="text-shadow"><strong>About Us</strong></h2>
-                    <p class="mb-5">
-                        Welcome to Big E — your one-stop destination for games and toys! Whether you're a
-                        passionate gamer or a toy enthusiast, we are here to bring you the best, from the latest video
-                        games to collectible action figures and toys that spark imagination.
-                    </p>
-                    <h2 class="mt-5" id="text-shadow"><strong>Our Story</strong></h2>
-                    <p class="mb-5">
-                        Big E was founded by a group of game and toy enthusiasts who wanted to create a
-                        space where fans of both could find the best products in one place. Starting as a small project,
-                        we quickly grew
-                        into a thriving online store, driven by our passion for games, toys, and the joy they bring.
-                    </p>
+            <div class="col-12 col-md-3 col-lg-2 order-md-2" id="CartPriceSummary">
+                <div class="card mt-2 mb-4">
+                    <div class="card-body">
+                        <h4><strong>Summary</strong></h4>
+                        <div class="mt-2 total-price"></div>
+                        <div class="discount">
+                            <p><strong>Discount: </strong>(Placeholder)</p>
+                        </div>
+                        <form id="CouponForm" class="d-flex my-2">
+                            <input id="CouponSubmit" class="form-control me-2" type="text" placeholder="Coupon">
+                            <button class="btn btn-primary" type="submit" id="Coupon-Submit">Apply</button>
+                        </form>
+                        <hr/>
+                        <p class="mt-2"><strong>Total: </strong>(Placeholder)</p>
+                        <div class="row mx-1">
+                            <button class="btn btn-success Final-Checkout">Checkout</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="toast-body" id="toast-body-added"></div>
-
-    <!-- Best Seller Section -->
-    <div class="container-flex mx-2 mx-md-5 px-md-2 px-lg-4" id="best-seller-section">
-        <a href="./Catalog.html?catalog=best-seller&page=1" data-from="Best-Seller"
-            class="col-12 link-offset-2 link-underline link-underline-opacity-0 text-body mt-5">
-            <h1 class="mt-4" id="text-shadow">Best Sellers</h1>
-        </a>
-        <div class="row mb-3" id="best-seller-container">
-
-        </div>
-    </div>
-
-    <div class="container-flex mx-2 mx-md-5 px-md-2 px-lg-4" id="toys-section">
-        <a href="./Catalog.html?catalog=toys&page=1" class="col-12 link-offset-2 link-underline link-underline-opacity-0 text-body mt-5" data-from="toys">
-            <h1 class="mt-4" id="text-shadow">Toys/Models</h1>
-        </a>
-        <!-- Product Catalog for toys-->
-        <div class="row mb-3" id="toys-container">
-
-        </div>
-        <div class="text-center">
-            <a href="./Catalog.html?catalog=toys&page=1" data-from="toys">
-                <button id="More-toys" class="btn btn-primary shadow">More product</button>
-            </a>
-        </div>
-    </div>
-
-    <div class="container-flex mx-2 mx-md-5 px-md-2 px-lg-4" id="games-section">
-        <a href="./Catalog.html?catalog=games" class="col-12 link-offset-2 link-underline link-underline-opacity-0 text-body mt-5" data-from="games">
-            <h1 id="text-shadow">Games/DLC</h1>
-        </a>
-        <!-- Product Catalog for Games/DLC -->
-        <div class="row mt-3 mb-3" id="games-container">
-
-        </div>
-        <div class="text-center mb-5">
-            <a href="./Catalog.html?catalog=games" data-from="games">
-                <button id="More-games" class="btn btn-primary shadow">More Games/DLC</button>
-            </a>
         </div>
     </div>
 
@@ -235,7 +193,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    <script type="module" src="./Script/MainPage.js"></script>
+    <script type="module" src="./Script/Checkout.js"></script>
+
 </body>
 
 </html>
