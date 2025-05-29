@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelector('form[role="search"]').addEventListener('submit', function (e) {
         e.preventDefault();
-    
+
         RedirectSearchUrl();
     });
 
@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const id = btn.dataset.productId;
         const type = btn.dataset.productType;
+        const price = btn.dataset.price;
+        const name = btn.dataset.name;
 
         switch (true) {
             case btn.classList.contains('DecreaseQunatity-btn'):
@@ -38,9 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
 
             case btn.classList.contains('add-to-cart-btn'):
-                const price = btn.dataset.price;
-                const name = btn.dataset.name;
                 addToCart(id, type, price, name);
+                break;
+
+            case btn.classList.contains('BuyNow-btn'):
+                addToCart(id, type, price, name);
+                window.location.href = "CartSummary.html";
                 break;
 
             case btn.classList.contains('delete-item-btn'):

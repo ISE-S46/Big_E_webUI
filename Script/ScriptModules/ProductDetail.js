@@ -43,6 +43,13 @@ function ShowProductDeatil(product) {
                         data-name="${name}">
                     Add to Cart
                 </button>
+                <button class="btn btn-success mt-3 ms-1 BuyNow-btn"
+                        data-product-id="${id}"
+                        data-product-type="${type}"
+                        data-price="${price}"
+                        data-name="${name}">
+                    Buy now
+                </button>
             </div>
         </div>
     `;
