@@ -1,9 +1,9 @@
-function handleAccount() {
-    // Dummy check for login (will replace this later)
-    const isLoggedIn = false; //just change to true/false for testing
+const isLoggedIn = false; //Assume this is local storage
 
+function handleAccount() {
     const contentDiv = document.getElementById('content');
 
+    // Dummy check for login from local storage
     if (isLoggedIn) {
         contentDiv.innerHTML = `
         <div class="container mt-5">
@@ -24,11 +24,17 @@ function handleAccount() {
                     </div>
                     <div class="mb-3">
                         <label for="loginPassword" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="loginPassword" placeholder="Password">
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="loginPassword" placeholder="Password">
+                            <button class="btn btn-secondary togglePassword" type="button">
+                                <i class="bi bi-eye d-none" id="showIcon"></i>
+                                <i class="bi bi-eye-slash" id="hideIcon"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="mb-3 d-flex justify-content-between">
                         <a href="#" class="text-decoration-none" id="AccountPage">Forgot password?</a>
-                        <a href="#" class="text-decoration-none" id="AccountPage">Register</a>
+                        <a href="./Register.html" class="text-decoration-none" id="AccountPage">Register</a>
                     </div>
                     <button type="submit" class="btn btn-warning w-100 mb-4 Login">Login</button>
                 </form>
@@ -39,6 +45,7 @@ function handleAccount() {
 
 }
 
+// Place holder function
 function login() {
     alert('Login function will be added later in fullstack version');
 }
@@ -47,4 +54,8 @@ function logout() {
     alert('Logout function will be added later in fullstack version');
 }
 
-export { handleAccount, login, logout };
+function Register() {
+    alert('Register function will be added later in fullstack version');
+}
+
+export { handleAccount, login, logout, Register, isLoggedIn };

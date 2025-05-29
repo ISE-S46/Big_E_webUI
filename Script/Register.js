@@ -1,12 +1,15 @@
 import { cart, updateCartQuantityDisplay, RemoveProductFromCart, ClearCartAll } from "./ScriptModules/SynchronizeQuantity.js";
 import { CheckoutCart } from "./ScriptModules/ProductsCheckout.js";
 import { RedirectSearchUrl } from "./ScriptModules/SearchProduct.js";
-import { handleAccount, login, logout } from "./ScriptModules/AccountRouting.js";
+import { Register, isLoggedIn } from "./ScriptModules/AccountRouting.js";
 import { TogglePasswordIcon } from "./ScriptModules/ShowPassword.js";
 
 document.addEventListener('DOMContentLoaded', () => {
+    if (isLoggedIn === true) {
+        window.location.href = 'Account.html';
+    }
+
     updateCartQuantityDisplay(cart);
-    handleAccount();
 
     document.getElementById('searchInput').value = '';
 
@@ -16,9 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
         RedirectSearchUrl();
     });
 
-    const passwordInput = document.querySelector('#loginPassword');
+    const registerPassword = document.querySelector('#registerPassword');
+    const registerConfirmPassword = document.querySelector('#registerConfirmPassword');
+
     const showIcon = document.querySelector('#showIcon');
     const hideIcon = document.querySelector('#hideIcon');
+
+    const showIcon2 = document.querySelector('#showIcon2');
+    const hideIcon2 = document.querySelector('#hideIcon2');
 
     document.body.addEventListener('click', event => {
         const btn = event.target.closest('button');
@@ -37,26 +45,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 ClearCartAll();
                 break;
 
-            case btn.classList.contains('Logout'):
-                logout();
-                break;
-
             case btn.classList.contains('togglePassword'):
-                TogglePasswordIcon(passwordInput, showIcon, hideIcon);
+                TogglePasswordIcon(registerPassword, showIcon, hideIcon);
                 break;
 
+            case btn.classList.contains('toggleConfirmPassword'):
+                TogglePasswordIcon(registerConfirmPassword, showIcon2, hideIcon2);
+                break;
+
+            case btn.classList.contains('Register-btn'):
+                Register();
+                break;
         }
 
     });
-
-    let CheckLogin = document.getElementById('loginForm')
-
-    if (CheckLogin) {
-        CheckLogin.addEventListener('submit', function (e) {
-            e.preventDefault();
-            login();
-        });
-    }
 
     document.querySelectorAll('[data-checkout]').forEach(button => {
         button.addEventListener('click', () => {

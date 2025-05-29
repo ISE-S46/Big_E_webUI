@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
 
             case btn.classList.contains('Final-Checkout'):
-                window.location = "Account.html"; // Placeholder method, will replace later in fullstack version
+                window.location.href = "Account.html"; // Placeholder method, will replace later in fullstack version
                 break;
 
         }
