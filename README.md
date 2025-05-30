@@ -1,7 +1,7 @@
 # Big E webUI
 Functional front-end mockup of e-commerce website that focus on selling toys and games with product cart and filter systems.
 
-### [Live Webpage](https://ise-s46.github.io/Big_E_webUI/)
+### [Live Webpage](https://big-e.netlify.app/)
 
 ## Tools Used
 
